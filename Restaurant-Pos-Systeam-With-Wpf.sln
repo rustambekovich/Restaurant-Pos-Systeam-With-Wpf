@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant-Pos-Systeam-With-Wpf", "Restaurant-Pos-Systeam-With-Wpf\Restaurant-Pos-Systeam-With-Wpf.csproj", "{4805AE34-434D-4F7C-819E-38337833039B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4805AE34-434D-4F7C-819E-38337833039B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4805AE34-434D-4F7C-819E-38337833039B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4805AE34-434D-4F7C-819E-38337833039B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4805AE34-434D-4F7C-819E-38337833039B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F21FAF1-F231-4051-80C8-874ECF4FEC19}
+	EndGlobalSection
+EndGlobal

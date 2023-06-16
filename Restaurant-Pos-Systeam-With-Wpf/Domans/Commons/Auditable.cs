@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Domans.Commons
 {
-    internal class Auditable
+    public class Auditable : BaseEntitiy
     {
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdateAt { get; set; }
     }
 }

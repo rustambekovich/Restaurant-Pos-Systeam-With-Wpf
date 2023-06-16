@@ -1,9 +1,9 @@
-﻿using Restaurant_Pos_Systeam_With_Wpf.Domans.Commons;
-using Restaurant_Pos_Systeam_With_Wpf.Domans.Enums;
+﻿using Restaurant_Pos_Systeam_With_Wpf.Domains.Commons;
+using Restaurant_Pos_Systeam_With_Wpf.Domains.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Restaurant_Pos_Systeam_With_Wpf.Domans.Entities
+namespace Restaurant_Pos_Systeam_With_Wpf.Domains.Entities
 {
     public class Employee : Auditable
     {

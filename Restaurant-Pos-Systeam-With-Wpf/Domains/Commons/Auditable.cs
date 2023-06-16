@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Restaurant_Pos_Systeam_With_Wpf.Domans.Commons
+namespace Restaurant_Pos_Systeam_With_Wpf.Domains.Commons
 {
     public class Auditable : BaseEntitiy
     {

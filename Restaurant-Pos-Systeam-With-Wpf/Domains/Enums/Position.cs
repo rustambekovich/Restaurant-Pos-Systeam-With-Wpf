@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Restaurant_Pos_Systeam_With_Wpf.Domans.Enums
+namespace Restaurant_Pos_Systeam_With_Wpf.Domains.Enums
 {
-    public enum TableStatus
+    public enum Position
     {
-        empty,
-        busy
+        chef,
+        waiter,
+        Manenjer
     }
 }

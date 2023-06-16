@@ -1,4 +1,4 @@
-﻿using Restaurant_Pos_Systeam_With_Wpf.Domans.Enums;
+﻿using Restaurant_Pos_Systeam_With_Wpf.Domains.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Restaurant_Pos_Systeam_With_Wpf.Domans.Entities
+namespace Restaurant_Pos_Systeam_With_Wpf.Domains.Entities
 {
     public class Table
     {

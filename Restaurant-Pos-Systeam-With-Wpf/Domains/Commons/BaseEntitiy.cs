@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Restaurant_Pos_Systeam_With_Wpf.Domans.Enums
+namespace Restaurant_Pos_Systeam_With_Wpf.Domains.Commons
 {
-    public enum PaymentType
+    public class BaseEntitiy
     {
-        card,
-        cash
+        public long Id { get; set; }
     }
 }

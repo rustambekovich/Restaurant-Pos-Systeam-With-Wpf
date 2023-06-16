@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Domans.Enums
 {
-    internal class Position
+    public enum Position
     {
+        chef,
+        waiter,
+        Manenjer
     }
 }

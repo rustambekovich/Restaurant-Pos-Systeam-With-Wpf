@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Domans.Enums
 {
-    internal class Gender
+    public enum Gender
     {
+        Male,
+        Famale
     }
 }

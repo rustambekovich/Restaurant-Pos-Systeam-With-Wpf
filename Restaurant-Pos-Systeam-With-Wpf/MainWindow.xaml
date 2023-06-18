@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="MainWindow" Height="800" Width="1300">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="40"/>
+            <RowDefinition  Height="*"/>
+        </Grid.RowDefinitions>
+        <Button 
+            Content=" Clikme "
+            Width=" 200"
+            Height=" 20" Click="Button_Click"></Button>
+        
     </Grid>
 </Window>

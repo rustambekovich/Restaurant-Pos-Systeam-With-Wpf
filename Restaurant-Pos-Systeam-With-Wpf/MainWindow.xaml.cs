@@ -24,5 +24,10 @@ namespace Restaurant_Pos_Systeam_With_Wpf
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("sALOMLAR");
+        }
     }
 }

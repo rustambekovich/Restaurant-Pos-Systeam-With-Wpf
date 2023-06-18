@@ -14,8 +14,6 @@
     <Folder Include="Assets\Logos\" />
     <Folder Include="Assets\Sounds\" />
     <Folder Include="Components\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Themes\" />
     <Folder Include="Windows\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Stayls\" />

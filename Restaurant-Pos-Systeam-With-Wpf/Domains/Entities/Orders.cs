@@ -11,6 +11,8 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Domains.Entities
     public class Orders : Auditable
     {
         public long CostumerID { get; set; }
+        public long EmployeID { get; set; }
+        public OrderStatus statusOrderStatus { get; set; }  
         public float TotalAmount { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public Table TableID { get; set; }

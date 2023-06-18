@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS public."Orders"
     total_amount real NOT NULL,
     status text,
     table_id bigint NOT NULL,
+    employee_id bigint NOT NULL,
     PRIMARY KEY (order_id)
 );
 
@@ -58,24 +59,6 @@ CREATE TABLE IF NOT EXISTS public."Tables"
     PRIMARY KEY (table_id)
 );
 
-CREATE TABLE IF NOT EXISTS public."Served_items"
-(
-    "Served_item_id" bigint NOT NULL,
-    order_item_id bigint NOT NULL,
-    employee_id bigint NOT NULL,
-    served_data date NOT NULL,
-    served_time time with time zone NOT NULL,
-    PRIMARY KEY ("Served_item_id")
-);
-
-CREATE TABLE IF NOT EXISTS public."Chef"
-(
-    chef_id bigint NOT NULL,
-    employee_id bigint NOT NULL,
-    order_id bigint NOT NULL,
-    PRIMARY KEY (chef_id)
-);
-
 CREATE TABLE IF NOT EXISTS public."Products"
 (
     "Producr_id" bigint NOT NULL,
@@ -85,6 +68,16 @@ CREATE TABLE IF NOT EXISTS public."Products"
     is_aviable bigint NOT NULL,
     catigory text NOT NULL,
     PRIMARY KEY ("Producr_id")
+);
+
+CREATE TABLE IF NOT EXISTS public."Payment"
+(
+    "Payment_id" bigint NOT NULL,
+    "Order_id" bigint NOT NULL,
+    "PaymentDate" date NOT NULL,
+    "Amount" real NOT NULL,
+    "PaymentMethod" text NOT NULL,
+    PRIMARY KEY ("Payment_id")
 );
 
 ALTER TABLE IF EXISTS public."Orders"
@@ -98,6 +91,14 @@ ALTER TABLE IF EXISTS public."Orders"
 ALTER TABLE IF EXISTS public."Orders"
     ADD FOREIGN KEY (table_id)
     REFERENCES public."Tables" (table_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public."Orders"
+    ADD FOREIGN KEY (employee_id)
+    REFERENCES public."Employees" (employee_id) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
@@ -119,33 +120,9 @@ ALTER TABLE IF EXISTS public.order_items
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS public."Served_items"
-    ADD FOREIGN KEY (order_item_id)
-    REFERENCES public.order_items (order_item_id) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public."Served_items"
-    ADD FOREIGN KEY (employee_id)
-    REFERENCES public."Employees" (employee_id) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public."Chef"
-    ADD FOREIGN KEY (order_id)
+ALTER TABLE IF EXISTS public."Payment"
+    ADD FOREIGN KEY ("Order_id")
     REFERENCES public."Orders" (order_id) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-
-
-ALTER TABLE IF EXISTS public."Chef"
-    ADD FOREIGN KEY (employee_id)
-    REFERENCES public."Employees" (employee_id) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;

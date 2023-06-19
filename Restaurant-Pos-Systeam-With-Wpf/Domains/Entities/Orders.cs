@@ -14,8 +14,9 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Domains.Entities
         public long EmployeID { get; set; }
         public OrderStatus statusOrderStatus { get; set; }  
         public float TotalAmount { get; set; }
+        public float Price { get; set; }
         public OrderStatus OrderStatus { get; set; }
-        public Table TableID { get; set; }
+        public Table? TableID { get; set; }
         public DateTime OerderTime { get; set; }
     }
 }

@@ -7,16 +7,138 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Title="MainWindow" Height="800" Width="1300">
-    <Grid >
-        <Grid.RowDefinitions>
-            <RowDefinition  Height="40"/>
-            <RowDefinition  Height="*"/>
-        </Grid.RowDefinitions>
-        <Button 
-            Content=" Clikme "
-            Width=" 200"
-            Height=" 20" Click="Button_Click"></Button>
-        
+        WindowState ="Maximized"
+        Title="MainWindow" 
+        Height="800" Width="1300"
+        Background="Azure">
+
+
+    <Grid>
+        <Grid Margin="5,5"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+              Height="750"
+              Width="400"
+              Background="Beige">
+            <StackPanel>
+                <Grid Margin="0 0 0 0"
+                  Width="400"
+                  Height="60"
+                  HorizontalAlignment="Left"
+                  Background="White">
+
+                    <Grid Margin="1 1"
+                          HorizontalAlignment="Right"
+                          Width="200">
+                        <StackPanel HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center">
+                            <TextBlock x:Name="dateTextBlock" FontSize="16" />
+                            <TextBlock x:Name="timeTextBlock" FontSize="24" />
+                        </StackPanel>
+
+                    </Grid>
+                    <Grid Margin="1 1"
+                          HorizontalAlignment="Left"
+                          Width="200">
+                        <Border>
+
+                        </Border>
+                    </Grid>
+                </Grid>
+                <StackPanel Orientation="Horizontal"
+                            Height="60"
+                            Background="Transparent">
+                    <Border Margin="5 5 0 5"
+                            Height="50"
+                            Width="190"
+                            CornerRadius="10">
+                        <Button x:Name="btTables"
+                                Content="Tables"
+                                ></Button>
+                    </Border>
+                    <Border Margin="5 5 0 5"
+                            Height="50"
+                            Width="90"
+                            CornerRadius="10">
+                        <Button x:Name="btAdd"
+                                Content="+"
+                                ></Button>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <StackPanel 
+              x:Name="sourceStackPanel"
+              Margin="0,5,5,0"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Top"
+              Height="750"
+              Width="890">
+            <StackPanel x:Name="TopStackPanel"
+                        Margin="0 0 "
+                        Height="60"
+                        Orientation="Horizontal"
+                        Width="890"
+                        HorizontalAlignment="Right"
+                        Background="Chartreuse"
+                        >
+                <Border Margin="5 5 0 5"
+                        Background="White"
+                        CornerRadius="10"
+                        Height="50"
+                        Width="100">
+                        
+                </Border>
+                <Border Margin="5 5 0 5"
+                        Background="White"
+                        CornerRadius="10"
+                        Height="50"
+                        Width="100">
+
+                </Border>
+                <Border Margin="5 5 0 5"
+                        Background="White"
+                        CornerRadius="10"
+                        Height="50"
+                        Width="100">
+
+                </Border>
+                <Border Margin="5 5 0 5"
+                        Background="White"
+                        CornerRadius="10"
+                        Height="50"
+                        Width="100">
+
+                </Border>
+                <Border Margin="5 5 0 5"
+                        Background="White"
+                        CornerRadius="10"
+                        Height="50"
+                        Width="100">
+
+                </Border>
+                <Border Margin="5 5 0 5"
+                        Background="White"
+                        CornerRadius="10"
+                        Height="50"
+                        Width="100">
+
+                </Border>
+                <Border Margin="5 5 0 5"
+                        Background="White"
+                        CornerRadius="10"
+                        Height="50"
+                        Width="100">
+
+                </Border>
+                <Border Margin="5 5 0 5"
+                        Background="White"
+                        CornerRadius="10"
+                        Height="50"
+                        Width="100">
+
+                </Border>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

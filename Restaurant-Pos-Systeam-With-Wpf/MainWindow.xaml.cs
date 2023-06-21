@@ -38,5 +38,11 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             dateTextBlock.Text = currentTime.ToString("dd MM yyyy");
             timeTextBlock.Text = currentTime.ToString("HH:mm:ss");
         }
+
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

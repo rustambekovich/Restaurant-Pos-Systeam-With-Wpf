@@ -6,7 +6,17 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!--begin::Themes-->
                 <ResourceDictionary Source="/Themes/LightTheme.xaml"/>
+                <!--end::Themes-->
+                
+                <!--begin::Icons-->
+                <ResourceDictionary Source="/Assets/Icons/Icons.xaml"/>
+                <!--end::Themes-->
+
+                <!--begin::Styles-->
+                <ResourceDictionary Source="/Stayles/ButtonStyles.xaml"/>
+                <!--end::Styles-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

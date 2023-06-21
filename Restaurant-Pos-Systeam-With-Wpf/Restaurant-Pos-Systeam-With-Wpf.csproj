@@ -9,14 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\Icons\" />
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Logos\" />
     <Folder Include="Assets\Sounds\" />
     <Folder Include="Components\" />
     <Folder Include="Windows\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Stayls\" />
     <Folder Include="Security\" />
     <Folder Include="Pages\" />
   </ItemGroup>

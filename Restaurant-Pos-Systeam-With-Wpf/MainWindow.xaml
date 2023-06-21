@@ -6,139 +6,310 @@
         xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
-        WindowState ="Maximized"
         Title="MainWindow" 
         Height="800" Width="1300"
         Background="Azure">
 
 
-    <Grid>
-        <Grid Margin="5,5"
-              HorizontalAlignment="Left"
-              VerticalAlignment="Top"
-              Height="750"
-              Width="400"
-              Background="Beige">
-            <StackPanel>
-                <Grid Margin="0 0 0 0"
-                  Width="400"
-                  Height="60"
-                  HorizontalAlignment="Left"
-                  Background="White">
 
-                    <Grid Margin="1 1"
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*">
+
+            </ColumnDefinition>
+
+            <ColumnDefinition Width="4*">
+
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Border BorderThickness="4"
+                Background="White">
+            <Grid Grid.Column="0" Background="Azure">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="6*">
+
+                    </RowDefinition>
+                    <RowDefinition Height="6*">
+
+                    </RowDefinition>
+                    <RowDefinition Height="6*">
+
+                    </RowDefinition>
+                    <RowDefinition Height="35*">
+
+                    </RowDefinition>
+
+                    <RowDefinition Height="19*">
+
+                    </RowDefinition>
+                    <RowDefinition Height="6*">
+
+                    </RowDefinition>
+                </Grid.RowDefinitions>
+                <Border BorderBrush="#787C80"
+                        BorderThickness="1"
+                        CornerRadius="5"
+                        Background="{DynamicResource SecondaryBackround}">
+                    <Grid Background="Transparent">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*">
+
+                            </ColumnDefinition>
+                            <ColumnDefinition Width="1*">
+
+                            </ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" Margin="5 5 5 5"
                           HorizontalAlignment="Right"
                           Width="200">
-                        <StackPanel HorizontalAlignment="Center" 
+                            <StackPanel HorizontalAlignment="Right"
                                     VerticalAlignment="Center">
-                            <TextBlock x:Name="dateTextBlock" FontSize="16" />
-                            <TextBlock x:Name="timeTextBlock" FontSize="24" />
-                        </StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*">
+                                            
+                                        </ColumnDefinition>
+                                        <ColumnDefinition Width="*">
 
-                    </Grid>
-                    <Grid Margin="1 1"
-                          HorizontalAlignment="Left"
+                                        </ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                </Grid>
+                                <TextBlock Grid.Column="0" x:Name="dateTextBlock" FontSize="16" 
+                                   HorizontalAlignment="Right"/>
+                                <TextBlock Grid.Column="1" x:Name="timeTextBlock" FontSize="24"
+                                   HorizontalAlignment="Right"/>
+                            </StackPanel>
+
+                        </Grid>
+                        <Grid Grid.Column="0" Margin="1"
+                          HorizontalAlignment="Right"
                           Width="200">
-                        <Border>
+                            <Label  Margin="10 0"
+                           Content="Able Dev"
+                           FontSize="25"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"/>
+                            <Label Margin="25 5 0 5"
+                           Content="Pos Systeam"
+                                   
+                           FontSize="15"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"/>
 
-                        </Border>
+
+                        </Grid>
                     </Grid>
+                </Border>
+                <Grid Grid.Row="1"
+                  Background="Transparent">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*">
+
+                        </ColumnDefinition>
+                        <ColumnDefinition Width="*">
+
+                        </ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Border Margin="5 5 5 5"
+                            Height="50"
+                            Background="Yellow"
+                            CornerRadius="10"/>
+                    </Grid>
+                    <StackPanel Grid.Column="1">
+                        <Border Margin="5 5 5 5"
+                            Height="50"
+                            CornerRadius="10"
+                            Background="Brown"/>
+                    </StackPanel>
+
                 </Grid>
-                <StackPanel Orientation="Horizontal"
-                            Height="60"
-                            Background="Transparent">
-                    <Border Margin="5 5 0 5"
+                <Grid Grid.Row="2"
+                  Background="Transparent">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*">
+
+                        </ColumnDefinition>
+                        <ColumnDefinition Width="*">
+
+                        </ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Border Margin="5 5 5 5"
                             Height="50"
-                            Width="190"
-                            CornerRadius="10">
-                        <Button x:Name="btTables"
-                                Content="Tables"
-                                ></Button>
-                    </Border>
-                    <Border Margin="5 5 0 5"
+                            Background="Yellow"
+                            CornerRadius="10"/>
+                    </Grid>
+                    <StackPanel Grid.Column="1">
+                        <Border Margin="5 5 5 5"
                             Height="50"
-                            Width="90"
-                            CornerRadius="10">
-                        <Button x:Name="btAdd"
-                                Content="+"
-                                ></Button>
+                            CornerRadius="10"
+                            Background="Brown"/>
+                    </StackPanel>
+
+                </Grid>
+                <Grid Grid.Row="3">
+                    <!--<Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>-->
+                    
+                    <Border Grid.Column="3" 
+                            BorderBrush="#787C80" 
+                            BorderThickness="1"
+                            CornerRadius="5">
+                        <DataGrid ItemsSource="{Binding YourDataItems}">
+                            <DataGrid.Columns>
+                                <!-- Ustunlar -->
+                                <DataGridTextColumn Header="Item name"
+                                                    Binding="{Binding Property1}"
+                                                    Width="3*"/>
+                                
+                                <DataGridTextColumn Header="Price" 
+                                                    Binding="{Binding Property2}"
+                                                    Width="2*"/>
+                                <DataGridTextColumn Header="Qty" 
+                                                    Binding="{Binding Property2}"
+                                                    Width="*"/>
+                                <DataGridTextColumn Header="Amount" 
+                                                    Binding="{Binding Property2}"
+                                                    Width="2*"/>
+                                <!-- Qo'shimcha ustunlar -->
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Border>
-                </StackPanel>
-            </StackPanel>
-        </Grid>
-        <StackPanel 
-              x:Name="sourceStackPanel"
-              Margin="0,5,5,0"
-              HorizontalAlignment="Right"
-              VerticalAlignment="Top"
-              Height="750"
-              Width="890">
-            <StackPanel x:Name="TopStackPanel"
-                        Margin="0 0 "
-                        Height="60"
-                        Orientation="Horizontal"
-                        Width="890"
-                        HorizontalAlignment="Right"
-                        Background="Chartreuse"
-                        >
-                <Border Margin="5 5 0 5"
-                        Background="White"
-                        CornerRadius="10"
-                        Height="50"
-                        Width="100">
+
+                </Grid>
+                <Grid Grid.Row="4">
+                    
+                </Grid>
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0"
+                          Background="Red"
+                          Margin="5"
+                          CornerRadius="5">
                         
-                </Border>
-                <Border Margin="5 5 0 5"
-                        Background="White"
-                        CornerRadius="10"
-                        Height="50"
-                        Width="100">
+                    </Border>
+                </Grid>
 
-                </Border>
-                <Border Margin="5 5 0 5"
-                        Background="White"
-                        CornerRadius="10"
-                        Height="50"
-                        Width="100">
 
-                </Border>
-                <Border Margin="5 5 0 5"
-                        Background="White"
-                        CornerRadius="10"
-                        Height="50"
-                        Width="100">
+            </Grid>
+        </Border>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65">
 
-                </Border>
-                <Border Margin="5 5 0 5"
-                        Background="White"
-                        CornerRadius="10"
-                        Height="50"
-                        Width="100">
+                </RowDefinition>
+                <RowDefinition Height="*">
 
-                </Border>
-                <Border Margin="5 5 0 5"
-                        Background="White"
-                        CornerRadius="10"
-                        Height="50"
-                        Width="100">
+                </RowDefinition>
+                <RowDefinition Height="60">
 
-                </Border>
-                <Border Margin="5 5 0 5"
-                        Background="White"
-                        CornerRadius="10"
-                        Height="50"
-                        Width="100">
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="1" >
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*">
 
-                </Border>
-                <Border Margin="5 5 0 5"
-                        Background="White"
-                        CornerRadius="10"
-                        Height="50"
-                        Width="100">
+                        </ColumnDefinition>
+                        <ColumnDefinition Width="*">
 
-                </Border>
+                        </ColumnDefinition>
+                        <ColumnDefinition Width="*">
+
+                        </ColumnDefinition>
+                        <ColumnDefinition Width="*">
+
+                        </ColumnDefinition>
+                        <ColumnDefinition Width="0.35*">
+
+                        </ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0"
+                        Background="{DynamicResource SecondaryBackround}"
+                        Margin="5,5,0,5"
+                        BorderThickness="1"
+                            CornerRadius="5"
+                        BorderBrush="#787C80">
+                        <Label  Margin="0,-5,0,0"
+                           Content="Order"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top">
+
+                        </Label>
+                    </Border>
+                    <Border Grid.Column="1"
+                       Background="{DynamicResource SecondaryBackround}"
+                        Margin="5,5,0,5"
+                        BorderThickness="1"
+                            CornerRadius="5"
+                        BorderBrush="#787C80">
+                        <Label  Margin="0,-5,0,0"
+                           Content="Order"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top">
+
+                        </Label>
+                    </Border>
+                    <Border Grid.Column="2"
+                        Background="{DynamicResource SecondaryBackround}"
+                        Margin="5,5,0,5"
+                        BorderThickness="1"
+                            CornerRadius="5"
+                        BorderBrush="#787C80">
+                        <Label  Margin="0,-5,0,0"
+                           Content="Order"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top">
+
+                        </Label>
+                    </Border>
+                    <Border Grid.Column="3"
+                        Background="{DynamicResource SecondaryBackround}"
+                        Margin="5,5,0,5"
+                        BorderThickness="1"
+                            CornerRadius="5"
+                        BorderBrush="#787C80">
+                        <Label  Margin="0,-5,0,0"
+                           Content="Order"
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top">
+
+                        </Label>
+                    </Border>
+
+                    <Button Grid.Column="4"
+                            Margin="0 5"
+                            x:Name="btnClose"
+                            Click="btnClose_Click"
+                            Style="{DynamicResource CloseButton}"/>
+
+                </Grid>
             </StackPanel>
-        </StackPanel>
+
+            <Grid Grid.Row="1">
+                <Border Margin="5 5 5 5"
+                    Background="{DynamicResource SecondaryBackround}"
+                    BorderThickness="1"
+                    BorderBrush="Black">
+
+                </Border>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

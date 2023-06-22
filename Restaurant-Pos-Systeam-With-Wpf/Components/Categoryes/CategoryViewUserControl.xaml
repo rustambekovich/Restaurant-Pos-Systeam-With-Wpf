@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes.CategoryViewUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes"
+             mc:Ignorable="d" 
+             Height="70" 
+             Width="2250">
+    <Grid>
+            
+    </Grid>
+</UserControl>

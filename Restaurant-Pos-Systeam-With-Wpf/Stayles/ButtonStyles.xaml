@@ -25,6 +25,7 @@
         </Setter>
 
     </Style>-->
+    
     <Style x:Key="CloseButton" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="60" />
         <Setter Property="Width" Value="60" />
@@ -35,12 +36,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="E" 
-                            Background="#fff"
-                            CornerRadius="5"
+                            Background="white"
                             BorderThickness="1"
-                            BorderBrush="#787C80">
+                            BorderBrush="#787C80"
+                            CornerRadius="10">
                         <Path Fill="Red" 
-                              Data="{DynamicResource close}" Height="20" Width="20" Stretch="Uniform"/>
+                              Data="{DynamicResource close}" Height="15" Width="15" Stretch="Uniform"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -57,5 +58,311 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="NewButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="2 5 5 5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="N"
+                            Background="{DynamicResource PraymiryryBackroundButton}"
+                            Margin=" 5 5 5 5"
+                            CornerRadius="5">
+                        <Label Content="New"
+                               FontSize="18"
+                               FontStyle="Normal"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                        </Label>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="N" Property="Background" Value="#69C6FF"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="N" Property="Background" Value="#69C6FF"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="N" Property="Background" Value="#FFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="SettingButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="2 5 5 5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="S"
+                            Background="{DynamicResource  PraymiryryBackroundButton}"
+                            Margin=" 5 5 5 5"
+                            CornerRadius="5">
+                        <Label Content="Setting"
+                               FontSize="18"
+                               FontStyle="Normal"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                        </Label>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="S" Property="Background" Value="#69C6FF"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="S" Property="Background" Value="#69C6FF"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="S" Property="Background" Value="#FFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="PaymenrButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="2 5 5 5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="P"
+                            Background="{DynamicResource PraymiryryBackroundButton}"
+                            Margin=" 5 5 5 5"
+                            CornerRadius="5">
+                        <Label Content="Payment"
+                               FontSize="18"
+                               FontStyle="Normal"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                        </Label>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="P" Property="Background" Value="#69C6FF"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="P" Property="Background" Value="#69C6FF"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="P" Property="Background" Value="#FFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="AddCategory" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="150" />
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Margin" Value="0 0 0 40"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="C" 
+                            Background="Transparent"
+                            CornerRadius="5"
+                            BorderThickness="1"
+                            BorderBrush="#787C80">
+                        <Path Fill="Red" 
+                              Data="{DynamicResource  Category}" Height="50" Width="50" Stretch="Uniform"/>
+                        
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="C" Property="Background" Value="{DynamicResource PraymiryryBackroundButton }"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="C" Property="Background" Value="{DynamicResource PraymiryryBackroundButton }"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="C" Property="Background" Value="#9C9C9C"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="btnTable" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Width" Value="240" />
+        <!--<Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>-->
+        <Setter Property="Margin" Value="0 5 0 0"/>
+        <Setter Property="Margin" Value="0 5 0 0"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Border>
+                        <Label Content = "Table"
+                               Width="30"
+                               Height="20"
+                               Margin="0 5 5 5"
+                               HorizontalAlignment="Right"
+                               FontSize="20"
+                               VerticalAlignment="Center">
+
+                        </Label>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="T" 
+                            
+                            Background="Transparent"
+                            CornerRadius="5"
+                            BorderThickness="1"
+                            Margin="0 0 0 0"
+                            BorderBrush="#787C80">
+                        <Path Fill="Gray"
+                              Margin="20 0 0 0"
+                              HorizontalAlignment="Left"
+                              Data="{DynamicResource  Table}" 
+                              Height="40" 
+                              Width="50"
+                              Stretch="Uniform"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="T" Property="Background" Value="#FFFFFF"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="T" Property="Background" Value="#FFFFFF"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="T" Property="Background" Value="#9C9C9C"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="AllCatgoryButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Width" Value="225"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="0 0 5 0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="S"
+                            Background="{DynamicResource PraymiryryBackroundButton}"
+                            Margin="0 0 0 0"
+                            CornerRadius="5">
+                        <Label Content="All Catrgory"
+                               FontSize="18"
+                               FontStyle="Normal"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                        </Label>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="S" Property="Background" Value="#69C6FF"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="S" Property="Background" Value="#69C6FF"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="S" Property="Background" Value="#FFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SaveButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="60"/>
+        <Setter Property="Width" Value="280"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="2 5 5 5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="N"
+                            Background="{DynamicResource SecondaryBackroundButton}"
+                            Margin=" 5 5 5 5"
+                            CornerRadius="5">
+                        <Label Content="Save"
+                               FontSize="18"
+                               FontStyle="Normal"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                        </Label>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="N" Property="Background" Value="#FFFFFF"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="N" Property="Background" Value="#9C9C9C"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="N" Property="Background" Value="#9C9C9C"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="DeletButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="60"/>
+        <Setter Property="Width" Value="280"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="2 5 5 5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="N"
+                            Background="{DynamicResource SecondaryBackroundButton}"
+                            Margin=" 5 5 5 5"
+                            CornerRadius="5">
+                        <Label Content="Delete"
+                               FontSize="18"
+                               FontStyle="Normal"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                        </Label>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="N" Property="Background" Value="#FFFFFF"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="N" Property="Background" Value="#9C9C9C"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="N" Property="Background" Value="#9C9C9C"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 </ResourceDictionary>

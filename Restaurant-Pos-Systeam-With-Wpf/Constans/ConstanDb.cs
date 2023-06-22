@@ -2,17 +2,11 @@
 {
     public class ConstanDb
     {
-        public const string DB_Host = "localhost";
-        public const string DB_Port = "5432";
-        public const string DB_Datebase = "RestaurantDB";
-        public const string DB_User = "Postgresql";
-        public const string DB_Parol = "2151";
 
-        public const string DB_CONNECTIONSTRING =
-            $"Host :{DB_Host};" +
-            $"Port: {DB_Port};" +
-            $"Database : {DB_Datebase};" +
-            $"User ID: {DB_User};" +
-            $"Parol: {DB_Parol}";
+        public const string DB_CONNECTIONSTRING = "Host=localhost;" +
+        "Port=5432;" +
+        "User Id=postgres;" +
+        "Database=RestaurantDB;" +
+        "Password=2151;";
     }
 }

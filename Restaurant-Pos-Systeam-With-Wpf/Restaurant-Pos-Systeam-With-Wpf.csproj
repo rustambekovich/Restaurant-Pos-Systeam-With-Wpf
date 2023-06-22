@@ -9,14 +9,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\Images\" />
+    <None Remove="Assets\Images\dining-table.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Themes\DarkTheme.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Assets\Logos\" />
     <Folder Include="Assets\Sounds\" />
-    <Folder Include="Components\" />
-    <Folder Include="Windows\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Security\" />
     <Folder Include="Pages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="7.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Images\dining-table.png" />
+    <Resource Include="Themes\DarkTheme.xaml" />
   </ItemGroup>
 
 </Project>

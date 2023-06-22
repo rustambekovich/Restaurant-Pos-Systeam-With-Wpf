@@ -19,6 +19,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Domains.Entities
         public string PhoneNumber { get; set; } = string.Empty;
         [MaxLength(15)]
         public string FamilyPhoneNumber { get; set; } = string.Empty;
+        public string image_path { get; set; } = string.Empty;
 
         [MaxLength(50)]
         public string Email { get; set; } = string.Empty;

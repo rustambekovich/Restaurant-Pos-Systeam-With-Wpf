@@ -12,6 +12,8 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Domains.Entities
     {
         public long OrderID { get; set; }
         public float Amount { get; set; }
+        public long CostumerId { get; set; }
+        public long EmployeeId { get; set; }
         public PaymentType PaymentType { get; set; }
     }
 }

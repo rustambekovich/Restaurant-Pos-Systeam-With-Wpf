@@ -1,4 +1,5 @@
 ﻿using Restaurant_Pos_Systeam_With_Wpf.Helpers;
+using Restaurant_Pos_Systeam_With_Wpf.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             InitializeComponent();
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
+
 #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             timer.Tick += Timer_Tick;
 #pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
@@ -43,6 +45,17 @@ namespace Restaurant_Pos_Systeam_With_Wpf
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Setting_Click(object sender, RoutedEventArgs e)
+        {
+            Setting setting = new Setting();
+            setting.ShowDialog();
         }
     }
 }

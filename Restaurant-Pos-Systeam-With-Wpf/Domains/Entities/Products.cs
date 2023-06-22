@@ -17,7 +17,6 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Domans.Entities
         [MaxLength(50)]
         public string Description { get; set; } = string.Empty;
         public decimal Price { get; set; }
-        public bool IsAviable { get; set; } = false;
         public Cotigory cotigory { get; set; }
     }
 }

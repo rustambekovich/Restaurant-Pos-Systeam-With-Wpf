@@ -8,7 +8,8 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Background="Azure"
-        Title="AddCategory" Height="550" Width="600">
+        Loaded="Window_Loaded"
+        Title="AddCategory" Height="580" Width="550">
         
     <Border>
         <Grid>
@@ -27,26 +28,39 @@
                        Margin="10 5 0 0"/>
                     <Border Background="{DynamicResource SecondaryBackround}"
                             Height="50"
-                            Width="555"
+                            Width="500"
                             CornerRadius="10"
                             HorizontalAlignment="Left"
                             Margin="15 0 5 5"
                             >
+                        
                         <StackPanel Orientation="Horizontal">
-                            <TextBox x:Name="tbname"
-                                 MaxLength="50"
-                                 Width="400"
-                                 Grid.Column="1" 
-                                 VerticalAlignment="Center"
-                                 FontSize="16"
-                                 Margin="10 0 80 0"
-                                 FontFamily="Jetbrains Mono"
-                                 BorderThickness="0"
-                                 Foreground="Black"
-                                 Background="{DynamicResource  SecondaryBackround}">
+                            <Grid Width="500">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.Column="0" x:Name="tbname"
+                                         MaxLength="50"
+                                         
+                                         Width="440" 
+                                         VerticalAlignment="Center"
+                                         FontSize="16"
+                                         Margin="10 0 10 0"
+                                         FontFamily="Jetbrains Mono"
+                                         BorderThickness="0"
+                                         TextChanged="TextBox_TextChanged"
+                                         Foreground="Black"
+                                         Background="{DynamicResource  SecondaryBackround}">
 
-                            </TextBox>
-                            <Label/>
+                                </TextBox>
+                                <Label Grid.Column="1" x:Name="lbcharectr"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="18"
+                                      
+                                       Content="0"/>
+                            </Grid>
                         </StackPanel>
                         
                     </Border>
@@ -56,6 +70,7 @@
                             Margin="5 5 10 5">
                         <StackPanel Orientation="Horizontal">
                             <Button Style="{DynamicResource SaveButton}"
+                                    x:Name="savebtnctg"
                                     Click="Save_Click"/>
                             <Button Style="{DynamicResource DeletButton}"
                                     Click="Delete_Click"/>
@@ -86,7 +101,7 @@
                                    FontSize="16">
 
                             </Label>
-                            <Label Content="categories found"
+                            <Label Content="category found"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    FontSize="16">

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
+using Restaurant_Pos_Systeam_With_Wpf.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,23 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
     /// </summary>
     public partial class CategoryViewUserControl : UserControl
     {
+        AddCategory addCategory = new AddCategory();
+        public long Id { get; private set; }
         public CategoryViewUserControl()
         {
             InitializeComponent();
+        }
+
+        public void SetData(Category categoryes)
+        {
+           lbname.Content = categoryes.Name;
+           Id = categoryes.Id;   
+        }
+
+        private void get_catg(object sender, MouseButtonEventArgs e)
+        {
+            addCategory.put(lbname.ToString(), Id);
+
         }
     }
 }

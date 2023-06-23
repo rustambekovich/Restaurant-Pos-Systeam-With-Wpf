@@ -1,4 +1,8 @@
-﻿using Restaurant_Pos_Systeam_With_Wpf.Helpers;
+﻿using Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes;
+using Restaurant_Pos_Systeam_With_Wpf.Helpers;
+using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
+using Restaurant_Pos_Systeam_With_Wpf.Repositories.Categoryes;
+using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using Restaurant_Pos_Systeam_With_Wpf.Windows;
 using System;
 using System.Collections.Generic;
@@ -23,6 +27,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly ICategoryReposytory _categoryReposytory;
         public MainWindow()
         {
             InitializeComponent();
@@ -33,6 +38,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             timer.Tick += Timer_Tick;
 #pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             timer.Start();
+            this._categoryReposytory = new CategoryRepository();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -47,15 +53,29 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             Application.Current.Shutdown();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
             Setting setting = new Setting();
             setting.ShowDialog();
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            wrpCatigory.Children.Clear();
+            PaginationParams paginationParams = new PaginationParams()
+            {
+                PageNumber = 1,
+                PageSize = 20
+            };
+            var categorys = await _categoryReposytory.GetAllAsync(paginationParams);
+
+            foreach(var category in categorys)
+            {
+                CategoryViewUserControl categoryViewUserControl = new CategoryViewUserControl();
+                categoryViewUserControl.SetData(category);
+                wrpCatigory.Children.Add(categoryViewUserControl);
+            }
         }
     }
 }

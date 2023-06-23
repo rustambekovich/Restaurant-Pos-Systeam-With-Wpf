@@ -6,8 +6,18 @@
              xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes"
              mc:Ignorable="d" 
              Height="70" 
-             Width="2250">
-    <Grid>
-            
+             Width="235">
+    <Grid Margin="5 5 5 5">
+        <Border Background="{DynamicResource PraymiryryBackroundButton}"
+                CornerRadius="5"
+                MouseDown="get_catg">
+            <Label x:Name="lbname"
+                   HorizontalAlignment ="Center"
+                   VerticalAlignment ="Center"
+                   FontSize="18">
+                
+            </Label>
+        </Border>
     </Grid>
+    
 </UserControl>

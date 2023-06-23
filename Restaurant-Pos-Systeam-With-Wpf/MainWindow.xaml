@@ -10,7 +10,8 @@
         WindowState="Maximized"
         WindowStyle="SingleBorderWindow"
         Height="800" Width="1300"
-        Background="{DynamicResource PraymiryWindowBackround}">
+        Loaded="Window_Loaded"
+        Background="{DynamicResource PraymiryBackround}">
     
     <Grid>
         <Grid.ColumnDefinitions>

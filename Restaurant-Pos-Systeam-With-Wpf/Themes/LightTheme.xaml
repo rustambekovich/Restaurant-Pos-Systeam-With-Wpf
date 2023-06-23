@@ -2,9 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <SolidColorBrush x:Key="PraymiryBackround" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="SecondaryBackround" Color="#E1E1E1"/>
+    <SolidColorBrush x:Key="SAVEBackround" Color="Green"/>
+    <SolidColorBrush x:Key="DeleteBackround" Color="Red"/>
 
-    <SolidColorBrush x:Key="PraymiryWindowBackround" Color="#F5F7FB"/>
-    <SolidColorBrush x:Key="PraymiryryBackroundButton" Color="#63A1F0"/>
+    <SolidColorBrush x:Key="PraymiryWindowBackround" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="PraymiryryBackroundButton" Color="#69C6FF"/>
     <SolidColorBrush x:Key="BorderThiknes" Color="#787C80"/>
     <SolidColorBrush x:Key="Button" Color="#ECECEC"/>
 

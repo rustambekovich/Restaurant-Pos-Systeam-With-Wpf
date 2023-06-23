@@ -295,15 +295,15 @@
 
     <Style x:Key="SaveButton" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="60"/>
-        <Setter Property="Width" Value="280"/>
+        <Setter Property="Width" Value="250"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Margin" Value="2 5 5 5"/>
+        <Setter Property="Margin" Value="5 5 5 5"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="N"
-                            Background="{DynamicResource SecondaryBackroundButton}"
+                            Background="{DynamicResource SAVEBackround}"
                             Margin=" 5 5 5 5"
                             CornerRadius="5">
                         <Label Content="Save"
@@ -315,13 +315,13 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="N" Property="Background" Value="#FFFFFF"/>
+                            <Setter TargetName="N" Property="Background" Value="#00FF00"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">
-                            <Setter TargetName="N" Property="Background" Value="#9C9C9C"/>
+                            <Setter TargetName="N" Property="Background" Value="#006700"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="N" Property="Background" Value="#9C9C9C"/>
+                            <Setter TargetName="N" Property="Background" Value="#006700"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -330,7 +330,7 @@
     </Style>
     <Style x:Key="DeletButton" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="60"/>
-        <Setter Property="Width" Value="280"/>
+        <Setter Property="Width" Value="250"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="Margin" Value="2 5 5 5"/>
@@ -338,8 +338,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="N"
-                            Background="{DynamicResource SecondaryBackroundButton}"
-                            Margin=" 5 5 5 5"
+                            Background="{DynamicResource DeleteBackround}"
+                            Margin=" 5 5 2 5"
                             CornerRadius="5">
                         <Label Content="Delete"
                                FontSize="18"
@@ -350,13 +350,13 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="N" Property="Background" Value="#FFFFFF"/>
+                            <Setter TargetName="N" Property="Background" Value="#FF3E2C"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">
-                            <Setter TargetName="N" Property="Background" Value="#9C9C9C"/>
+                            <Setter TargetName="N" Property="Background" Value="#FF3E2C"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="N" Property="Background" Value="#9C9C9C"/>
+                            <Setter TargetName="N" Property="Background" Value="#FF0000"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

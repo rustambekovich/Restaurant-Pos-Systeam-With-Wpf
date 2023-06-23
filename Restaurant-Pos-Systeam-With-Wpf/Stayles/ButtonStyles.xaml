@@ -179,7 +179,7 @@
                             CornerRadius="5"
                             BorderThickness="1"
                             BorderBrush="#787C80">
-                        <Path Fill="Red" 
+                        <Path Fill="White" 
                               Data="{DynamicResource  Category}" Height="50" Width="50" Stretch="Uniform"/>
                         
                     </Border>
@@ -199,6 +199,8 @@
         </Setter>
     </Style>
 
+    
+    
     <Style x:Key="btnTable" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="50" />
         <Setter Property="Width" Value="240" />

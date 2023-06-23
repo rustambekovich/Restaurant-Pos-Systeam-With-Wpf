@@ -11,7 +11,7 @@ public interface IRepository<TEntity, TViewModel>
     public Task<int> CreatedAtAsync(TEntity entity);
     public Task<int> UpdatedAtAsync(long id, TEntity entity);
     public Task<int> DeletedAtAsync(long id);
-    public Task<int> DeletedAtAsync(string name);
+    public Task<int> DeletedBynameAtAsync(string name);
     public Task<TViewModel> GetByIdAsync(long id);
     public Task<IList<TViewModel>> GetAllAsync(PaginationParams @params);
 }

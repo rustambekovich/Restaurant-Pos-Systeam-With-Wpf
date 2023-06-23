@@ -27,7 +27,8 @@ public class CategoryRepository : ICategoryReposytory
     {
         try
         {
-            _connection.Open();
+            
+            await _connection.OpenAsync();
             string query = "Insert Into \"Category\"(name) values (@name);";
             await using(var command = new NpgsqlCommand(query, _connection))
             {
@@ -42,38 +43,25 @@ public class CategoryRepository : ICategoryReposytory
         }
         finally
         {
-            _connection.Close();
+            await _connection.CloseAsync();
         }
 
     }
 
-    public async Task<int> DeletedAtAsync(long id)
+    public Task<int> DeletedAtAsync(long id)
     {
-        try
-        {
-            _connection.Open();
-            string query = $"Delete FROM \"Category\" WHERE Category_id = {id};";
-            await using (var command = new NpgsqlCommand(query, _connection))
-            {
-                var dbrresult = await command.ExecuteNonQueryAsync();
-                return dbrresult;
-            }
-        }
-        catch
-        {
-            return 0;
-        }
-        finally
-        {
-            _connection.Close();
-        }
+        throw new NotImplementedException();
     }
 
-    public async Task<int> DeletedAtAsync(string name)
+    public async Task<int> DeletedBynameAtAsync(string name)
     {
         try
         {
-            _connection.Open();
+            var list = new List<Category>();
+            await _connection.OpenAsync();
+            if (_connection.State == System.Data.ConnectionState.Open)
+                await _connection.CloseAsync();
+            await _connection.OpenAsync();
             string query = $"Delete FROM \"Category\" WHERE name = '{name}';";
             await using (var command = new NpgsqlCommand(query, _connection))
             {
@@ -87,23 +75,21 @@ public class CategoryRepository : ICategoryReposytory
         }
         finally
         {
-            _connection.Close();
+           await _connection.CloseAsync();
         }
     }
 
     public async Task<IList<Category>> GetAllAsync(PaginationParams @params)
     {
+        var list = new List<Category>();
         try
         {
             
             
-                if (_connection.State != System.Data.ConnectionState.Open)
-                {
-                    await _connection.OpenAsync();
+            await _connection.OpenAsync();
 
-                }
-            var list = new List<Category>();
-            string query = $"Select * from \"Category\" \r\nOrder by category_id offset {(@params.PageNumber - 1) * @params.PageSize} limit {@params.PageSize};";
+            
+            string query = $"Select * from \"Category\" \r\nOrder by category_id;";
             await using (var command = new NpgsqlCommand(query, _connection))
             {
                 await using (var reader = await command.ExecuteReaderAsync())
@@ -116,12 +102,13 @@ public class CategoryRepository : ICategoryReposytory
                         list.Add(category);
                     }
                 }
+   
             }
             return list;
         }
         catch
         {
-            return new List<Category>();
+            return list;
         }
         finally
         {

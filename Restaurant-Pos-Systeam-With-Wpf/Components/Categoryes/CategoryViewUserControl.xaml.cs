@@ -37,7 +37,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
 
         private void get_catg(object sender, MouseButtonEventArgs e)
         {
-            addCategory.put(lbname.ToString(), Id);
+            
 
         }
     }

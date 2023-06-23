@@ -1,23 +1,11 @@
 ﻿using Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes;
 using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
+using Restaurant_Pos_Systeam_With_Wpf.Domains.Enums;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Categoryes;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Xml.Linq;
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Windows
 {
@@ -30,28 +18,34 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
         public AddCategory()
         {
             InitializeComponent();
-            this._categoryReposytory= new CategoryRepository();
+            this._categoryReposytory = new CategoryRepository();
         }
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        private async void Delete_Click(object sender, RoutedEventArgs e)
         {
-            Category category = new Category();
 
-            _categoryReposytory.DeletedAtAsync(tbname.Text);
+            Category category = new Category();
+            if (tbname.Text.Length > 0)
+            {
+
+                category.Name = tbname.Text;
+               await _categoryReposytory.DeletedBynameAtAsync(tbname.Text); 
+            }
+            else
+            {
+                MessageBox.Show("Complate Category");
+
+            }
             Refresh();
         }
         public long Id { get; set; }
-        public async void put(string lbname, long id)
-        {
-            tbname.Text = Name;
-            Id = id;
-        }
+
         private async void Save_Click(object sender, RoutedEventArgs e)
         {
             Category category = new Category();
-            if(tbname.Text.Length > 0 ) 
+            if (tbname.Text.Length > 0)
             {
-                
+
                 category.Name = tbname.Text;
                 var result = await _categoryReposytory.CreatedAtAsync(category);
                 if (result > 0)
@@ -61,13 +55,14 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
             else
             {
                 MessageBox.Show("Complate Category");
-                
+
             }
             Refresh();
         }
 
         private async void Refresh()
         {
+
             tbname.Text = string.Empty;
             wrpCatigory.Children.Clear();
             PaginationParams paginationParams = new PaginationParams()
@@ -89,10 +84,10 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
         }
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-           Refresh();
+            Refresh();
         }
 
-        
+
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -101,7 +96,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
             lbcharectr.Content = (50 - text.Length).ToString();
             if (text.Length > 50)
             {
-                
+
                 textBox.Text = text.Substring(50, 0);
                 textBox.CaretIndex = 50;
             }

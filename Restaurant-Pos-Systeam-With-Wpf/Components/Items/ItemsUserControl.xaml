@@ -5,12 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Items"
              mc:Ignorable="d" 
-             Height="250"
+             
              Cursor="Hand"
              MouseDoubleClick="UserControl_MouseDoubleClick"
-             Width="200">
+             >
              
     <Border Margin="5 5 5 5"
+            BorderBrush="Black"
+            BorderThickness="2"
             CornerRadius="20"
             Background="White"
             x:Name="ItemComponent">
@@ -26,17 +28,27 @@
                                 Stretch="UniformToFill"/>
                 </Border.Background>
             </Border>
-            <Label Height="30"
+            <StackPanel Orientation="Horizontal">
+                
+            <Label Height="40"
+                   Margin="10"
+                   Width="120"
+                   Content="321231"
+                   FontSize="21"
                    x:Name="lbItemName"
                    Foreground="Black">
                 
             </Label>
-            <Label Margin="5"
-                   Height="30"
+            <Label Margin="10"
+                   Content="3513"
+                   FontSize="21"
+                   Height="40"
+                   Width="120"
                    x:Name="lbitemPrise"
-                   Foreground="Yellow">
+                   Foreground="Black">
                 
             </Label>
+            </StackPanel>
         </StackPanel>
     </Border>
 

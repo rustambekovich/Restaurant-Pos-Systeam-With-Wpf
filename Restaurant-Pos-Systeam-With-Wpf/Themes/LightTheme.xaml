@@ -10,6 +10,9 @@
     <SolidColorBrush x:Key="BorderThiknes" Color="#787C80"/>
     <SolidColorBrush x:Key="Button" Color="#ECECEC"/>
 
+    <SolidColorBrush x:Key="PrimaryTextColor" Color="Gray" />
+
+    <SolidColorBrush x:Key="SecondaryBackground" Color="#F3F3F3"/>
 
 
 

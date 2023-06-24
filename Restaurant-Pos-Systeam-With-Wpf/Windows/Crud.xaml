@@ -1,4 +1,4 @@
-﻿<Window x:Class="Restaurant_Pos_Systeam_With_Wpf.Windows.AddCategory"
+﻿<Window x:Class="Restaurant_Pos_Systeam_With_Wpf.Windows.Crud"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,8 +9,8 @@
         ResizeMode="NoResize"
         Background="Azure"
         Loaded="Window_Loaded"
-        Title="AddCategory" Height="600" Width="800">
-        
+        Title="Update" Height="200" Width="600">
+
     <Border>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -33,7 +33,7 @@
                             HorizontalAlignment="Left"
                             Margin="15 0 5 5"
                             >
-                        
+
                         <StackPanel Orientation="Horizontal">
                             <Grid Width="550">
                                 <Grid.ColumnDefinitions>
@@ -49,7 +49,6 @@
                                          Margin="10 0 10 0"
                                          FontFamily="Jetbrains Mono"
                                          BorderThickness="0"
-                                         TextChanged="TextBox_TextChanged"
                                          Foreground="Black"
                                          Background="{DynamicResource  SecondaryBackround}">
 
@@ -62,55 +61,26 @@
                                        Content="0"/>
                             </Grid>
                         </StackPanel>
-                        
+
                     </Border>
                     <Border
                             Height="60"
                         
                             Margin="5 5 10 5">
-                        <StackPanel Orientation="Horizontal">
-                            <Button Style="{DynamicResource SaveButton}"
-                                    x:Name="savebtnctg"
-                                    Click="Save_Click"/>
-                            <Button Style="{DynamicResource DeletButton}"
-                                    Click="Delete_Click"/>
-
-                        </StackPanel>
-                    </Border>
-                    <Border Height="350"
-                            Margin="5 5 5 5">
-                        <ScrollViewer Grid.Column="1"
-                                      Margin="1 5 5 5">
-                            <WrapPanel x:Name="wrpCatigory"/>
-                        </ScrollViewer>
-                    </Border>
-                    <Border Height="50"
-                            Margin="5 0 10 5">
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
-                            <Label Content="Total"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontSize="16">
-                                
-                            </Label>
-                            <Label x:Name="CatrgoryItemCount" 
-                                   Content="0"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontSize="16">
-
-                            </Label>
-                            <Label Content="category found"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   FontSize="16">
-
-                            </Label>
+                            <Button Style="{DynamicResource SaveButton}"
+                                    x:Name="savebtnctg"
+                                    HorizontalAlignment="Right"
+                                    Click="Save_Click"/>
+                           
                         </StackPanel>
                     </Border>
+                   
+                    
                 </StackPanel>
             </Border>
         </Grid>
     </Border>
 </Window>
+

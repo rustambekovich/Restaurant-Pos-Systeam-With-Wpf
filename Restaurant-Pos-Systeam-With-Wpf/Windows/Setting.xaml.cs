@@ -29,7 +29,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
 
         }
 
-        private void AddCatrgory_Click(object sender, RoutedEventArgs e)
+        public void AddCatrgory_Click(object sender, RoutedEventArgs e)
         {
             AddCategory addCategory = new AddCategory();
             addCategory.ShowDialog();
@@ -38,6 +38,12 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
         private void Close_Setting(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void AddItem_Click(object sender, RoutedEventArgs e)
+        {
+            AddItem addItem = new AddItem();
+            addItem.ShowDialog();
         }
     }
 }

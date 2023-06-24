@@ -6,9 +6,11 @@
              xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes"
              mc:Ignorable="d" 
              Height="70" 
+             Cursor="Hand"
              Width="235">
-    <Grid Margin="5 5 5 5">
-        <Border Background="{DynamicResource PraymiryryBackroundButton}"
+
+    <Border >
+        <!--<Border Background="{DynamicResource PraymiryryBackroundButton}"
                 CornerRadius="5"
                 MouseDown="get_catg">
             <Label x:Name="lbname"
@@ -17,7 +19,47 @@
                    FontSize="18">
                 
             </Label>
-        </Border>
-    </Grid>
+        </Border>-->
+        <!--<Button Background="{DynamicResource PraymiryryBackroundButton}"
+        BorderThickness="0"
+        Click="catg_Click">
+            <Button.Content>
+                <Label x:Name="lbname"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="18">
+                    Tugma Mazmuni
+                </Label>
+            </Button.Content>
+        </Button>-->
+        <!--Style="{DynamicResource Category}"
+                Click="ctgComponents_Click"-->
+        <StackPanel >
+            <Border Height="60"
+                    Margin="5"
+                x:Name="ctgComponents"
+                Background="Yellow"
+                CornerRadius="25">
+                <StackPanel Orientation="Horizontal">
+                    <Border Height="16"
+                            Width="16"
+                            Margin="15 5 5 5"
+                            Background="White"
+                            CornerRadius="10">
+                        
+                    </Border>
+                    <Label Margin="5 5 5 5"
+                           x:Name="lbname"
+                    Content="Category"
+                    VerticalAlignment="Center"
+                       FontSize="18"
+                    HorizontalAlignment="Left">
+                    </Label>
+                </StackPanel>
+                
+            </Border>
+        </StackPanel>
+        
+    </Border>
     
 </UserControl>

@@ -31,14 +31,12 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
 
         public void SetData(Category categoryes)
         {
-           lbname.Content = categoryes.Name;
-           Id = categoryes.Id;   
+            lbname.Content  = categoryes.Name.ToString();
+             Id = categoryes.Id;
         }
 
-        private void get_catg(object sender, MouseButtonEventArgs e)
-        {
-            
-
+        private void ctgComponents_Click(object sender, RoutedEventArgs e)
+        { 
         }
     }
 }

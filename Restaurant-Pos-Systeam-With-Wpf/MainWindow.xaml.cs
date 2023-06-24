@@ -1,7 +1,10 @@
 ﻿using Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes;
+using Restaurant_Pos_Systeam_With_Wpf.Components.Items;
 using Restaurant_Pos_Systeam_With_Wpf.Helpers;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
+using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Categoryes;
+using Restaurant_Pos_Systeam_With_Wpf.Repositories.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using Restaurant_Pos_Systeam_With_Wpf.Windows;
 using System;
@@ -28,6 +31,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
     public partial class MainWindow : Window
     {
         private readonly ICategoryReposytory _categoryReposytory;
+        private readonly IProductRepository _productRepository;
         public MainWindow()
         {
             InitializeComponent();
@@ -39,6 +43,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
 #pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             timer.Start();
             this._categoryReposytory = new CategoryRepository();
+            this._productRepository = new ProductRepository();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -54,7 +59,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
         }
 
 
-        private void Setting_Click(object sender, RoutedEventArgs e)
+        public void Setting_Click(object sender, RoutedEventArgs e)
         {
             Setting setting = new Setting();
             setting.ShowDialog();
@@ -62,7 +67,13 @@ namespace Restaurant_Pos_Systeam_With_Wpf
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            await Refresh();
+        }
+
+       public async Task Refresh()
+       {
             wrpCatigory.Children.Clear();
+            wrpProduct.Children.Clear();
             PaginationParams paginationParams = new PaginationParams()
             {
                 PageNumber = 1,
@@ -70,11 +81,19 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             };
             var categorys = await _categoryReposytory.GetAllAsync(paginationParams);
 
-            foreach(var category in categorys)
+            foreach (var category in categorys)
             {
                 CategoryViewUserControl categoryViewUserControl = new CategoryViewUserControl();
                 categoryViewUserControl.SetData(category);
                 wrpCatigory.Children.Add(categoryViewUserControl);
+            }
+
+            var products = await _productRepository.GetAllAsync(paginationParams);
+            foreach (var product in products)
+            {
+                ItemsUserControl itemsUserControl = new ItemsUserControl();
+                itemsUserControl.SetData(product);
+                wrpProduct.Children.Add(itemsUserControl);
             }
         }
     }

@@ -12,7 +12,7 @@
         Height="800" Width="1300"
         Loaded="Window_Loaded"
         Background="{DynamicResource PraymiryBackround}">
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*">
@@ -70,7 +70,7 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*">
-                                            
+
                                         </ColumnDefinition>
                                         <ColumnDefinition Width="*">
 
@@ -158,7 +158,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>-->
-                    
+
                     <Border Grid.Column="3" 
                             BorderBrush="#787C80" 
                             BorderThickness="1"
@@ -171,7 +171,7 @@
                                                     Binding="{Binding Property1}"
                                                     Width="3*"
                                                     />
-                                
+
                                 <DataGridTextColumn Header="Price" 
                                                     Binding="{Binding Property2}"
                                                     Width="2*"/>
@@ -198,7 +198,7 @@
                           CornerRadius="5"
                           BorderThickness="1"
                           BorderBrush="#787C80">
-                        
+
                     </Border>
                     <Border Grid.Column="1"
                             Background="{DynamicResource PraymiryBackround}"
@@ -206,7 +206,7 @@
                             CornerRadius="5"
                             BorderThickness="1"
                             BorderBrush="#787C80">
-                        
+
                     </Border>
                 </Grid>
                 <Border Grid.Row="5"
@@ -231,7 +231,7 @@
                 </RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Grid.Column="1">
-                
+
                 <Grid Grid.Column="0"
                       >
                     <Grid.ColumnDefinitions>
@@ -309,10 +309,10 @@
                     </Border>
 
                     <Button Grid.Column="4"
-                            Margin="0 5"
+                            Margin="0,0,5,0"
                             x:Name="btnClose"
                             Click="btnClose_Click"
-                            Style="{DynamicResource CloseButton}"/>
+                            Style="{DynamicResource CloseButton}" HorizontalAlignment="Right"/>
 
                 </Grid>
             </StackPanel>
@@ -357,6 +357,11 @@
                     Background="{DynamicResource PraymiryBackround}"
                     BorderThickness="1"
                     BorderBrush="#787C80">
+                    <ScrollViewer Margin="1 5 5 5"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <WrapPanel x:Name="wrpProduct"
+                                   Background="{DynamicResource PraymiryBackround}"/>
+                    </ScrollViewer>
                 </Border>
             </Grid>
             <Grid Grid.Row="2">
@@ -367,7 +372,8 @@
                     <StackPanel Orientation="Horizontal">
                         <Button Style="{DynamicResource NewButton}"/>
                         <Button Style="{DynamicResource SettingButton}"
-                                Click="Setting_Click"/>
+                                Click="Setting_Click"
+                                x:Name="btnsetting"/>
                         <Button Style="{DynamicResource PaymenrButton}"/>
                     </StackPanel>
                 </Border>

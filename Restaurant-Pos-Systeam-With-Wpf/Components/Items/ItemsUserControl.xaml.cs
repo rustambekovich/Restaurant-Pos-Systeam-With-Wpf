@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
         public ItemsUserControl()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        public void SetData(Products item)
+        {
+            itemImage.ImageSource =new BitmapImage(new Uri(item.ImagePath, UriKind.Relative));
         }
     }
 }

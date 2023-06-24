@@ -85,7 +85,7 @@
                                     CornerRadius="10"
                                     Background="{DynamicResource SecondaryBackroundButton}">
                                 <Button Style="{DynamicResource AddCategory}"
-                                            Click="AddCatrgory_Click"/>
+                                            Click="AddItem_Click"/>
                                        
                             </Border>
                         </Grid>

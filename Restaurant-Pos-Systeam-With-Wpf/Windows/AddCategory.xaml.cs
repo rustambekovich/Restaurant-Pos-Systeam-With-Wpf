@@ -4,6 +4,7 @@ using Restaurant_Pos_Systeam_With_Wpf.Domains.Enums;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Categoryes;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,7 +21,11 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
             InitializeComponent();
             this._categoryReposytory = new CategoryRepository();
         }
-
+        public string CategoryName
+        {
+            get { return tbname.Text; }
+            set { tbname.Text = value; }
+        }
         private async void Delete_Click(object sender, RoutedEventArgs e)
         {
 
@@ -49,7 +54,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
                 category.Name = tbname.Text;
                 var result = await _categoryReposytory.CreatedAtAsync(category);
                 if (result > 0)
-                    MessageBox.Show("Succselfull");
+                    MessageBox.Show("Succselfull"); 
                 else MessageBox.Show("wrong");
             }
             else
@@ -57,10 +62,10 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
                 MessageBox.Show("Complate Category");
 
             }
-            Refresh();
+           await Refresh();
         }
 
-        private async void Refresh()
+        public async Task Refresh()
         {
 
             tbname.Text = string.Empty;
@@ -74,17 +79,17 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
             byte count = 0;
             foreach (var category in categorys)
             {
-                CategoryViewUserControl categoryViewUserControl = new CategoryViewUserControl();
-                categoryViewUserControl.SetData(category);
-                wrpCatigory.Children.Add(categoryViewUserControl);
+                AllCotegoryUserControl allCotegoryUserControl = new AllCotegoryUserControl();
+                allCotegoryUserControl.SetData(category);
+                wrpCatigory.Children.Add(allCotegoryUserControl);
                 count++;
                 CatrgoryItemCount.Content = (count).ToString();
             }
             lbcharectr.Content = (50).ToString();
         }
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        public  async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Refresh();
+           await Refresh();
         }
 
 
@@ -102,5 +107,14 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
             }
         }
 
+        public  void setTb(string text)
+        {
+            tbname.Text = text;
+        }
+
+        public void ClosePage()
+        {
+            this.Hide();
+        }
     }
 }

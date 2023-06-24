@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes.AllCotegoryUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes"
+             mc:Ignorable="d" 
+              Height="150" 
+             Width="240">
+    <Grid Margin="0">
+        
+        <Border Background="{DynamicResource PraymiryryBackroundButton}"
+                CornerRadius="5 5 5 5"
+                Width ="225"
+                Height ="120"
+                MouseDown="get_catg">
+            <Label x:Name="lbname"
+                   HorizontalAlignment ="Center"
+                   VerticalAlignment ="Top"
+                   Margin="0 10 0 0"
+                   FontSize="18">
+            </Label>
+            
+        </Border>
+        <Grid>
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Style="{DynamicResource Edit}"
+                            Margin="7.51,0,0,0" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Top"
+                            Click="edit_ctg"/>
+                    <Button Grid.Column="1" 
+                            Style="{DynamicResource Deletecatg}"
+                            Margin="0,0,7.51,0" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Top"
+                            Click="ctgComponents_Click"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+        <!--<Button Background="{DynamicResource PraymiryryBackroundButton}"
+        BorderThickness="0"
+        Click="catg_Click">
+            <Button.Content>
+                <Label x:Name="lbname"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="18">
+                    Tugma Mazmuni
+                </Label>
+            </Button.Content>
+        </Button>-->
+        <!--<Button Style="{DynamicResource AllCategory}"
+                Click="CrudctgComponents_Click"
+                x:Name="CrudctgComponents">
+            <Label>
+            </Label>
+        </Button>-->
+    </Grid>
+
+</UserControl>

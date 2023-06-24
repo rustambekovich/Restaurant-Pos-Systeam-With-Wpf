@@ -5,8 +5,212 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Windows"
         mc:Ignorable="d"
-        Title="AddItem" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="White"
+        Title="AddCategory" 
+        Loaded="Window_Loaded"
+        Height="500" 
+        Width="750">
+
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0"
+                    BorderBrush="{DynamicResource BorderThiknes}"
+                    Margin="5 5 5 5"
+                    Background="{DynamicResource PraymiryBackround}"
+                    >
+                
+                <StackPanel>
+                    <Label Content="Category"
+                           Margin="15 5 5 5"
+                           FontSize="16"
+                           HorizontalAlignment="Left"/>
+                    <Border Margin="20 5 5 5">
+                        <ComboBox x:Name="cmbCatogory" 
+                                  DisplayMemberPath="Name"
+                                 
+                                  SelectedValuePath="Id"
+                                  Foreground="Black"
+                        Style= "{DynamicResource FormComboBox}"/>
+                    </Border>
+                    <Label Content="Item name:"
+                           FontSize="16"
+                           HorizontalAlignment="Left"
+                       Margin="10 5 0 0"/>
+                    <Border Background="{DynamicResource SecondaryBackround}"
+                            Height="50"
+                            Width="500"
+                            CornerRadius="10"
+                            HorizontalAlignment="Left"
+                            Margin="15 0 5 5"
+                            >
+
+                        <StackPanel Orientation="Horizontal">
+                            <Grid Width="500">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.Column="0" 
+                                         MaxLength="50"
+                                         x:Name="ltbItm"
+                                         Width="440" 
+                                         VerticalAlignment="Center"
+                                         FontSize="16"
+                                         Margin="10 0 10 0"
+                                         FontFamily="Jetbrains Mono"
+                                         BorderThickness="0"
+                                         Foreground="Black"
+                                         Background="{DynamicResource  SecondaryBackround}">
+
+                                </TextBox>
+                                <Label Grid.Column="1" x:Name="lbcharectr"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="18"
+                                      
+                                       Content="0"/>
+                            </Grid>
+                        </StackPanel>
+
+                    </Border>
+                    <!--<Border
+                            Height="60"
+                        
+                            Margin="5 5 10 5">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{DynamicResource SaveButton}"
+                                    x:Name="savebtnctg"
+                                    Click="Save_Click"/>
+                            <Button Style="{DynamicResource DeletButton}"
+                                    Click="Delete_Click"/>
+
+                        </StackPanel>
+                    </Border>-->
+                    <Label Content="Item price:"
+                           FontSize="16"
+                           HorizontalAlignment="Left"
+                       Margin="10 5 0 0"/>
+                    <Border Background="{DynamicResource SecondaryBackround}"
+                            Height="50"
+                            Width="500"
+                            CornerRadius="10"
+                            HorizontalAlignment="Left"
+                            Margin="15 0 5 5"
+                            >
+
+                        <StackPanel Orientation="Horizontal">
+                            <Grid Width="500">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.Column="0" 
+                                         MaxLength="50"
+                                         x:Name="tbPrice"
+                                         Width="440" 
+                                         VerticalAlignment="Center"
+                                         FontSize="16"
+                                         Margin="10 0 10 0"
+                                         FontFamily="Jetbrains Mono"
+                                         BorderThickness="0"
+                                         Foreground="Black"
+                                         Background="{DynamicResource  SecondaryBackround}">
+
+                                </TextBox>
+                                <Label Grid.Column="1" x:Name="lbcharectrprice"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="18"
+                                      
+                                       Content="0"/>
+                            </Grid>
+
+                            
+                        </StackPanel>
+
+                    </Border>
+                    <Label Content="Description:"
+                           FontSize="16"
+                           HorizontalAlignment="Left"
+                       Margin="10 5 0 0"/>
+                    <Border BorderThickness="1"
+                            Height="140"
+                            Width="510"
+                            CornerRadius="10"
+                            HorizontalAlignment="Left"
+                            BorderBrush="{DynamicResource BorderThiknes}"
+                            Margin="5 5 5 5"
+                            Background="{DynamicResource PraymiryBackround}"
+                    >
+                        <RichTextBox
+                                Width="500"
+                                x:Name="rchDesc"
+                                AcceptsReturn="True"
+                                HorizontalAlignment="Left"
+                                Height="120"
+                                Margin="5 5 0 5">
+
+                        </RichTextBox>
+                    </Border>
+                    
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1"
+                    BorderBrush="{DynamicResource BorderThiknes}"
+                    Margin="5 5 5 5"
+                    Background="{DynamicResource PraymiryBackround}"
+                    >
+                <StackPanel >
+                    <Label Content="Image:"
+                           Width="80"
+                           HorizontalAlignment="Left">
+                        
+                    </Label>
+                    <StackPanel >
+                        <Border Background="{DynamicResource Button}"
+                                Width="150"
+                                Margin="5 5 5 5"
+                                HorizontalAlignment="Left">
+                            <Border x:Name="ImgCourseImage"
+                                Height="150" Width="150"
+                                CornerRadius="10">
+                                <Border.Background>
+                                    <ImageBrush x:Name="ImageItm" />
+                                </Border.Background>
+                            </Border>
+
+                        </Border>
+                        <Button x:Name="btnImageselct" 
+                                VerticalAlignment="Bottom"
+                                Content="Select"
+                                FontSize="20"
+                                HorizontalAlignment="Left"
+                                Click="btnImgSelect_Click"
+                                Height="30" Width="150"
+                                Margin="5 10 0 5"/>
+                    </StackPanel>
+                    
+                    <Border Height="50"
+                            Width="1">
+                        
+                    </Border>
+                    <Button x:Name="btnSaveItem" 
+                               
+                                Content="Create"
+                                FontSize="20"
+                                HorizontalAlignment="Left"
+                                Click="ItemSave_Click"
+                                Height="30" Width="150"
+                                Margin="5 10 0 0"/>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
 </Window>

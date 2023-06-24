@@ -16,6 +16,8 @@
 
                 <!--begin::Styles-->
                 <ResourceDictionary Source="/Stayles/ButtonStyles.xaml"/>
+
+                <ResourceDictionary Source="/Stayles/ComboboxStyles.xaml"/>
                 <!--end::Styles-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

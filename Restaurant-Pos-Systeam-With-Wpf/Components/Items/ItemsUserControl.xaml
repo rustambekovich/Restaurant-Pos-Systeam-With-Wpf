@@ -5,18 +5,39 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Items"
              mc:Ignorable="d" 
-             Height="70" 
-             Width="235">
-    <Grid Margin="5 5 5 5">
-        <Border Background="{DynamicResource PraymiryryBackroundButton}"
-                CornerRadius="5">
-            <Label x:Name="lbname"
-                   HorizontalAlignment ="Center"
-                   VerticalAlignment ="Center"
-                   FontSize="18">
+             Height="250"
+             Cursor="Hand"
+             MouseDoubleClick="UserControl_MouseDoubleClick"
+             Width="200">
+             
+    <Border Margin="5 5 5 5"
+            CornerRadius="20"
+            Background="White"
+            x:Name="ItemComponent">
+        <StackPanel>
 
+            <Border Height="125"
+                    Width="125"
+                    Margin="5 20 5 5"
+                    CornerRadius="100"
+                    >
+                <Border.Background>
+                    <ImageBrush x:Name="itemImage"
+                                Stretch="UniformToFill"/>
+                </Border.Background>
+            </Border>
+            <Label Height="30"
+                   x:Name="lbItemName"
+                   Foreground="Black">
+                
             </Label>
-        </Border>
-    </Grid>
+            <Label Margin="5"
+                   Height="30"
+                   x:Name="lbitemPrise"
+                   Foreground="Yellow">
+                
+            </Label>
+        </StackPanel>
+    </Border>
 
 </UserControl>

@@ -47,6 +47,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+            //Application.Current.Exit();
         }
 
 

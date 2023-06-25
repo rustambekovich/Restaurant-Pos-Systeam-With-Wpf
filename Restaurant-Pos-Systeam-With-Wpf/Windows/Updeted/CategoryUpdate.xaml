@@ -1,9 +1,9 @@
-﻿<Window x:Class="Restaurant_Pos_Systeam_With_Wpf.Windows.Crud"
+﻿<Window x:Class="Restaurant_Pos_Systeam_With_Wpf.Windows.Updeted.CategoryUpdate"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Windows"
+        xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Windows.Updeted"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
@@ -58,7 +58,7 @@
                                        VerticalAlignment="Center"
                                        FontSize="18"
                                       
-                                       Content="0"/>
+                                        Content="0"/>
                             </Grid>
                         </StackPanel>
 
@@ -73,14 +73,13 @@
                                     x:Name="savebtnctg"
                                     HorizontalAlignment="Right"
                                     Click="Save_Click"/>
-                           
+
                         </StackPanel>
                     </Border>
-                   
-                    
+
+
                 </StackPanel>
             </Border>
         </Grid>
     </Border>
 </Window>
-

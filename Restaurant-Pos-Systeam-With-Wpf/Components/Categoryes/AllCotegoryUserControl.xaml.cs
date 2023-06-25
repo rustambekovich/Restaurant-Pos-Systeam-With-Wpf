@@ -6,6 +6,7 @@ using Restaurant_Pos_Systeam_With_Wpf.Windows;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using WPFCustomMessageBox;
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
 {
@@ -33,7 +34,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
         private async void ctgComponents_Click(object sender, RoutedEventArgs e)
         {
 
-            MessageBoxResult result = MessageBox.Show("Are you shure Delete this category?", "Worning!!", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show($"Are you shure Delete {lbname.Content} category?", "Worning!!", MessageBoxButton.YesNo);
             bool answer = (result == MessageBoxResult.Yes);
             if (answer)
             {
@@ -41,17 +42,9 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
                 if (res != 0)
                 {
 
-                    MessageBox.Show("Succsefuly Deleted.");// Boshqa Windowdan AddCategory oynasini yaratish
-                    AddCategory addCategoryWindow = new AddCategory();
-
-                    // AddCategory oynasidagi Refresh metodini chaqirish
-                    await addCategoryWindow.Refresh();
-                    addCategory.Window_Loaded(sender, e);
-                    //  addCategory.ClosePage();
-                    //   Setting setting   = new Setting();
-                    //  setting.AddCatrgory_Click(sender, e);
+                    MessageBox.Show($"Succsefuly {lbname.Content} Deleted.");
                 }
-                else MessageBox.Show(ErrorType.Information.ToString());
+                else MessageBox.Show("Don't deleted");
             }
         }
 
@@ -69,6 +62,49 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
         {
 
 
+        }
+
+
+        private void AddCotegoryUserControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var result = CustomMessageBox.ShowYesNoCancel("Are you sure you want to eject the nuclear fuel rods?","Confirm Fuel Ejection","Update","Deleted","Canel");
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    delet();
+                    break;
+                case MessageBoxResult.No:
+                    MessageBox.Show("Updated");
+
+                    break;
+                case MessageBoxResult.Cancel:
+                    MessageBox.Show("bekor");
+
+                    break;
+                default:
+                    MessageBox.Show("ishlamadi");
+                    break;
+            }
+
+        }
+
+
+        public async void delet()
+        {
+            MessageBoxResult result = MessageBox.Show($"Are you shure Delete {lbname.Content} category?", "Worning!!", MessageBoxButton.YesNo);
+            bool answer = (result == MessageBoxResult.Yes);
+            if (answer)
+            {
+                var res = await _categoryReposytory.DeletedAtAsync(Id);
+                if (res != 0)
+                {
+
+                    MessageBox.Show($"Succsefuly {lbname.Content} Deleted.");
+
+
+                }
+                else MessageBox.Show("Don't deleted");
+            }
         }
     }
 }

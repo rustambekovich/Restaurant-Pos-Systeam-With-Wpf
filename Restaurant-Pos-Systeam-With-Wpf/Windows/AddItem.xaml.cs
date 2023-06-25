@@ -112,7 +112,7 @@ public partial class AddItem : Window
 
         string path = Path.Combine(destinationDirectory, imageName);
 
-        byte[] image = await File.ReadAllBytesAsync(imgPath);
+        byte[] image = await File.ReadAllBytesAsync(imgPath); 
 
         await File.WriteAllBytesAsync(path, image);
 

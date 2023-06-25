@@ -3,6 +3,7 @@ using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Categoryes;
 using Restaurant_Pos_Systeam_With_Wpf.Windows;
+using Restaurant_Pos_Systeam_With_Wpf.Windows.Updeted;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,21 +17,28 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
     public partial class AllCotegoryUserControl : UserControl
     {
         private readonly ICategoryReposytory _categoryReposytory;
+        private Category Category { get; set; }
         public long Id { get; private set; }
         public AllCotegoryUserControl()
         {
             InitializeComponent();
             this._categoryReposytory = new CategoryRepository();
+            Category = new Category(); 
         }
         AddCategory addCategory = new AddCategory();
 
         public void SetData(Category categoryes)
-        {
-
-            lbname.Content = categoryes.Name.ToString();
+        { 
+            //this.Category = categoryes;
+            lbname.Content = categoryes.Name;
             Id = categoryes.Id;
+            Category = categoryes;
         }
-
+        /// <summary>
+        /// Deleted
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void ctgComponents_Click(object sender, RoutedEventArgs e)
         {
 
@@ -48,33 +56,18 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
             }
         }
 
-        private void CrudctgComponents_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void get_catg(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void edit_ctg(object sender, RoutedEventArgs e)
-        {
-
-
-        }
 
 
         private void AddCotegoryUserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var result = CustomMessageBox.ShowYesNoCancel("Are you sure you want to eject the nuclear fuel rods?","Confirm Fuel Ejection","Update","Deleted","Canel");
+            var result = CustomMessageBox.ShowYesNoCancel("Are you sure you want to eject the nuclear fuel rods?","Confirm Fuel Ejection","Deleted", "Update", "Canel");
             switch (result)
             {
                 case MessageBoxResult.Yes:
                     delet();
                     break;
                 case MessageBoxResult.No:
-                    MessageBox.Show("Updated");
+                    Update();
 
                     break;
                 case MessageBoxResult.Cancel:
@@ -87,7 +80,14 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
             }
 
         }
+        public  void  Update()
+        {
 
+            CategoryUpdate categoryUpdate = new CategoryUpdate();
+            categoryUpdate.SetData(Category);
+            CategoryUpdate updatecategoryUpdate = new CategoryUpdate();
+            updatecategoryUpdate.Show();
+        }
 
         public async void delet()
         {
@@ -105,6 +105,11 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
                 }
                 else MessageBox.Show("Don't deleted");
             }
+        }
+
+        private void get_catg(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

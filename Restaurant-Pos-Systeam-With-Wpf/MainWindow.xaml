@@ -343,7 +343,9 @@
 
                         </Label>
                     </Border>-->
-                    <Button Grid.Column="0" Style="{DynamicResource AllCatgoryButton}"/>
+                    <Button Grid.Column="0" 
+                            Click="allCtg"
+                            Style="{DynamicResource AllCatgoryButton}"/>
                     <ScrollViewer Grid.Column="1"
                                       Margin="1 5 5 5"
                                       VerticalScrollBarVisibility="Hidden"

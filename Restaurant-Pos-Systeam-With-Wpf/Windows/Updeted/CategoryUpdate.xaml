@@ -23,9 +23,17 @@
                     Background="{DynamicResource PraymiryBackround}"
                     >
                 <StackPanel>
-                    <Label Content="Category name:"
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Category name:"
                            FontSize="16"
                        Margin="10 5 0 0"/>
+                        <Label x:Name="up_catygory"
+                           FontSize="16"
+                               Width="200"
+                               HorizontalAlignment="Left"
+                       Margin="10 5 0 0"/>
+                    </StackPanel>
+                    
                     <Border Background="{DynamicResource SecondaryBackround}"
                             Height="50"
                             Width="500"
@@ -42,7 +50,7 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBox Grid.Column="0" x:Name="tbname"
                                          MaxLength="50"
-                                         
+                                         Height="30"
                                          Width="440" 
                                          VerticalAlignment="Center"
                                          FontSize="16"
@@ -69,12 +77,12 @@
                             Margin="5 5 10 5">
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
-                            <Button Style="{DynamicResource SaveButton}"
+                            <Button Style="{DynamicResource UpdateButton}"
                                     x:Name="savebtnctg"
                                     HorizontalAlignment="Right"
                                     Click="Save_Click"/>
 
-                        </StackPanel>
+                        </StackPanel>   
                     </Border>
 
 

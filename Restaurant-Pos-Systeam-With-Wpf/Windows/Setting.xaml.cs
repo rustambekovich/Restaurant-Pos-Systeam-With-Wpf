@@ -30,8 +30,8 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
 
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
-            AddItem addItem = new AddItem();
-            addItem.ShowDialog();
+            AllItem allItem = new AllItem();
+            allItem.ShowDialog();
         }
     }
 }

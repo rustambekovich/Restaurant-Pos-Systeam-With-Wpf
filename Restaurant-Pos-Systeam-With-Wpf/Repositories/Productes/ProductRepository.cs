@@ -62,13 +62,16 @@ public class ProductRepository : IProductRepository
     }
 
     public async Task<IList<Product>> GetAllAsync(PaginationParams @params)
-    {
+        {
         try
         {
 
             var list = new List<Product>();
 
+            if (_connection.State == System.Data.ConnectionState.Open)
+                await _connection.CloseAsync();
             await _connection.OpenAsync();
+                 
 
 
             string query = $"SELECT * FROM public.\"Products\" ORDER BY \"Product_id\" ASC ;";

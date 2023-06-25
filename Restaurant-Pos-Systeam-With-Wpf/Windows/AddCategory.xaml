@@ -9,7 +9,7 @@
         ResizeMode="NoResize"
         Background="Azure"
         Loaded="Window_Loaded"
-        Title="AddCategory" Height="600" Width="800">
+        Title="AddCategory" Height="600" Width="900">
         
     <Border>
         <Grid>
@@ -26,21 +26,22 @@
                     <Label Content="Category name:"
                            FontSize="16"
                        Margin="10 5 0 0"/>
-                    <Border Background="{DynamicResource SecondaryBackround}"
+                    <StackPanel Orientation="Horizontal">
+                        <Border Background="{DynamicResource SecondaryBackround}"
                             Height="50"
-                            Width="500"
+                            Width="855"
                             CornerRadius="10"
                             HorizontalAlignment="Left"
                             Margin="15 0 5 5"
                             >
-                        
-                        <StackPanel Orientation="Horizontal">
-                            <Grid Width="550">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="10*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBox Grid.Column="0" x:Name="tbname"
+
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Width="550">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0" x:Name="tbname"
                                          MaxLength="50"
                                          
                                          Width="440" 
@@ -53,30 +54,23 @@
                                          Foreground="Black"
                                          Background="{DynamicResource  SecondaryBackround}">
 
-                                </TextBox>
-                                <Label Grid.Column="1" x:Name="lbcharectr"
+                                    </TextBox>
+                                    <Label Grid.Column="1" x:Name="lbcharectr"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        FontSize="18"
                                       
                                        Content="0"/>
-                            </Grid>
-                        </StackPanel>
-                        
-                    </Border>
-                    <Border
-                            Height="60"
-                        
-                            Margin="5 5 10 5">
-                        <StackPanel Orientation="Horizontal">
-                            <Button Style="{DynamicResource SaveButton}"
+                                </Grid>
+                                
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+                    <Button Style="{DynamicResource SaveButton}"
                                     x:Name="savebtnctg"
                                     Click="Save_Click"/>
-                            <Button Style="{DynamicResource DeletButton}"
-                                    Click="Delete_Click"/>
-
-                        </StackPanel>
-                    </Border>
                     <Border Height="350"
                             Margin="5 5 5 5">
                         <ScrollViewer Grid.Column="1"

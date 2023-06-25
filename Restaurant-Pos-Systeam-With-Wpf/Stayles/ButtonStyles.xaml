@@ -334,7 +334,7 @@
     </Style>
     
     <Style x:Key="AllCatgoryButton" TargetType="{x:Type Button}">
-        <Setter Property="Height" Value="100"/>
+        <Setter Property="Height" Value="80"/>
         <Setter Property="Width" Value="225"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -503,5 +503,39 @@
         </Setter>
     </Style>
 
-
+    <Style x:Key="UpdateButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="60"/>
+        <Setter Property="Width" Value="250"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="5 5 5 5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="N"
+                            Background="{DynamicResource SAVEBackround}"
+                            Margin=" 5 5 5 5"
+                            CornerRadius="5">
+                        <Label Content="Updated"
+                               FontSize="18"
+                               FontStyle="Normal"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                        </Label>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="N" Property="Background" Value="#00FF00"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="N" Property="Background" Value="#006700"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="N" Property="Background" Value="#006700"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

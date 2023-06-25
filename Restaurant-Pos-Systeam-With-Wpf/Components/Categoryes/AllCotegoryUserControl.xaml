@@ -14,8 +14,7 @@
         <Border Background="{DynamicResource PraymiryryBackroundButton}"
                 CornerRadius="5 5 5 5"
                 Width ="225"
-                Height ="120"
-                MouseDown="get_catg">
+                Height ="120"/>
             <Label x:Name="lbname"
                    HorizontalAlignment ="Center"
                    VerticalAlignment ="Top"
@@ -23,7 +22,7 @@
                    FontSize="18">
             </Label>
             
-        </Border>
+        
         <Grid>
             <Grid >
                 <Grid.RowDefinitions>

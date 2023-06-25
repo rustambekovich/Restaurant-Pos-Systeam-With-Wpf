@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Interfaces;
 
-public interface IRepository<TEntity, TViewModel> 
+public interface IRepository<TEntity, TViewModel>
 {
     public Task<int> CreatedAtAsync(TEntity entity);
     public Task<int> UpdatedAtAsync(long id, TEntity entity);

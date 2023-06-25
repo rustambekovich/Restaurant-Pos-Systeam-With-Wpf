@@ -1,6 +1,5 @@
 ﻿using Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes;
 using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
-using Restaurant_Pos_Systeam_With_Wpf.Domains.Enums;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Categoryes;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
@@ -34,14 +33,14 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
             {
 
                 category.Name = tbname.Text;
-               await _categoryReposytory.DeletedBynameAtAsync(tbname.Text); 
+                await _categoryReposytory.DeletedBynameAtAsync(tbname.Text);
             }
             else
             {
                 MessageBox.Show("Complate Category");
 
             }
-            Refresh();
+            await Refresh();
         }
         public long Id { get; set; }
 
@@ -54,7 +53,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
                 category.Name = tbname.Text;
                 var result = await _categoryReposytory.CreatedAtAsync(category);
                 if (result > 0)
-                    MessageBox.Show("Succselfull"); 
+                    MessageBox.Show("Succselfull");
                 else MessageBox.Show("wrong");
             }
             else
@@ -62,7 +61,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
                 MessageBox.Show("Complate Category");
 
             }
-           await Refresh();
+            await Refresh();
         }
 
         public async Task Refresh()
@@ -87,9 +86,9 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
             }
             lbcharectr.Content = (50).ToString();
         }
-        public  async void Window_Loaded(object sender, RoutedEventArgs e)
+        public async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-           await Refresh();
+            await Refresh();
         }
 
 
@@ -107,7 +106,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
             }
         }
 
-        public  void setTb(string text)
+        public void setTb(string text)
         {
             tbname.Text = text;
         }

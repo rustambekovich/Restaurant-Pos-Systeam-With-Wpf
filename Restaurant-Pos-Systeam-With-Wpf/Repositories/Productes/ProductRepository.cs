@@ -1,14 +1,10 @@
 ﻿using Npgsql;
 using Restaurant_Pos_Systeam_With_Wpf.Constans;
-using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
-using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Threading.Tasks;
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.Productes;
@@ -27,7 +23,7 @@ public class ProductRepository : IProductRepository
         throw new NotImplementedException();
     }
 
-    public async Task<int> CreatedAtAsync(Products entity)
+    public async Task<int> CreatedAtAsync(Product entity)
     {
         try
         {
@@ -65,12 +61,12 @@ public class ProductRepository : IProductRepository
         throw new NotImplementedException();
     }
 
-    public async Task<IList<Products>> GetAllAsync(PaginationParams @params)
+    public async Task<IList<Product>> GetAllAsync(PaginationParams @params)
     {
         try
         {
 
-            var list = new List<Products>();
+            var list = new List<Product>();
 
             await _connection.OpenAsync();
 
@@ -82,12 +78,12 @@ public class ProductRepository : IProductRepository
                 {
                     while (await reader.ReadAsync())
                     {
-                        var item = new Products();
+                        var item = new Product();
                         item.Id = reader.GetInt64(0);
                         item.Name = reader.GetString(1);
                         item.Description = reader.GetString(2);
                         item.Price = reader.GetFloat(3);
-                        item.cotigory_id= reader.GetInt64(4);
+                        item.cotigory_id = reader.GetInt64(4);
                         item.ImagePath = reader.GetString(5);
                         list.Add(item);
                     }
@@ -98,7 +94,7 @@ public class ProductRepository : IProductRepository
         }
         catch
         {
-            return new List<Products>();
+            return new List<Product>();
         }
         finally
         {
@@ -106,12 +102,12 @@ public class ProductRepository : IProductRepository
         }
     }
 
-    public Task<Products> GetByIdAsync(long id)
+    public Task<Product> GetByIdAsync(long id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<int> UpdatedAtAsync(long id, Products entity)
+    public Task<int> UpdatedAtAsync(long id, Product entity)
     {
         throw new NotImplementedException();
     }
@@ -122,7 +118,7 @@ public class ProductRepository : IProductRepository
     //    {
 
     //        await _connection.OpenAsync();
-    //        string query = "INSERT INTO public.\"Products\"(name, description, price, catigory_id, imagepath) VALUES (@name, @description, @price, @catigory_id, @imagepath);";
+    //        string query = "INSERT INTO public.\"Product\"(name, description, price, catigory_id, imagepath) VALUES (@name, @description, @price, @catigory_id, @imagepath);";
     //        await using (var command = new NpgsqlCommand(query, _connection))
     //        {
     //            command.Parameters.AddWithValue("name", entity.Name);

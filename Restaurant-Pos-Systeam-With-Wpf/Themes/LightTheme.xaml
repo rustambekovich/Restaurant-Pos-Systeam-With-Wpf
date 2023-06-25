@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="PraymiryBackround" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="PraymiryBackround" Color="#FCFCFC"/>
     <SolidColorBrush x:Key="SecondaryBackround" Color="#E1E1E1"/>
     <SolidColorBrush x:Key="SAVEBackround" Color="Green"/>
     <SolidColorBrush x:Key="DeleteBackround" Color="Red"/>

@@ -3,11 +3,8 @@ using Restaurant_Pos_Systeam_With_Wpf.Constans;
 using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.Categoryes;
 
@@ -28,10 +25,10 @@ public class CategoryRepository : ICategoryReposytory
     {
         try
         {
-            
+
             await _connection.OpenAsync();
             string query = "Insert Into \"Category\"(name) values (@name);";
-            await using(var command = new NpgsqlCommand(query, _connection))
+            await using (var command = new NpgsqlCommand(query, _connection))
             {
                 command.Parameters.AddWithValue("name", entity.Name);
                 var dbrresult = await command.ExecuteNonQueryAsync();
@@ -97,7 +94,7 @@ public class CategoryRepository : ICategoryReposytory
         }
         finally
         {
-           await _connection.CloseAsync();
+            await _connection.CloseAsync();
         }
     }
 
@@ -106,11 +103,11 @@ public class CategoryRepository : ICategoryReposytory
         var list = new List<Category>();
         try
         {
-            
-            
+
+
             await _connection.OpenAsync();
 
-            
+
             string query = $"Select * from \"Category\" \r\nOrder by category_id;";
             await using (var command = new NpgsqlCommand(query, _connection))
             {
@@ -124,7 +121,7 @@ public class CategoryRepository : ICategoryReposytory
                         list.Add(category);
                     }
                 }
-   
+
             }
             return list;
         }
@@ -134,7 +131,7 @@ public class CategoryRepository : ICategoryReposytory
         }
         finally
         {
-            await _connection.CloseAsync() ;
+            await _connection.CloseAsync();
         }
     }
 

@@ -1,13 +1,8 @@
-﻿using Restaurant_Pos_Systeam_With_Wpf.Constans;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Helpers
 {
-    public  class TimeHelper
+    public class TimeHelper
     {
         public static DateTime GetDateTime()
         {

@@ -11,17 +11,10 @@ using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Windows;
@@ -50,11 +43,11 @@ public partial class AddItem : Window
         PageSize = 20
     };
 
-    public  async Task Put()
+    public async Task Put()
     {
-        List<Category> items = new List<Category>();            
-         var getctg = await _categoryReposytory.GetAllAsync(paginationParams);
-            IEnumerable<Category> categorys = getctg;
+        List<Category> items = new List<Category>();
+        var getctg = await _categoryReposytory.GetAllAsync(paginationParams);
+        IEnumerable<Category> categorys = getctg;
         cmbCatogory.ItemsSource = categorys;
     }
 
@@ -97,14 +90,14 @@ public partial class AddItem : Window
 
     private async void ItemSave_Click(object sender, RoutedEventArgs e)
     {
-        Products products = new Products();
+        Product products = new Product();
         products.Name = ltbItm.Text;
         products.Description = new TextRange(rchDesc.Document.ContentStart, rchDesc.Document.ContentEnd).Text;
         products.Price = float.Parse(tbPrice.Text);
         string ImagePath = ImageItm.ImageSource.ToString();
         if (!String.IsNullOrEmpty(ImagePath))
             products.ImagePath = await CopyImageAsync(ImagePath, ContentConst.IMAGE_PATH);
-        
+
         long selectedValue = Convert.ToInt64(cmbCatogory.SelectedValue);
         products.cotigory_id = selectedValue;
         await _productRepository.CreatedAtAsync(products);
@@ -117,7 +110,7 @@ public partial class AddItem : Window
 
         var imageName = ContentGenereteImagePaath.GeneretImagePath(imgPath);
 
-        string path = System.IO.Path.Combine(destinationDirectory, imageName);
+        string path = Path.Combine(destinationDirectory, imageName);
 
         byte[] image = await File.ReadAllBytesAsync(imgPath);
 

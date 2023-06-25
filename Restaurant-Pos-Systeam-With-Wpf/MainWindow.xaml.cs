@@ -8,19 +8,8 @@ using Restaurant_Pos_Systeam_With_Wpf.Repositories.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using Restaurant_Pos_Systeam_With_Wpf.Windows;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Restaurant_Pos_Systeam_With_Wpf
@@ -70,8 +59,8 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             await Refresh();
         }
 
-       public async Task Refresh()
-       {
+        public async Task Refresh()
+        {
             wrpCatigory.Children.Clear();
             wrpProduct.Children.Clear();
             PaginationParams paginationParams = new PaginationParams()
@@ -88,8 +77,8 @@ namespace Restaurant_Pos_Systeam_With_Wpf
                 wrpCatigory.Children.Add(categoryViewUserControl);
             }
 
-            var products = await _productRepository.GetAllAsync(paginationParams);
-            foreach (var product in products)
+            var Product = await _productRepository.GetAllAsync(paginationParams);
+            foreach (var product in Product)
             {
                 ItemsUserControl itemsUserControl = new ItemsUserControl();
                 itemsUserControl.SetData(product);

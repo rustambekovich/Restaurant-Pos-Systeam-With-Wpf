@@ -1,24 +1,11 @@
-﻿using DevExpress.Utils.CommonDialogs.Internal;
-using DevExpress.XtraEditors.DXErrorProvider;
+﻿using DevExpress.XtraEditors.DXErrorProvider;
 using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Categoryes;
 using Restaurant_Pos_Systeam_With_Wpf.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
 {
@@ -50,19 +37,19 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
             bool answer = (result == MessageBoxResult.Yes);
             if (answer)
             {
-              var res = await _categoryReposytory.DeletedAtAsync(Id);
+                var res = await _categoryReposytory.DeletedAtAsync(Id);
                 if (res != 0)
                 {
 
                     MessageBox.Show("Succsefuly Deleted.");// Boshqa Windowdan AddCategory oynasini yaratish
                     AddCategory addCategoryWindow = new AddCategory();
-                    
+
                     // AddCategory oynasidagi Refresh metodini chaqirish
-                   await addCategoryWindow.Refresh();
+                    await addCategoryWindow.Refresh();
                     addCategory.Window_Loaded(sender, e);
-                 //  addCategory.ClosePage();
-                 //   Setting setting   = new Setting();
-                  //  setting.AddCatrgory_Click(sender, e);
+                    //  addCategory.ClosePage();
+                    //   Setting setting   = new Setting();
+                    //  setting.AddCatrgory_Click(sender, e);
                 }
                 else MessageBox.Show(ErrorType.Information.ToString());
             }

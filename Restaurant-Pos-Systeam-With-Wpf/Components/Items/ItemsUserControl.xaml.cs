@@ -1,20 +1,12 @@
 ﻿using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Productes;
+using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
 {
@@ -30,18 +22,25 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
             InitializeComponent();
             this._productRepository = new ProductRepository();
         }
-        
+
         private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
         }
-        public void SetData(Products item)
+        PaginationParams paginationParams = new PaginationParams()
         {
-            itemImage.ImageSource =new BitmapImage(new Uri(item.ImagePath, UriKind.Relative));
-            List<Products> products = new List<Products>();
-            foreach (var product in _productRepository.GetAllAsync())
+            PageNumber = 1,
+            PageSize = 20
+        };
+        public async void SetData(Product item)
+        {
+            itemImage.ImageSource = new BitmapImage(new Uri(item.ImagePath, UriKind.Relative));
+            IList<Product> Products = new List<Product>();
+            Products = await _productRepository.GetAllAsync(paginationParams);
+            foreach (var product in Products)
             {
-
+                lbItemName.Content = product.Name;
+                lbitemPrise.Content = product.Price;
             }
             /*lbItemName.Content = .;
             lbitemPrise.Content = .Price.ToString();*/

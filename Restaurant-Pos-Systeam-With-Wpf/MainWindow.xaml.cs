@@ -1,5 +1,6 @@
 ﻿using Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes;
 using Restaurant_Pos_Systeam_With_Wpf.Components.Items;
+using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Helpers;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Productes;
@@ -8,6 +9,7 @@ using Restaurant_Pos_Systeam_With_Wpf.Repositories.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using Restaurant_Pos_Systeam_With_Wpf.Windows;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -56,13 +58,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            await Refresh();
-        }
-
-        public async Task Refresh()
-        {
             wrpCatigory.Children.Clear();
-            wrpProduct.Children.Clear();
             PaginationParams paginationParams = new PaginationParams()
             {
                 PageNumber = 1,
@@ -73,12 +69,33 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             foreach (var category in categorys)
             {
                 CategoryViewUserControl categoryViewUserControl = new CategoryViewUserControl();
-                categoryViewUserControl.SetData(category);
+                categoryViewUserControl.Refresh = Refreshasync;
+                categoryViewUserControl.SetData(category);/*
+                categoryViewUserControl.Refresh = Refreshasync;*/
                 wrpCatigory.Children.Add(categoryViewUserControl);
             }
+            await Refreshasync(0);  
+        }
 
-            var Product = await _productRepository.GetAllAsync(paginationParams);
-            foreach (var product in Product)
+        public async Task Refreshasync(long categoryId)
+        {
+            wrpProduct.Children.Clear();
+            IList<Product> prdt;
+            PaginationParams paginationParams = new PaginationParams()
+            {
+                PageNumber = 1,
+                PageSize = 20
+            };
+            if (categoryId == 0)
+            {
+                prdt = await _productRepository.GetAllAsync(paginationParams);
+                
+            }
+            else 
+            {
+                prdt = await _productRepository.GetAllByCategoryIdAsync(categoryId);
+            }
+            foreach (var product in prdt)
             {
                 ItemsUserControl itemsUserControl = new ItemsUserControl();
                 itemsUserControl.SetData(product);

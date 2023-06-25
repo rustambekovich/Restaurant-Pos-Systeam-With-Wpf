@@ -39,7 +39,9 @@
                     Margin="5"
                 x:Name="ctgComponents"
                 Background="Yellow"
-                CornerRadius="25">
+                CornerRadius="25"
+                    MouseDown="ctgComponents_MouseDown">
+                
                 <StackPanel Orientation="Horizontal">
                     <Border Height="16"
                             Width="16"

@@ -23,9 +23,9 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
             this._productRepository = new ProductRepository();
         }
 
-        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private async void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            
         }
         PaginationParams paginationParams = new PaginationParams()
         {

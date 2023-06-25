@@ -81,7 +81,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
         public async Task Refreshasync(long categoryId)
         {
             wrpProduct.Children.Clear();
-            IList<Product> prdt;
+            IList<Product> procdt;
             PaginationParams paginationParams = new PaginationParams()
             {
                 PageNumber = 1,
@@ -89,14 +89,14 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             };
             if (categoryId == 0)
             {
-                prdt = await _productRepository.GetAllAsync(paginationParams);
+                procdt = await _productRepository.GetAllAsync(paginationParams);
                 
             }
             else 
             {
-                prdt = await _productRepository.GetAllByCategoryIdAsync(categoryId);
+                procdt = await _productRepository.GetAllByCategoryIdAsync(categoryId);
             }
-            foreach (var product in prdt)
+            foreach (var product in procdt)
             {
                 ItemsUserControl itemsUserControl = new ItemsUserControl();
                 itemsUserControl.SetData(product);

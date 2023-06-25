@@ -140,8 +140,26 @@ public class CategoryRepository : ICategoryReposytory
         throw new System.NotImplementedException();
     }
 
-    public Task<int> UpdatedAtAsync(long id, Category entity)
+    public async Task<int> UpdatedAtAsync(long id, Category entity)
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"UPDATE public.\"Category\" SET name= '{entity.Name}'\r\n\tWHERE category_id= {id};";
+            await using (var command = new NpgsqlCommand(query, _connection))
+            {
+                command.Parameters.AddWithValue("name", entity.Name);
+                var dbrresult = await command.ExecuteNonQueryAsync();
+                return dbrresult;
+            }
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 }

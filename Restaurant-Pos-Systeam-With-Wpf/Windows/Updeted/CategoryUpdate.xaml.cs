@@ -1,6 +1,9 @@
-﻿using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
+﻿using DevExpress.XtraPrinting;
+using Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes;
+using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Categoryes;
+using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,27 +26,51 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows.Updeted
     public partial class CategoryUpdate : Window
     {
         private readonly ICategoryReposytory _categoryReposytory;
-        
         public long Id { get; set; }
-        public CategoryUpdate()
+        public Category Category { get; set; }
+        public  CategoryUpdate()
         {
             InitializeComponent();
             this._categoryReposytory = new CategoryRepository();
         }
-        public void SetData(Category category)
+        public string CategoryName
         {
-
-            tbname.Text = category.Name;
-            Id = category.Id;
+            get { return tbname.Text; }
+            set { tbname.Text = value; }
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
+        
 
+        
+
+       
+        public async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var courses = await _categoryReposytory.GetAllAsync(new Utils.PaginationParams()
+            {
+                PageNumber = 1,
+                PageSize = 100
+            });
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
+        public void SetData(Category catgory)
         {
+            this.Category = catgory;
+            tbname.Text = Category.Name;
+            //Id = catgory.Id;
+        }
 
+        private async void Updated_Click(object sender, RoutedEventArgs e)
+        {
+            Category category = new Category();
+            category.Name = tbname.Text;
+            category.Id = Category.Id; ;
+            var res = await _categoryReposytory.UpdatedAtAsync(Category.Id, category);
+
+            if (res > 0)
+            {
+                MessageBox.Show("Updated");
+            }
+            else MessageBox.Show("Wrong");
         }
     }
 }

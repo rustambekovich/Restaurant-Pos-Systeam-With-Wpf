@@ -96,5 +96,13 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
         {
             await Refreshasync(0);
         }
+
+        private void addItem(object sender, RoutedEventArgs e)
+        {
+            AddItem addItem = new AddItem();
+            addItem.Show();
+            this.Close();
+
+        }
     }
 }

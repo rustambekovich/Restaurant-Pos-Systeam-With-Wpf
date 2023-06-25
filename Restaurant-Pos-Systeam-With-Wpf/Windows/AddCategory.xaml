@@ -23,9 +23,18 @@
                     Background="{DynamicResource PraymiryBackround}"
                     >
                 <StackPanel>
-                    <Label Content="Category name:"
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Category name:"
                            FontSize="16"
                        Margin="10 5 0 0"/>
+                        <Label x:Name="lbctg"
+                               HorizontalAlignment="Left"
+                               Width="200">
+                            
+                        </Label>
+                    </StackPanel>
+                    
+                    
                     <StackPanel Orientation="Horizontal">
                         <Border Background="{DynamicResource SecondaryBackround}"
                             Height="50"
@@ -43,7 +52,7 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBox Grid.Column="0" x:Name="tbname"
                                          MaxLength="50"
-                                         
+                                        
                                          Width="440" 
                                          VerticalAlignment="Center"
                                          FontSize="16"
@@ -55,12 +64,12 @@
                                          Background="{DynamicResource  SecondaryBackround}">
 
                                     </TextBox>
-                                    <Label Grid.Column="1" x:Name="lbcharectr"
+                                    <!--<Label Grid.Column="1" x:Name="lbcharectr"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        FontSize="18"
                                       
-                                       Content="0"/>
+                                       Content="0"/>-->
                                 </Grid>
                                 
                             </StackPanel>
@@ -71,7 +80,7 @@
                     <Button Style="{DynamicResource SaveButton}"
                                     x:Name="savebtnctg"
                                     Click="Save_Click"/>
-                    <Border Height="350"
+                    <Border Height="340"
                             Margin="5 5 5 5">
                         <ScrollViewer Grid.Column="1"
                                       Margin="1 5 5 5">
@@ -79,7 +88,7 @@
                         </ScrollViewer>
                     </Border>
                     <Border Height="50"
-                            Margin="5 0 10 5">
+                            Margin="5 0 5 15">
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
                             <Label Content="Total"

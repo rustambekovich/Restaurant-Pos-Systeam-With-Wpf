@@ -1,4 +1,4 @@
-﻿using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
+﻿ using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
@@ -17,10 +17,12 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
     {
         private readonly IProductRepository _productRepository;
         public long id { get; set; }
+        private Product Product { get; set; }
         public ItemsUserControl()
         {
             InitializeComponent();
             this._productRepository = new ProductRepository();
+            Product = new Product();
         }
 
         private async void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -32,16 +34,13 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
             PageNumber = 1,
             PageSize = 20
         };
-        public async void SetData(Product item)
+        public  void SetData(Product item)
         {
             itemImage.ImageSource = new BitmapImage(new Uri(item.ImagePath, UriKind.Relative));
             IList<Product> Products = new List<Product>();
-            Products = await _productRepository.GetAllAsync(paginationParams);
-            foreach (var product in Products)
-            {
-                lbItemName.Content = product.Name;
-                lbitemPrise.Content = product.Price;
-            }
+            lbItemName.Content = item.Name;
+            lbitemPrise.Content = item.Price;
+            Product = item;
             /*lbItemName.Content = .;
             lbitemPrise.Content = .Price.ToString();*/
 

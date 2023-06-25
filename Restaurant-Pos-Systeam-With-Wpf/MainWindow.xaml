@@ -108,22 +108,18 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*">
 
-                        </ColumnDefinition>
-                        <ColumnDefinition Width="*">
 
                         </ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Border >
-                            <Button Grid.Column="0" Style="{DynamicResource  btnTable}" />
-                        </Border>
-                    </Grid>
-                    <StackPanel Grid.Column="1">
-                        <Border Margin="5 5 5 5"
-                            Height="50"
-                            CornerRadius="10"
-                            Background="Brown"/>
+                    <StackPanel HorizontalAlignment="Left">
+                        <Grid Grid.Column="0">
+                            <Border >
+                                <Button Grid.Column="0" Style="{DynamicResource  btnTable}" />
+                            </Border>
+                        </Grid>
                     </StackPanel>
+                    
+                    
 
                 </Grid>
                 <Grid Grid.Row="2"
@@ -137,18 +133,8 @@
 
                         </ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Border Margin="5 5 5 5"
-                            Height="50"
-                            Background="Yellow"
-                            CornerRadius="10"/>
-                    </Grid>
-                    <StackPanel Grid.Column="1">
-                        <Border Margin="5 5 5 5"
-                            Height="50"
-                            CornerRadius="10"
-                            Background="Brown"/>
-                    </StackPanel>
+                    <Grid Grid.Column="0"/>
+                    <StackPanel Grid.Column="1"/>
 
                 </Grid>
                 <Grid Grid.Row="3">

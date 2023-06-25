@@ -4,10 +4,13 @@ using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Categoryes;
 using Restaurant_Pos_Systeam_With_Wpf.Windows;
 using Restaurant_Pos_Systeam_With_Wpf.Windows.Updeted;
+using System.Threading.Tasks;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WPFCustomMessageBox;
+using Restaurant_Pos_Systeam_With_Wpf.Utils;
 
 namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
 {
@@ -18,7 +21,10 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
     {
         private readonly ICategoryReposytory _categoryReposytory;
         private Category Category { get; set; }
-        public long Id { get; private set; }
+        public long Id { get; private set; }/*
+        public Func<long, Task> Refresh { get; set; }*/
+/*
+        private Category category = new Category();*/
         public AllCotegoryUserControl()
         {
             InitializeComponent();
@@ -29,9 +35,9 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
 
         public void SetData(Category categoryes)
         { 
+            Id = categoryes.Id;
             //this.Category = categoryes;
             lbname.Content = categoryes.Name;
-            Id = categoryes.Id;
             Category = categoryes;
         }
         /// <summary>
@@ -49,14 +55,33 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
                 var res = await _categoryReposytory.DeletedAtAsync(Id);
                 if (res != 0)
                 {
-
-                    MessageBox.Show($"Succsefuly {lbname.Content} Deleted.");
+                    MessageBox.Show($"SuccswrpCatigory.Children.Clear();\r\n            PaginationParams paginationParams = new PaginationParams()\r\n            {{\r\n                PageNumber = 1,\r\n                PageSize = 20\r\n            }};\r\n            var categorys = await _categoryReposytory.GetAllAsync(paginationParams);\r\n\r\n            foreach (var category in categorys)\r\n            {{\r\n                CategoryViewUserControl categoryViewUserControl = new CategoryViewUserControl();\r\n                categoryViewUserControl.Refresh = Refreshasync;\r\n                categoryViewUserControl.SetData(category);\r\n                categoryViewUserControl.Refresh = Refreshasync;\r\n                wrpCatigory.Children.Add(categoryViewUserControl);\r\n            }}\r\n            await Refreshasync(0);efuly {lbname.Content} Deleted.");
+                   
                 }
                 else MessageBox.Show("Don't deleted");
             }
         }
 
+     /*   public async void Refresh(res)
+        {
+            wrpCatigory.Children.Clear();
+            PaginationParams paginationParams = new PaginationParams()
+            {
+                PageNumber = 1,
+                PageSize = 20
+            };
+            var categorys = await _categoryReposytory.GetAllAsync(paginationParams);
 
+            foreach (var category in categorys)
+            {
+                CategoryViewUserControl categoryViewUserControl = new CategoryViewUserControl();
+                categoryViewUserControl.Refresh = Refreshasync;
+                categoryViewUserControl.SetData(category);
+                categoryViewUserControl.Refresh = Refreshasync;
+                wrpCatigory.Children.Add(categoryViewUserControl);
+            }
+            await Refreshasync(0);
+        }*/
 
         private void AddCotegoryUserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -85,8 +110,8 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
 
             CategoryUpdate categoryUpdate = new CategoryUpdate();
             categoryUpdate.SetData(Category);
-            CategoryUpdate updatecategoryUpdate = new CategoryUpdate();
-            updatecategoryUpdate.Show();
+            //CategoryUpdate updatecategoryUpdate = new CategoryUpdate();
+            categoryUpdate.Show();
         }
 
         public async void delet()
@@ -100,6 +125,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
                 {
 
                     MessageBox.Show($"Succsefuly {lbname.Content} Deleted.");
+
 
 
                 }

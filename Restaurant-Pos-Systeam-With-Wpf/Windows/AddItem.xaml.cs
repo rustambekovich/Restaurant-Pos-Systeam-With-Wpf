@@ -118,4 +118,9 @@ public partial class AddItem : Window
 
         return path;
     }
+
+    private void btnselect(object sender, RoutedEventArgs e)
+    {
+        btnImgSelect_Click(sender, e);
+    }
 }

@@ -35,7 +35,7 @@
                    Margin="5 5 5 5"
                    Width="120"
                    HorizontalContentAlignment="Center"
-                   Content="321231"
+                   Content="32"
                    FontSize="21"
                    x:Name="lbItemName"
                    Foreground="Black">

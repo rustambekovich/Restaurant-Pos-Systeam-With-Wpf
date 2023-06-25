@@ -80,7 +80,7 @@
                             <Button Style="{DynamicResource UpdateButton}"
                                     x:Name="savebtnctg"
                                     HorizontalAlignment="Right"
-                                    Click="Save_Click"/>
+                                    Click="Updated_Click"/>
 
                         </StackPanel>   
                     </Border>

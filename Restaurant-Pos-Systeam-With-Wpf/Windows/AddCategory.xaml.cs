@@ -25,23 +25,6 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
             get { return tbname.Text; }
             set { tbname.Text = value; }
         }
-        private async void Delete_Click(object sender, RoutedEventArgs e)
-        {
-
-            Category category = new Category();
-            if (tbname.Text.Length > 0)
-            {
-
-                category.Name = tbname.Text;
-                await _categoryReposytory.DeletedBynameAtAsync(tbname.Text);
-            }
-            else
-            {
-                MessageBox.Show("Complate Category");
-
-            }
-            await Refresh();
-        }
         public long Id { get; set; }
 
         private async void Save_Click(object sender, RoutedEventArgs e)
@@ -84,36 +67,15 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
                 count++;
                 CatrgoryItemCount.Content = (count).ToString();
             }
-            lbcharectr.Content = (50).ToString();
         }
         public async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             await Refresh();
         }
 
-
-
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
-            string text = textBox.Text;
-            lbcharectr.Content = (50 - text.Length).ToString();
-            if (text.Length > 50)
-            {
 
-                textBox.Text = text.Substring(50, 0);
-                textBox.CaretIndex = 50;
-            }
-        }
-
-        public void setTb(string text)
-        {
-            tbname.Text = text;
-        }
-
-        public void ClosePage()
-        {
-            this.Hide();
         }
     }
 }

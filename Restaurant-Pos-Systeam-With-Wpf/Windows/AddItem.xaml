@@ -201,7 +201,8 @@
                             Width="1">
                         
                     </Border>
-                    <Button Style="{DynamicResource creatItem}"/>
+                    <Button Style="{DynamicResource creatItem}"
+                            Click="saveItem"/>
 
                 </StackPanel>
             </Border>

@@ -25,10 +25,6 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
             Product = new Product();
         }
 
-        private async void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
         PaginationParams paginationParams = new PaginationParams()
         {
             PageNumber = 1,
@@ -41,8 +37,11 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
             lbItemName.Content = item.Name;
             lbitemPrise.Content = item.Price;
             Product = item;
-            /*lbItemName.Content = .;
-            lbitemPrise.Content = .Price.ToString();*/
+
+        }
+
+        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
 
         }
     }

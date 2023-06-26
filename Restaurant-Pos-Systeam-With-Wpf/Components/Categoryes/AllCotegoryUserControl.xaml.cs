@@ -21,10 +21,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
     {
         private readonly ICategoryReposytory _categoryReposytory;
         private Category Category { get; set; }
-        public long Id { get; private set; }/*
-        public Func<long, Task> Refresh { get; set; }*/
-/*
-        private Category category = new Category();*/
+        public long Id { get; private set; }
         public AllCotegoryUserControl()
         {
             InitializeComponent();
@@ -45,22 +42,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void ctgComponents_Click(object sender, RoutedEventArgs e)
-        {
-
-            MessageBoxResult result = MessageBox.Show($"Are you shure Delete {lbname.Content} category?", "Worning!!", MessageBoxButton.YesNo);
-            bool answer = (result == MessageBoxResult.Yes);
-            if (answer)
-            {
-                var res = await _categoryReposytory.DeletedAtAsync(Id);
-                if (res != 0)
-                {
-                    MessageBox.Show($"SuccswrpCatigory.Children.Clear();\r\n            PaginationParams paginationParams = new PaginationParams()\r\n            {{\r\n                PageNumber = 1,\r\n                PageSize = 20\r\n            }};\r\n            var categorys = await _categoryReposytory.GetAllAsync(paginationParams);\r\n\r\n            foreach (var category in categorys)\r\n            {{\r\n                CategoryViewUserControl categoryViewUserControl = new CategoryViewUserControl();\r\n                categoryViewUserControl.Refresh = Refreshasync;\r\n                categoryViewUserControl.SetData(category);\r\n                categoryViewUserControl.Refresh = Refreshasync;\r\n                wrpCatigory.Children.Add(categoryViewUserControl);\r\n            }}\r\n            await Refreshasync(0);efuly {lbname.Content} Deleted.");
-                   
-                }
-                else MessageBox.Show("Don't deleted");
-            }
-        }
+       
 
      /*   public async void Refresh(res)
         {

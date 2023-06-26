@@ -101,6 +101,9 @@ public partial class AddItem : Window
         long selectedValue = Convert.ToInt64(cmbCatogory.SelectedValue);
         products.cotigory_id = selectedValue;
         await _productRepository.CreatedAtAsync(products);
+        this.Close();
+        AllItem allItem = new AllItem();
+        allItem.Show();
     }
 
     private async Task<string> CopyImageAsync(string imgPath, string destinationDirectory)
@@ -122,5 +125,10 @@ public partial class AddItem : Window
     private void btnselect(object sender, RoutedEventArgs e)
     {
         btnImgSelect_Click(sender, e);
+    }
+
+    private void saveItem(object sender, RoutedEventArgs e)
+    {
+        ItemSave_Click(sender, e);
     }
 }

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Windows"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterOwner"
         WindowState="Normal"
         WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
         Background="Transparent"   
         Title="Setting" Height="550" Width="550">
     <Border CornerRadius="10"

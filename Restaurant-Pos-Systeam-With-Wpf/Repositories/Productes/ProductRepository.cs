@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using Restaurant_Pos_Systeam_With_Wpf.Constans;
+using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
@@ -51,9 +52,30 @@ public class ProductRepository : IProductRepository
         }
     }
 
-    public Task<int> DeletedAtAsync(long id)
+    public async Task<int> DeletedAtAsync(long id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var list = new List<Category>();
+            await _connection.OpenAsync();
+            if (_connection.State == System.Data.ConnectionState.Open)
+                await _connection.CloseAsync();
+            await _connection.OpenAsync();
+            string query = $"DELETE FROM public.\"Products\" WHERE  \"Product_id\" = {id};";
+            await using (var command = new NpgsqlCommand(query, _connection))
+            {
+                var dbrresult = await command.ExecuteNonQueryAsync();
+                return dbrresult;
+            }
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public Task<int> DeletedBynameAtAsync(string name)

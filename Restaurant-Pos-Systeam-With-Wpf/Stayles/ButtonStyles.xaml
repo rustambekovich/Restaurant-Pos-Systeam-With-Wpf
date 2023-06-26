@@ -324,7 +324,7 @@
                             Background="{DynamicResource  PraymiryryBackroundButton}"
                             Margin=" 5 5 5 5"
                             CornerRadius="5">
-                        <Label Content="Sellect"
+                        <Label Content="Save"
                                FontSize="16"
                                FontStyle="Normal"
                                HorizontalAlignment="Center"

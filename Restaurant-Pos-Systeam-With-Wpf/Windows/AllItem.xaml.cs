@@ -81,9 +81,10 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
             }
             foreach (var product in prdt)
             {
-                ItemsUserControl itemsUserControl = new ItemsUserControl();
-                itemsUserControl.SetData(product);
-                wrpProduct.Children.Add(itemsUserControl);
+                SetItemUserControl setItemUserControl = new SetItemUserControl();
+                // ItemsUserControl itemsUserControl = new ItemsUserControl();
+                setItemUserControl.SetData(product);
+                wrpProduct.Children.Add(setItemUserControl);
             }
         }
 

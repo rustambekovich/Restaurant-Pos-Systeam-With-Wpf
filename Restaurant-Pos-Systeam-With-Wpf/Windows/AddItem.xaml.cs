@@ -7,6 +7,7 @@ using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Categoryes;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Productes;
+using Restaurant_Pos_Systeam_With_Wpf.Servise.ImageServises;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ public partial class AddItem : Window
 {
     private readonly IProductRepository _productRepository;
     private readonly ICategoryReposytory _categoryReposytory;
+    private readonly SelectImage selectImage = new SelectImage();
     public AddItem()
     {
         InitializeComponent();
@@ -33,10 +35,6 @@ public partial class AddItem : Window
         this._categoryReposytory = new CategoryRepository();
     }
 
-    private void btnImageSelector_Click(object sender, RoutedEventArgs e)
-    {
-
-    }
     PaginationParams paginationParams = new PaginationParams()
     {
         PageNumber = 1,
@@ -58,21 +56,21 @@ public partial class AddItem : Window
 
     private void btnImgSelect_Click(object sender, RoutedEventArgs e)
     {
-        var openFileDialog = GetImageDialog();
+        var openFileDialog = selectImage.GetImagrDialog();
         if (openFileDialog.ShowDialog() == true)
         {
             string imgPath = openFileDialog.FileName;
             ImageItm.ImageSource = new BitmapImage(new Uri(imgPath, UriKind.Relative));
         }
     }
-    private OpenFileDialog GetImageDialog()
+    /*private OpenFileDialog GetImageDialog()
     {
         OpenFileDialog openFileDialog = new OpenFileDialog();
         openFileDialog.Filter = "JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|GIF Files (*.gif)|*.gif";
         return openFileDialog;
-    }
+    }*/
 
-    private async Task<string> CopyImgAsync(string imgPath, string destinationDirectory)
+   /* private async Task<string> CopyImgAsync(string imgPath, string destinationDirectory)
     {
         if (!Directory.Exists(destinationDirectory))
             Directory.CreateDirectory(destinationDirectory);
@@ -86,7 +84,7 @@ public partial class AddItem : Window
         await File.WriteAllBytesAsync(path, image);
 
         return path;
-    }
+    }*/
 
     private async void ItemSave_Click(object sender, RoutedEventArgs e)
     {
@@ -96,7 +94,7 @@ public partial class AddItem : Window
         products.Price = float.Parse(tbPrice.Text);
         string ImagePath = ImageItm.ImageSource.ToString();
         if (!String.IsNullOrEmpty(ImagePath))
-            products.ImagePath = await CopyImageAsync(ImagePath, ContentConst.IMAGE_PATH);
+            products.ImagePath = await CopyImage.CopyImageAsync(ImagePath, ContentConst.IMAGE_PATH);
 
         long selectedValue = Convert.ToInt64(cmbCatogory.SelectedValue);
         products.cotigory_id = selectedValue;
@@ -106,7 +104,7 @@ public partial class AddItem : Window
         allItem.Show();
     }
 
-    private async Task<string> CopyImageAsync(string imgPath, string destinationDirectory)
+    /*public async Task<string> CopyImageAsync(string imgPath, string destinationDirectory)
     {
         if (!Directory.Exists(destinationDirectory))
             Directory.CreateDirectory(destinationDirectory);
@@ -120,7 +118,7 @@ public partial class AddItem : Window
         await File.WriteAllBytesAsync(path, image);
 
         return path;
-    }
+    }*/
 
     private void btnselect(object sender, RoutedEventArgs e)
     {

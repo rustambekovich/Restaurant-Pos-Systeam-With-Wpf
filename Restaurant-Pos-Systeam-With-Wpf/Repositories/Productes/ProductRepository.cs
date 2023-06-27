@@ -172,10 +172,32 @@ public class ProductRepository : IProductRepository
     {
         throw new NotImplementedException();
     }
-
-    public Task<int> UpdatedAtAsync(long id, Product entity)
+    public async Task<int> UpdatedAtAsync(long id, Product entity)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"UPDATE public.\"Products\"" +
+                $"SET name=@name, description=@description, price= @price, catigory_id=@catigory_id, imagepath=@imagepath WHERE \"Product_id\" = {id};";
+            await using (var command = new NpgsqlCommand(query, _connection))
+            {
+                command.Parameters.AddWithValue("name", entity.Name);
+                command.Parameters.AddWithValue("description", entity.Description);
+                command.Parameters.AddWithValue("price", entity.Price);
+                command.Parameters.AddWithValue("catigory_id", entity.cotigory_id);
+                command.Parameters.AddWithValue("imagepath", entity.ImagePath);
+                var dbrresult = await command.ExecuteNonQueryAsync();
+                return dbrresult;
+            }
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     //public async Task<int> CreatedAtAsync(Category entity)

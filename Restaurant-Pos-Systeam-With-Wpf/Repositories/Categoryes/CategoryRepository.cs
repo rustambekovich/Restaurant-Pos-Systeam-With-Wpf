@@ -135,6 +135,43 @@ public class CategoryRepository : ICategoryReposytory
         }
     }
 
+    public async Task<IList<Category>> GetAllAsync()
+    {
+        var list = new List<Category>();
+        try
+        {
+
+
+            await _connection.OpenAsync();
+
+
+            string query = $"Select * from \"Category\" \r\nOrder by category_id;";
+            await using (var command = new NpgsqlCommand(query, _connection))
+            {
+                await using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var category = new Category();
+                        category.Id = reader.GetInt64(0);
+                        category.Name = reader.GetString(1);
+                        list.Add(category);
+                    }
+                }
+
+            }
+            return list;
+        }
+        catch
+        {
+            return list;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
+    }
+
     public Task<Category> GetByIdAsync(long id)
     {
         throw new System.NotImplementedException();

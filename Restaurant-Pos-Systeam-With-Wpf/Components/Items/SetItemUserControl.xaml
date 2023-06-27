@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Items"
              mc:Ignorable="d" 
              Cursor="Hand"
-             MouseDoubleClick="SetUserControl_MouseDoubleClick"
+             MouseDoubleClick="SetUserControl_MouseDown"
              >
 
     <Border Margin="5 5 5 5"

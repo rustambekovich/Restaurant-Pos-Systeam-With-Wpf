@@ -16,8 +16,8 @@
             CornerRadius="10"
             Background="#FEFEFE"
             x:Name="ItemComponent">
-        <StackPanel Height="290"
-                    Width="250">
+        <StackPanel Height="280"
+                    Width="220">
     
             <Border Height="160"
                     Width="160"

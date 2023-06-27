@@ -37,7 +37,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
         {
             InitializeComponent();
             this._ItemproductRepository= new ProductRepository();
-            
+            Product = new Product();
         }
         private readonly IProductRepository _productRepository;
        
@@ -53,11 +53,12 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
             IList<Product> Products = new List<Product>();
             lbItemName.Content = item.Name;
             lbitemPrise.Content = item.Price;
+           
             id = item.Id;
             Product = item;
 
         }
-        private void SetUserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void SetUserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var result = CustomMessageBox.ShowYesNoCancel("Are you sure you want to eject the nuclear fuel rods?", "Confirm Fuel Ejection", "Deleted", "Update", "Canel");
             switch (result)
@@ -81,11 +82,9 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
         }
         public void Update()
         {
-           /* Product product = new Product();
-            //CategoryUpdate categoryUpdate = new CategoryUpdate();
-            product.SetData(Product);
-            //CategoryUpdate updatecategoryUpdate = new CategoryUpdate();
-            categoryUpdate.Show();*/
+            ProductItemUpdate productItemUpdate = new ProductItemUpdate();
+            productItemUpdate.SetData(Product);
+            productItemUpdate.Show();
         }
 
         public async void delet()

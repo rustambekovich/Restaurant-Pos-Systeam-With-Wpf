@@ -32,15 +32,16 @@
 
                     </RowDefinition>
                     <RowDefinition Height="6*">
-
+                   
                     </RowDefinition>
                     <RowDefinition Height="6*">
-
+                    
                     </RowDefinition>
                     <RowDefinition Height="35*">
 
                     </RowDefinition>
 
+                    
                     <RowDefinition Height="6*">
 
                     </RowDefinition>
@@ -114,7 +115,7 @@
                     <StackPanel HorizontalAlignment="Left">
                         <Grid Grid.Column="0">
                             <Border >
-                                <Button Grid.Column="0" Style="{DynamicResource  btnTable}" />
+                                <Button Grid.Column="0" Style="{DynamicResource  btnTable}" Click="Button_Click" />
                             </Border>
                         </Grid>
                     </StackPanel>
@@ -171,8 +172,9 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Border>
-
+                 
                 </Grid>
+                
                 <Grid Grid.Row="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -184,7 +186,12 @@
                           CornerRadius="5"
                           BorderThickness="1"
                           BorderBrush="#787C80">
-
+                        <Label Content="Delete all"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18">
+                            
+                        </Label>
                     </Border>
                     <Border Grid.Column="1"
                             Background="{DynamicResource PraymiryBackround}"
@@ -239,7 +246,7 @@
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="0"
                         Background="{DynamicResource PraymiryBackround}"
-                        Margin="5,5,0,5"
+                        Margin="5,5,0,-10"
                         BorderThickness="1"
                             CornerRadius="5"
                         BorderBrush="#787C80">
@@ -253,7 +260,7 @@
                     </Border>
                     <Border Grid.Column="1"
                        Background="{DynamicResource PraymiryBackround}"
-                        Margin="5,5,0,5"
+                        Margin="5,5,0,-10"
                         BorderThickness="1"
                             CornerRadius="5"
                         BorderBrush="#787C80">
@@ -267,7 +274,7 @@
                     </Border>
                     <Border Grid.Column="2"
                         Background="{DynamicResource PraymiryBackround}"
-                        Margin="5,5,0,5"
+                        Margin="5,5,0,-10"
                         BorderThickness="1"
                             CornerRadius="5"
                         BorderBrush="#787C80">
@@ -281,7 +288,7 @@
                     </Border>
                     <Border Grid.Column="3"
                         Background="{DynamicResource PraymiryBackround}"
-                        Margin="5,5,0,5"
+                        Margin="5,5,0,-10"
                         BorderThickness="1"
                             CornerRadius="5"
                         BorderBrush="{DynamicResource BorderThiknes}">

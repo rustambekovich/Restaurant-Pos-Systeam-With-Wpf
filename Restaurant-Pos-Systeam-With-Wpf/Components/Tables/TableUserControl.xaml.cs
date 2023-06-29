@@ -1,8 +1,7 @@
 ﻿using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
-using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Productes;
-using Restaurant_Pos_Systeam_With_Wpf.Repositories.Productes;
-using Restaurant_Pos_Systeam_With_Wpf.Utils;
+using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Tables;
+using Restaurant_Pos_Systeam_With_Wpf.Repositories.Tables;
 using Restaurant_Pos_Systeam_With_Wpf.Windows.Updeted;
 using System;
 using System.Collections.Generic;
@@ -21,44 +20,43 @@ using System.Windows.Shapes;
 using System.Xml.Linq;
 using WPFCustomMessageBox;
 
-namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
+namespace Restaurant_Pos_Systeam_With_Wpf.Components.Tables
 {
     /// <summary>
-    /// Interaction logic for SetItemUserControl.xaml
+    /// Interaction logic for TableUserControl.xaml
     /// </summary>
-    public partial class SetItemUserControl : UserControl
+    public partial class TableUserControl : UserControl
     {
+        public TableRes Tableres = new TableRes();
+        private readonly ITebleRepository _tableRepository;
+        public long Id { get; set; }
+
         public Func<long, Task> Refresh { get; set; }
-        private readonly IProductRepository _ItemproductRepository;
-        private Product Product { get; set; }
-        public long id { get; set; }
-
-        public SetItemUserControl()
+        public TableUserControl()
         {
+            _tableRepository = new TableRepository();
             InitializeComponent();
-            this._ItemproductRepository= new ProductRepository();
-            Product = new Product();
         }
-        private readonly IProductRepository _productRepository;
-       
 
-        PaginationParams paginationParams = new PaginationParams()
+        private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            PageNumber = 1,
-            PageSize = 20
-        };
-        public void SetData(Product item)
+
+        }
+
+        private void TableUserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            itemImage.ImageSource = new BitmapImage(new Uri(item.ImagePath, UriKind.Relative));
-           // IList<Product> Products = new List<Product>();
-            lbItemName.Content = item.Name;
-            lbitemPrise.Content = item.Price;
            
-            id = item.Id;
-            Product = item;
-
         }
-        private void SetUserControl_MouseDown(object sender, MouseButtonEventArgs e)
+        public void SetData(TableRes tableRes)
+        {
+            tablenum.Content = tableRes.TableNumber;
+            Id = tableRes.Id;
+            tablCapasty.Content = tableRes.SeatingCapasity;
+            Tableres = tableRes;
+        }
+
+
+        private void tableSet(object sender, RoutedEventArgs e)
         {
             var result = CustomMessageBox.ShowYesNoCancel("Are you sure you want to eject the nuclear fuel rods?", "Confirm Fuel Ejection", "Deleted", "Update", "Canel");
             switch (result)
@@ -78,26 +76,26 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
                     MessageBox.Show("ishlamadi");
                     break;
             }
-
         }
+
         public void Update()
         {
-            ProductItemUpdate productItemUpdate = new ProductItemUpdate();
-            productItemUpdate.SetData(Product);
-            productItemUpdate.Show();
+            TableUpdate tableUpdate = new TableUpdate();
+            tableUpdate.SetData(Tableres);
+            tableUpdate.Show();
         }
 
         public async void delet()
         {
-            MessageBoxResult result = MessageBox.Show($"Are you shure Delete {lbItemName.Content} category?", "Worning!!", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show($"Are you shure Delete  {tablenum.Content} Table?", "Worning!!", MessageBoxButton.YesNo);
             bool answer = (result == MessageBoxResult.Yes);
             if (answer)
             {
-                var res = await _ItemproductRepository.DeletedAtAsync(id);
+                var res = await _tableRepository.DeletedAtAsync(Id);
                 if (res != 0)
                 {
 
-                    MessageBox.Show($"Succsefuly {lbItemName.Content} Deleted.");
+                    MessageBox.Show($"Succsefuly {tablenum.Content} Deleted.");
 
 
 

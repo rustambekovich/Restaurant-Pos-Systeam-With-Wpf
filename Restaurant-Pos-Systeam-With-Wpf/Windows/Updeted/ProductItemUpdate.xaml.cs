@@ -59,7 +59,6 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows.Updeted
             tbPrice.Text = product.Price.ToString();
             rchDesc.Document.Blocks.Clear();
             rchDesc.Document.Blocks.Add(new Paragraph(new Run(product.Description)));
-
         }
         public async Task Put()
         {

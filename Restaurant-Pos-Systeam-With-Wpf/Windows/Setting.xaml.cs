@@ -35,5 +35,12 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
             this.Close();
             
         }
+
+        private void Table_setting(object sender, RoutedEventArgs e)
+        {
+            TableWindow tableWindow = new TableWindow();
+            tableWindow.ShowDialog();
+            this.Close();
+        }
     }
 }

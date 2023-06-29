@@ -23,19 +23,23 @@ namespace Restaurant_Pos_Systeam_With_Wpf
     {
         private readonly ICategoryReposytory _categoryReposytory;
         private readonly IProductRepository _productRepository;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            // Timer
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-
-#pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             timer.Tick += Timer_Tick;
-#pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
             timer.Start();
+
+            // Repositories
             this._categoryReposytory = new CategoryRepository();
             this._productRepository = new ProductRepository();
         }
+
+        // Update current date and time
         private void Timer_Tick(object sender, EventArgs e)
         {
             var currentTime = TimeHelper.GetDateTime();
@@ -43,20 +47,20 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             timeTextBlock.Text = currentTime.ToString("HH:mm:ss");
         }
 
-
+        // Close the application
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-            //Application.Current.Exit();
         }
 
-
+        // Open settings window
         public void Setting_Click(object sender, RoutedEventArgs e)
         {
             Setting setting = new Setting();
             setting.ShowDialog();
         }
 
+        // Load main window
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             wrpCatigory.Children.Clear();
@@ -65,63 +69,92 @@ namespace Restaurant_Pos_Systeam_With_Wpf
                 PageNumber = 1,
                 PageSize = 20
             };
-            var categorys = await _categoryReposytory.GetAllAsync(paginationParams);
 
-            foreach (var category in categorys)
+            var categories = await _categoryReposytory.GetAllAsync(paginationParams);
+
+            foreach (var category in categories)
             {
                 CategoryViewUserControl categoryViewUserControl = new CategoryViewUserControl();
-                categoryViewUserControl.Refresh = Refreshasync;
+                categoryViewUserControl.Refresh = RefreshAsync;
                 categoryViewUserControl.SetData(category);
-                categoryViewUserControl.Refresh = Refreshasync;
+                categoryViewUserControl.Refresh = RefreshAsync;
                 wrpCatigory.Children.Add(categoryViewUserControl);
             }
-            await Refreshasync(0);  
+
+            await RefreshAsync(0);
         }
 
-        public async Task Refreshasync(long categoryId)
+        // Refresh products based on category
+        public async Task RefreshAsync(long categoryId)
         {
             wrpProduct.Children.Clear();
-            IList<Product> procdt;
+            IList<Product> products;
             PaginationParams paginationParams = new PaginationParams()
             {
                 PageNumber = 1,
                 PageSize = 20
             };
+
             if (categoryId == 0)
             {
-                procdt = await _productRepository.GetAllAsync(paginationParams);
-                
+                products = await _productRepository.GetAllAsync(paginationParams);
             }
-            else 
+            else
             {
-                procdt = await _productRepository.GetAllByCategoryIdAsync(categoryId);
+                products = await _productRepository.GetAllByCategoryIdAsync(categoryId);
             }
-            foreach (var product in procdt)
+
+            foreach (var product in products)
             {
                 ItemsUserControl itemsUserControl = new ItemsUserControl();
                 itemsUserControl.SetData(product);
                 wrpProduct.Children.Add(itemsUserControl);
             }
+            /*//
+            orderItem.Children.Clear();
+           
+            foreach (var item in products)
+            {
+                ItemsUserControl itemsUserControl = new ItemsUserControl();
+                itemsUserControl.SetData(item);
+                orderItem.Children.Add(itemsUserControl);
+            }*/
         }
 
+        // Show all categories
         private async void allCtg(object sender, RoutedEventArgs e)
         {
-            await Refreshasync(0);
+            await RefreshAsync(0);
         }
 
+        /// <summary>
+        /// Handles the selection changed event of the DataGrid.
+        /// </summary>
+        /// <param name="sender">The sender object.</param>
+        /// <param name="e">The event arguments.</param>
         private void DataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-
+            // Add your logic here
         }
 
+        /// <summary>
+        /// Handles the selection changed event of the DtgMaxsulot.
+        /// </summary>
+        /// <param name="sender">The sender object.</param>
+        /// <param name="e">The event arguments.</param>
         private void DtgMaxsulot_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-
+            // Add your logic here
         }
 
+        /// <summary>
+        /// Handles the click event of the Button.
+        /// </summary>
+        /// <param name="sender">The sender object.</param>
+        /// <param name="e">The event arguments.</param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            // Add your logic here
         }
     }
 }

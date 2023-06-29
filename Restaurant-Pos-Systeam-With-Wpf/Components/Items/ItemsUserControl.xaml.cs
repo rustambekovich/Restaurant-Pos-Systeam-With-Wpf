@@ -40,7 +40,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
 
         }
 
-        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
         }

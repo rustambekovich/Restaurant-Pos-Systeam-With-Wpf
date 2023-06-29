@@ -15,7 +15,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*">
+            <ColumnDefinition Width="2.5*">
 
             </ColumnDefinition>
 
@@ -34,7 +34,7 @@
                     <RowDefinition Height="6*">
                    
                     </RowDefinition>
-                    <RowDefinition Height="6*">
+                    <RowDefinition Height="3*">
                     
                     </RowDefinition>
                     <RowDefinition Height="35*">
@@ -123,21 +123,53 @@
                     
 
                 </Grid>
-                <Grid Grid.Row="2"
-                  Background="Transparent">
+                <Border Grid.Row="2"
+                        Background="White"
+                        CornerRadius="5"
+                        Margin="2">
+                    <Grid Grid.Row="2"
+                        >
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="1.2*"/>
+                            <ColumnDefinition Width="0.8*"/>
+                            <ColumnDefinition Width="0.4*"/>
+                            <ColumnDefinition Width="0.8*"/>
+                            <ColumnDefinition Width="0.4*"/>
 
-                        </ColumnDefinition>
-                        <ColumnDefinition Width="*">
+                        </Grid.ColumnDefinitions>
+                        <StackPanel 
+                                Orientation="Horizontal"
+                                >
+                            <Border Grid.Column="0" 
+                                   
+                                    
+                                    Background="Orange">
+                                <Label Content="imag"/>
+                            </Border>
+                            <!--<Border Grid.Column="1"
+                                    
+                                    Background="Red">
+                                <Label Content="name"/>
+                            </Border>
+                            <Border Grid.Column="2">
+                                <Label Content="imag"/>
+                            </Border>
+                            <Border Grid.Column="3">
+                                <Label Content="imag"/>
+                            </Border>
+                            <Border Grid.Column="4">
+                                <Label Content="imag"/>
+                            </Border>
+                            <Border Grid.Column="5">
+                                <Label Content="imag"/>
+                            </Border>-->
+                        </StackPanel>
 
-                        </ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0"/>
-                    <StackPanel Grid.Column="1"/>
-
-                </Grid>
+                    </Grid>
+                </Border>
+                
                 <Grid Grid.Row="3">
                     <!--<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>
@@ -147,30 +179,14 @@
                     </Grid.ColumnDefinitions>-->
 
                     <Border Grid.Column="3" 
-                            BorderBrush="#787C80" 
+                            BorderBrush="Black" 
                             BorderThickness="1"
                             CornerRadius="5">
-                        <DataGrid ItemsSource="{Binding YourDataItems}"
-                                  Background="{DynamicResource PraymiryBackround}">
-                            <DataGrid.Columns>
-                                <!-- Ustunlar -->
-                                <DataGridTextColumn Header="Item name"
-                                                    Binding="{Binding Property1}"
-                                                    Width="3*"
-                                                    />
-
-                                <DataGridTextColumn Header="Price" 
-                                                    Binding="{Binding Property2}"
-                                                    Width="2*"/>
-                                <DataGridTextColumn Header="Qty" 
-                                                    Binding="{Binding Property2}"
-                                                    Width="*"/>
-                                <DataGridTextColumn Header="Amount" 
-                                                    Binding="{Binding Property2}"
-                                                    Width="2*"/>
-                                <!-- Qo'shimcha ustunlar -->
-                            </DataGrid.Columns>
-                        </DataGrid>
+                        <ScrollViewer Margin="1 5 5 5"
+                                  HorizontalScrollBarVisibility="Disabled">
+                            <WrapPanel x:Name="orderItem"
+                                   Background="{DynamicResource PraymiryBackround}"/>
+                        </ScrollViewer>
                     </Border>
                  
                 </Grid>

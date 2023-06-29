@@ -84,7 +84,7 @@ public class ProductRepository : IProductRepository
     }
 
     public async Task<IList<Product>> GetAllAsync(PaginationParams @params)
-        {
+    {
         try
         {
 

@@ -1,0 +1,166 @@
+﻿<Window x:Class="Restaurant_Pos_Systeam_With_Wpf.Windows.TableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Windows"
+        mc:Ignorable="d"
+         WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="Azure"
+        Loaded="Window_Loaded"
+        Title="AddCategory" Height="600" Width="900">
+
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0"
+                    BorderThickness="1"
+                    BorderBrush="{DynamicResource BorderThiknes}"
+                    Margin="5 5 5 5"
+                    Background="{DynamicResource PraymiryBackround}"
+                    >
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Table numeri:"
+                           FontSize="16"
+                               Width="330"
+                       Margin="10 5 0 0"/>
+                        <Label x:Name="lbctg"
+                               HorizontalAlignment="Left"
+                               Width="200"
+                               FontSize="16"
+                               Content="Copasiyt:">
+                            
+
+                        </Label>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <Border Background="{DynamicResource SecondaryBackround}"
+                            Height="50"
+                            Width="310"
+                            CornerRadius="10"
+                            HorizontalAlignment="Left"
+                            Margin="15 0 5 5"
+                            >
+
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Width="550">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0" x:Name="tbname"
+                                         MaxLength="50"
+                                         PreviewTextInput="TextBox_PreviewTextInput"
+                                         
+                                         HorizontalAlignment="Left"
+                                         Width="280" 
+                                         VerticalAlignment="Center"
+                                         FontSize="16"
+                                         Margin="10 0 10 0"
+                                         FontFamily="Jetbrains Mono"
+                                         BorderThickness="0"
+                                         TextChanged="TextBox_TextChanged"
+                                         Foreground="Black"
+                                         Background="{DynamicResource  SecondaryBackround}">
+
+                                    </TextBox>
+                                    <!--<Label Grid.Column="1" x:Name="lbcharectr"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="18"
+                                      
+                                       Content="0"/>-->
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Border>
+                        <Border Background="{DynamicResource SecondaryBackround}"
+                            Height="50"
+                            Width="310"
+                            CornerRadius="10"
+                            HorizontalAlignment="Left"
+                            Margin="15 0 5 5"
+                            >
+
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Width="550">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0" x:Name="tbCopstyname"
+                                         MaxLength="50"
+                                         HorizontalAlignment="Left"
+                                         PreviewTextInput="CAPASTYTEXTINPUT"
+                                         Width="280" 
+                                         VerticalAlignment="Center"
+                                         FontSize="16"
+                                         Margin="10 0 10 0"
+                                         FontFamily="Jetbrains Mono"
+                                         BorderThickness="0"
+                                         TextChanged="TextBox_TextChanged"
+                                         Foreground="Black"
+                                         Background="{DynamicResource  SecondaryBackround}">
+
+                                    </TextBox>
+                                    <!--<Label Grid.Column="1" x:Name="lbcharectr"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="18"
+                                       Content="0"/>-->
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Border>
+                        <Button Style="{DynamicResource SaveButton}"
+                                    x:Name="savebtntable"
+                                    Margin="5 0 5 5"
+                                    Click="Save_Click"/>
+                    </StackPanel>
+
+                    <Border Height="400"
+                            Margin="5 5 5 5">
+
+                        <ScrollViewer Grid.Column="1"
+                                      Margin="1 5 5 5">
+                            <WrapPanel x:Name="wrpTableSet"/>
+                        </ScrollViewer>
+                    </Border>
+                    <Border Height="50"
+                            Margin="5 0 5 15">
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+                            <Label Content="Total"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="16">
+
+                            </Label>
+                            <Label x:Name="CatrgoryItemCount" 
+                                   Content="0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="16">
+
+                            </Label>
+                            <Label Content="table found"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="16">
+
+                            </Label>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

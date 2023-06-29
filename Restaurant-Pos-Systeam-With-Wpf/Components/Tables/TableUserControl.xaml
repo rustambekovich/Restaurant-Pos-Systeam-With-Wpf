@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Restaurant_Pos_Systeam_With_Wpf.Components.Tables.TableUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Tables"
+             mc:Ignorable="d" 
+             d:DesignHeight="210" 
+             d:DesignWidth="260"
+             MouseDown="TableUserControl_MouseDown"
+             Background="Transparent">
+    <Border BorderBrush="Black"
+            BorderThickness="1"
+            Margin=" 5 5 5 5"
+            Background="{DynamicResource PraymiryBackround}"
+            CornerRadius="10">
+        <StackPanel>
+            <Border x:Name="tableBoreder"
+                Margin="5 5 5 5"
+                    Background="Wheat"
+                Height="150"
+                Width="200">
+                <Button Style="{DynamicResource TableButton}"
+                        Click="tableSet">
+                    
+                </Button>
+            </Border>
+            <StackPanel Orientation="Horizontal"
+                       Width="250"
+                        Height="40">
+                <Border >
+                    <Label Content="Table:"
+                       HorizontalAlignment="Left"
+                       Margin="5 5 5 5"
+                       FontSize="18">
+
+                    </Label>
+                </Border>
+                <Border Margin="5 5 5 5">
+                    <Label Content=""
+                           x:Name="tablenum"
+                       HorizontalAlignment="Right"
+                       
+                       FontSize="18">
+
+                    </Label>
+                </Border>
+                <Border >
+                    <Label Content="Capasty:"
+                       HorizontalAlignment="Left"
+                       Margin="5 5 5 5"
+                       FontSize="18">
+
+                    </Label>
+                </Border>
+                <Border Margin="5 5 5 5">
+                    <Label Content=""
+                           x:Name="tablCapasty"
+                       HorizontalAlignment="Right"
+                       
+                       FontSize="18">
+
+                    </Label>
+                </Border>
+                
+
+            </StackPanel>
+            
+        </StackPanel>
+        
+    </Border>
+</UserControl>

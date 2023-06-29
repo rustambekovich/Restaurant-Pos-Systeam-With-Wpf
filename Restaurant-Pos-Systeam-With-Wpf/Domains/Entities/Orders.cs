@@ -10,6 +10,6 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Domains.Entities
         public float TotalAmount { get; set; }
         public float Price { get; set; }
         public OrderStatus Ordertatus { get; set; }
-        public Table? TableID { get; set; }
+        public TableRes? TableID { get; set; }
     }
 }

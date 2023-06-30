@@ -5,116 +5,112 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Orders"
              mc:Ignorable="d" 
-            d:DesignHeight="150" d:DesignWidth="550">
-    <Border
-        Margin="5 10 5 10"
-        Background="White">
-        <Border.Effect>
-            <DropShadowEffect
-                BlurRadius="5"
-                Opacity="1"
-                ShadowDepth="-40"
-                Color="#B9A16B">
-
-            </DropShadowEffect>
-        </Border.Effect>
-        <Grid
-            
-            Background="Transparent"
+             Height="100" 
+             Width="480">
+    <Border 
+            Margin="5 10 5 10"
+            Background="White"
+            BorderBrush="Black"
+            BorderThickness="1"
+            CornerRadius="10">
+        <Grid Background="Transparent"
         >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-
-            <Border Grid.Column="0"
-                CornerRadius="75"
-                Background="Yellow"
-                BorderThickness="0 0 0.5 0">
-                <!--<Border.Background>
-                    <ImageBrush x:Name="ImgBrushMeal"/>
-                </Border.Background>-->
-
-            </Border>
-            <Grid Grid.Column="1"
-             >
+            <Grid Grid.Column ="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="85"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0"
-                        Margin="0"
-                        >
-                    <Label
-                    x:Name="lblFoodName"
-                    Content="Palov"
-                    VerticalAlignment="Center"
-                    FontSize="30"
-                    FontFamily="jetbrains mono"
-                    FontWeight="SemiBold"
-                    />
+                <Border Grid.Row="0"
+                        Margin=" 5 5 5 5">
+                    <Label x:Name="nameOrder"
+                           Content="Osh"
+                           HorizontalAlignment="Left"
+                           FontSize="18"
+                           VerticalAlignment="Center">
+                        
+                    </Label>
+                </Border>
+                <Border Grid.Row="1"
+                        Margin=" 5 5 5 5">
+                    <StackPanel Orientation="Horizontal">
+                        <Label 
+                           Content="Unit Price:"
+                           HorizontalAlignment="Left"
+                           FontSize="16"
+                           VerticalAlignment="Center">
 
-                    <Path
-                    Margin="240 10 0 10"
-                    VerticalAlignment="Center"
-                    Data="{DynamicResource price}"
-                    Fill="{DynamicResource SeventhColor}"/>
-                    <Label
-                    Margin="5"
-                    x:Name="lblFoodPrice"
-                    Content="400000"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Right"
-                    FontSize="20"
-                    FontFamily="jetbrains mono"
-                    FontWeight="SemiBold"
-                    BorderThickness="0"
-                    BorderBrush="{DynamicResource SecondColor}"/>
-
-                </Grid>
-
-                <StackPanel Grid.Row="1"
-                        Margin="0 15 10 5"
-                        Orientation="Horizontal">
-                    <Label
-                    FontSize="18"
-                    FontWeight="SemiBold"
-                    Content="Soni:"
-                    VerticalAlignment="Center"/>
-                    <TextBox
-                    x:Name="tbCount"
-                    Margin="5"
-                    Height="25"
-                    Width="40"
-                    BorderThickness="0"
-                    Background="Transparent" 
-                    IsReadOnly="True"/>
-
-                    <Button x:Name="btnPlus"
-                        Margin="55 0 0 0"
-                        Style="{DynamicResource AddButton}"
-                        Tag="{DynamicResource plus}"
-                        />
-
-                    <Button x:Name="btnMinus"
-                        Margin="10 0"
-                        Style="{DynamicResource AddButton}"
-                        Tag="{DynamicResource mnus}"
-                        />
-
-                    <Button x:Name="btnXarid_qilish"
-                        Margin="10 0 0 0"
-                        Height="25"
-                        Width="80"
-                        Style="{DynamicResource XaridButton}"
-                        Content="Xarid qilish"
-                        />
-
-
-                </StackPanel>
-
+                        </Label>
+                        <Label x:Name="UntPrice"
+                               Content="30000"
+                               HorizontalAlignment="Left"
+                               FontSize="16"
+                               VerticalAlignment="Center">
+                            
+                        </Label>
+                    </StackPanel>
+                    
+                </Border>
             </Grid>
+            <Grid Grid.Column ="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0"
+                        Margin=" 5 5 5 5">
+                    <StackPanel Orientation="Horizontal">
+                        <Label 
+                           Content="Qty:"
+                           HorizontalAlignment="Left"
+                           FontSize="16"
+                           VerticalAlignment="Center">
+
+                        </Label>
+                        <Label x:Name="qtyCount"
+                               Content="30000"
+                               HorizontalAlignment="Left"
+                               FontSize="16"
+                               VerticalAlignment="Center">
+
+                        </Label>
+                    </StackPanel>
+
+                </Border>
+                <Border Grid.Row="1"
+                        Margin=" 5 5 5 5">
+                    <StackPanel Orientation="Horizontal">
+                        <Label 
+                           Content="Price:"
+                           HorizontalAlignment="Left"
+                           FontSize="16"
+                           VerticalAlignment="Center">
+
+                        </Label>
+                        <Label x:Name="Price"
+                               Content="30000"
+                               HorizontalAlignment="Left"
+                               FontSize="16"
+                               VerticalAlignment="Center">
+
+                        </Label>
+                    </StackPanel>
+
+                </Border>
+            </Grid>
+            <Border Grid.Column="2"
+                    Margin="5 5 5 5">
+                <Button Style="{DynamicResource DeleteItemButton}"
+                       
+                        Click="itemDelete"/>
+            </Border>
+
+
+
 
 
         </Grid>

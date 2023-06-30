@@ -15,7 +15,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2.5*">
+            <ColumnDefinition Width="2*">
 
             </ColumnDefinition>
 
@@ -28,27 +28,26 @@
             <Grid Grid.Column="0" Background="Azure">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="6*">
+                    <RowDefinition Height="3*">
 
                     </RowDefinition>
-                    <RowDefinition Height="6*">
+                    <RowDefinition Height="3*">
                    
                     </RowDefinition>
-                    <RowDefinition Height="3*">
                     
-                    </RowDefinition>
                     <RowDefinition Height="35*">
 
                     </RowDefinition>
 
                     
-                    <RowDefinition Height="6*">
+                    <RowDefinition Height="3*">
 
                     </RowDefinition>
-                    <RowDefinition Height="19*">
+                    <!--<RowDefinition Height="19*">
 
-                    </RowDefinition>
+                    </RowDefinition>-->
                 </Grid.RowDefinitions>
+                <!--BU time ba Kampani nomi-->
                 <Border BorderBrush="#787C80"
                         BorderThickness="1"
                         CornerRadius="5"
@@ -112,9 +111,16 @@
 
                         </ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <StackPanel HorizontalAlignment="Left">
+                    <StackPanel HorizontalAlignment="Left"
+                                Orientation="Horizontal">
                         <Grid Grid.Column="0">
-                            <Border >
+                            <Border 
+                                Margin="0 0 5 0">
+                                <Button Grid.Column="0" Style="{DynamicResource  btnTable}" Click="Button_Click" />
+                            </Border>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Border Margin="0 0 0 0 ">
                                 <Button Grid.Column="0" Style="{DynamicResource  btnTable}" Click="Button_Click" />
                             </Border>
                         </Grid>
@@ -123,7 +129,7 @@
                     
 
                 </Grid>
-                <Border Grid.Row="2"
+                <!--<Border Grid.Row="2"
                         Background="White"
                         CornerRadius="5"
                         Margin="2">
@@ -148,7 +154,7 @@
                                     Background="Orange">
                                 <Label Content="imag"/>
                             </Border>
-                            <!--<Border Grid.Column="1"
+                            --><!--<Border Grid.Column="1"
                                     
                                     Background="Red">
                                 <Label Content="name"/>
@@ -164,13 +170,13 @@
                             </Border>
                             <Border Grid.Column="5">
                                 <Label Content="imag"/>
-                            </Border>-->
+                            </Border>--><!--
                         </StackPanel>
 
                     </Grid>
-                </Border>
+                </Border>-->
                 
-                <Grid Grid.Row="3">
+                <Grid Grid.Row="2">
                     <!--<Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="*"/>
@@ -191,7 +197,7 @@
                  
                 </Grid>
                 
-                <Grid Grid.Row="4">
+                <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -218,13 +224,13 @@
 
                     </Border>
                 </Grid>
-                <Border Grid.Row="5"
+                <!--<Border Grid.Row="5"
                         Background="{DynamicResource PraymiryBackround}"
                           
                         BorderThickness="1"
                         BorderBrush="#787C80">
 
-                </Border>
+                </Border>-->
             </Grid>
         </Border>
         <Grid Grid.Column="1">

@@ -2,10 +2,10 @@
 {
     public enum OrderStatus
     {
-        New,  // Yangi buyruq
-        InProgress,  // Ish jarayonida
-        Completed,  // Yakunlangan
-        Canceled  // Bekor qilingan
+        New = 1,  // Yangi buyruq
+        InProgress = 2,  // Ish jarayonida
+        Completed = 3,  // Yakunlangan
+        Canceled = 4, // Bekor qilingan
     }
 
 }

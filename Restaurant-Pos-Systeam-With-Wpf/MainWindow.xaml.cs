@@ -1,12 +1,17 @@
 ﻿using Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes;
 using Restaurant_Pos_Systeam_With_Wpf.Components.Items;
+using Restaurant_Pos_Systeam_With_Wpf.Components.Orders;
+using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Helpers;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Categories;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Productes;
+using Restaurant_Pos_Systeam_With_Wpf.Interfaces.ViewModeles;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Categoryes;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Productes;
+using Restaurant_Pos_Systeam_With_Wpf.Repositories.ViewModeles;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
+using Restaurant_Pos_Systeam_With_Wpf.ViewModels;
 using Restaurant_Pos_Systeam_With_Wpf.Windows;
 using System;
 using System.Collections.Generic;
@@ -21,8 +26,12 @@ namespace Restaurant_Pos_Systeam_With_Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         private readonly ICategoryReposytory _categoryReposytory;
         private readonly IProductRepository _productRepository;
+        private readonly IOrderItemView _orderItemView;
+        //OrderItemViewModel Orderview;
+        //private IEnumerable<OrderItemViewModel> orderviews;
 
         public MainWindow()
         {
@@ -35,6 +44,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             timer.Start();
 
             // Repositories
+            this._orderItemView = new ViewModelRepository();
             this._categoryReposytory = new CategoryRepository();
             this._productRepository = new ProductRepository();
         }
@@ -82,6 +92,35 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             }
 
             await RefreshAsync(0);
+            await RefreshOrderIteam(0);
+        }
+
+        public async Task RefreshOrderIteam(long id)
+        {
+            //Task<List<OrderIteam>> orderviews = new List<OrderIteam>();
+            orderItem.Children.Clear();
+            PaginationParams paginationParams = new PaginationParams()
+            {
+                PageNumber = 1,
+                PageSize = 20
+            };
+
+            if (id == 0)
+            {
+                
+            }
+            else if (id > 0)
+            {
+                var orderviews = await _orderItemView.GetAllAsync(paginationParams);
+
+                foreach (var item in orderviews)
+                {
+                    OrderUserControl orderUserControl = new OrderUserControl();
+                    
+                    orderUserControl.SetData(item);
+                    orderItem.Children.Add(orderUserControl);
+                }
+            }
         }
 
         // Refresh products based on category
@@ -107,18 +146,13 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             foreach (var product in products)
             {
                 ItemsUserControl itemsUserControl = new ItemsUserControl();
+                itemsUserControl.RefreshOrderIteam = RefreshOrderIteam;
                 itemsUserControl.SetData(product);
+                itemsUserControl.RefreshOrderIteam = RefreshOrderIteam;
                 wrpProduct.Children.Add(itemsUserControl);
             }
-            /*//
-            orderItem.Children.Clear();
-           
-            foreach (var item in products)
-            {
-                ItemsUserControl itemsUserControl = new ItemsUserControl();
-                itemsUserControl.SetData(item);
-                orderItem.Children.Add(itemsUserControl);
-            }*/
+            //
+            
         }
 
         // Show all categories

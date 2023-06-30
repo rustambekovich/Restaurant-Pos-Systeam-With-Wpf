@@ -85,46 +85,46 @@ public class ProductRepository : IProductRepository
 
     public async Task<IList<Product>> GetAllAsync(PaginationParams @params)
     {
-        try
-        {
+            try
+            {
 
-            var list = new List<Product>();
+                var list = new List<Product>();
 
-            if (_connection.State == System.Data.ConnectionState.Open)
-                await _connection.CloseAsync();
-            await _connection.OpenAsync();
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    await _connection.CloseAsync();
+                await _connection.OpenAsync();
                  
 
 
-            string query = $"SELECT * FROM public.\"Products\" ORDER BY \"Product_id\" ASC ;";
-            await using (var command = new NpgsqlCommand(query, _connection))
-            {
-                await using (var reader = await command.ExecuteReaderAsync())
+                string query = $"SELECT * FROM public.\"Products\" ORDER BY \"Product_id\" ASC ;";
+                await using (var command = new NpgsqlCommand(query, _connection))
                 {
-                    while (await reader.ReadAsync())
+                    await using (var reader = await command.ExecuteReaderAsync())
                     {
-                        var item = new Product();
-                        item.Id = reader.GetInt64(0);
-                        item.Name = reader.GetString(1);
-                        item.Description = reader.GetString(2);
-                        item.Price = reader.GetFloat(3);
-                        item.cotigory_id = reader.GetInt64(4);
-                        item.ImagePath = reader.GetString(5);
-                        list.Add(item);
+                        while (await reader.ReadAsync())
+                        {
+                            var item = new Product();
+                            item.Id = reader.GetInt64(0);
+                            item.Name = reader.GetString(1);
+                            item.Description = reader.GetString(2);
+                            item.Price = reader.GetFloat(3);
+                            item.cotigory_id = reader.GetInt64(4);
+                            item.ImagePath = reader.GetString(5);
+                            list.Add(item);
+                        }
                     }
-                }
 
+                }
+                return list;
             }
-            return list;
-        }
-        catch
-        {
-            return new List<Product>();
-        }
-        finally
-        {
-            await _connection.CloseAsync();
-        }
+            catch
+            {
+                return new List<Product>();
+            }
+            finally
+            {
+                await _connection.CloseAsync();
+            }
     }
 
     public async Task<IList<Product>> GetAllByCategoryIdAsync(long CategoryId)

@@ -7,6 +7,6 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Domans.Entities
         public long OrderId { get; set; }
         public long ProductID { get; set; }
         public byte Quantity { get; set; }
-        public float UnitPrice { get; set; }
+        public float Price { get; set; }
     }
 }

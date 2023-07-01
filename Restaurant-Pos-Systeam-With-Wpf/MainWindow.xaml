@@ -11,7 +11,7 @@
         WindowStyle="None"
         Height="800" Width="1300"
         Loaded="Window_Loaded"
-        Background="{DynamicResource PraymiryBackround}">
+        Background="#9DB2BF">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,23 +24,23 @@
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Border BorderThickness="4"
-                Background="White">
-            <Grid Grid.Column="0" Background="Azure">
+                >
+            <Grid Grid.Column="0">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="3*">
+                    <RowDefinition Height="2.27*">
 
                     </RowDefinition>
                     <RowDefinition Height="3*">
                    
                     </RowDefinition>
                     
-                    <RowDefinition Height="35*">
+                    <RowDefinition Height="25*">
 
                     </RowDefinition>
 
                     
-                    <RowDefinition Height="3*">
+                    <RowDefinition Height="2.23*">
 
                     </RowDefinition>
                     <!--<RowDefinition Height="19*">
@@ -89,12 +89,14 @@
                           Width="200">
                             <Label  Margin="10 0"
                            Content="Able Dev"
+                                    x:Name="campany"
                            FontSize="25"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Left"/>
                             <Label Margin="25 5 0 5"
                            Content="Pos Systeam"
                            FontSize="15"
+                                   x:Name="sistemName"
                            VerticalAlignment="Bottom"
                            HorizontalAlignment="Right"/>
 
@@ -187,6 +189,7 @@
                     <Border Grid.Column="3" 
                             BorderBrush="Black" 
                             BorderThickness="1"
+                            Background="White"
                             CornerRadius="5">
                         <ScrollViewer Margin="1 5 5 5"
                                   HorizontalScrollBarVisibility="Disabled">
@@ -202,19 +205,20 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0"
+                    <Button Grid.Column="0"
                           Background="{DynamicResource PraymiryBackround}"
                           Margin="0 5 5 5"
-                          CornerRadius="5"
                           BorderThickness="1"
-                          BorderBrush="#787C80">
+                          BorderBrush="#787C80"
+                            Click="deleteAllItem">
                         <Label Content="Delete all"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                FontSize="18">
                             
                         </Label>
-                    </Border>
+                        
+                    </Button>
                     <Border Grid.Column="1"
                             Background="{DynamicResource PraymiryBackround}"
                             Margin="5 5 0 5"
@@ -241,7 +245,7 @@
                 <RowDefinition Height="10*">
 
                 </RowDefinition>
-                <RowDefinition Height="*">
+                <RowDefinition Height="0.8*">
 
                 </RowDefinition>
             </Grid.RowDefinitions>
@@ -267,22 +271,26 @@
                         </ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="0"
+                            Height="57"
                         Background="{DynamicResource PraymiryBackround}"
-                        Margin="5,5,0,-10"
+                        Margin="5,5,0,0"
                         BorderThickness="1"
                             CornerRadius="5"
                         BorderBrush="#787C80">
                         <Label  Margin="0,-5,0,0"
                            Content="Order"
-                           FontSize="20"
+                           FontSize="18"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top">
 
                         </Label>
                     </Border>
                     <Border Grid.Column="1"
+                            Height="57"
+                            Margin="5,5,0,0"
+
                        Background="{DynamicResource PraymiryBackround}"
-                        Margin="5,5,0,-10"
+                        
                         BorderThickness="1"
                             CornerRadius="5"
                         BorderBrush="#787C80">
@@ -296,7 +304,8 @@
                     </Border>
                     <Border Grid.Column="2"
                         Background="{DynamicResource PraymiryBackround}"
-                        Margin="5,5,0,-10"
+                        Height="57"
+                            Margin="5,5,0,0"
                         BorderThickness="1"
                             CornerRadius="5"
                         BorderBrush="#787C80">
@@ -310,7 +319,8 @@
                     </Border>
                     <Border Grid.Column="3"
                         Background="{DynamicResource PraymiryBackround}"
-                        Margin="5,5,0,-10"
+                        Height="57"
+                        Margin="5,5,0,0"
                         BorderThickness="1"
                             CornerRadius="5"
                         BorderBrush="{DynamicResource BorderThiknes}">
@@ -324,7 +334,7 @@
                     </Border>
 
                     <Button Grid.Column="4"
-                            Margin="0,0,5,0"
+                            Margin="0,3,10,0"
                             x:Name="btnClose"
                             Click="btnClose_Click"
                             Style="{DynamicResource CloseButton}" HorizontalAlignment="Right"/>
@@ -334,16 +344,14 @@
 
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="0.6*"/>
+                    <RowDefinition Height="6.5*"/>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0" Margin="5 5 5 5"
-                    Background="Transparent"
-                    />
+                
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="3.3*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <!--<Border Grid.Column="0"
                                 Background="{DynamicResource  PraymiryBackround}"
@@ -358,21 +366,32 @@
 
                         </Label>
                     </Border>-->
-                    <Button Grid.Column="0" 
+                    <Button Grid.Column="1" 
                             Click="allCtg"
                             Style="{DynamicResource AllCatgoryButton}"/>
-                    <ScrollViewer Grid.Column="1"
-                                      Margin="1 5 5 5"
+                    <Border Grid.Column="0" 
+                            CornerRadius="5"
+                            Margin="5 0 0 0"
+                            Background="White"
+                    >
+                        <ScrollViewer Grid.Column="0"
+                                      Margin="0 0 0 0"
+                                      Height="65"
+                                  
                                       VerticalScrollBarVisibility="Hidden"
                                       HorizontalScrollBarVisibility="Visible">
-                        <WrapPanel x:Name="wrpCatigory"
+                            <WrapPanel x:Name="wrpCatigory"
+                                   Height="50"
                                    Background="{DynamicResource PraymiryBackround}"/>
-                    </ScrollViewer>
+                        </ScrollViewer>
+                    </Border>
+                    
                 </Grid>
 
-                <Border Grid.Row="1" Margin="5 5 5 5"
+                <Border Grid.Row="1" Margin="5 8 5 5"
                     Background="{DynamicResource PraymiryBackround}"
                     BorderThickness="1"
+                    CornerRadius="5"
                     BorderBrush="#787C80">
                     <ScrollViewer Margin="1 5 5 5"
                                   HorizontalScrollBarVisibility="Disabled">
@@ -382,16 +401,18 @@
                 </Border>
             </Grid>
             <Grid Grid.Row="2">
-                <Border Margin="5 5 5 5"
+                <Border Margin="5 1 5 9"
                     Background="{DynamicResource PraymiryBackround}"
                     BorderThickness="1"
+                        CornerRadius="5"
                     BorderBrush="#787C80">
                     <StackPanel Orientation="Horizontal">
                         <Button Style="{DynamicResource NewButton}"/>
                         <Button Style="{DynamicResource SettingButton}"
                                 Click="Setting_Click"
                                 x:Name="btnsetting"/>
-                        <Button Style="{DynamicResource PaymenrButton}"/>
+                        <Button Style="{DynamicResource PaymenrButton}"
+                                Click="PayentOrder"/>
                     </StackPanel>
                 </Border>
             </Grid>

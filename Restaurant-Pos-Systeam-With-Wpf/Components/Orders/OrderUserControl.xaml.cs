@@ -1,5 +1,7 @@
 ﻿using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
+using Restaurant_Pos_Systeam_With_Wpf.Interfaces.OrderIteames;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Productes;
+using Restaurant_Pos_Systeam_With_Wpf.Repositories.OrderIteames;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using Restaurant_Pos_Systeam_With_Wpf.ViewModels;
@@ -26,12 +28,17 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Orders
     public partial class OrderUserControl : UserControl
     {
         private readonly IProductRepository _productRepository;
+        private readonly IOrderIteam _orderIteam;
         public long id { get; set; }
-        private OrderItemViewModel Product { get; set; }
+        public Func<long, Task> RefreshOrderIteam { get; set; }
+
+        private OrderItemViewModel Product  = new OrderItemViewModel();
+
         public OrderUserControl()
         {
             InitializeComponent();
             this._productRepository = new ProductRepository();
+            this._orderIteam = new OrderIteamRepository();
             Product = new OrderItemViewModel();
         }
 
@@ -43,16 +50,20 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Orders
         };
         public void SetData(OrderItemViewModel item)
         {
+            this.Product = item;
             nameOrder.Content = item.ProductName;
             UntPrice.Content = item.UnitPrice;
             qtyCount.Content = item.Quantity;
             Price.Content = item.Price;
+            id = item.Product_id;
             Product = item;
         }
 
-        private void itemDelete(object sender, RoutedEventArgs e)
+        private async void itemDelete(object sender, RoutedEventArgs e)
         {
-            //
+            var res = _orderIteam.DeletedAtAsync(id);
+
+            await RefreshOrderIteam(Product.Product_id);
         }
     }
 }

@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Items"
              mc:Ignorable="d" 
-             
              Cursor="Hand"
              MouseDown="UserControl_MouseDown"
              >
@@ -16,41 +15,55 @@
             CornerRadius="10"
             Background="#FEFEFE"
             x:Name="ItemComponent">
-        <StackPanel Height="280"
-                    Width="220">
-    
-            <Border Height="160"
-                    Width="160"
-                    Margin="5 20 5 5"
-                    CornerRadius="100"
+        <StackPanel Height="200"
+                    Width="186">
+            <Label Height="35"
+                   Margin="5 0 5 0"
+                   Width="180"
+                   HorizontalContentAlignment="Right"
+                   VerticalContentAlignment="Center"
+                   Content="32"
+                   FontSize="18"
+                   x:Name="lbItemName"
+                   Foreground="Black">
+
+            </Label>
+            <Border Height="130"
+                    Width="180"
+                    CornerRadius="5"
+                    Margin="0 0 0 5"
                     >
                 <Border.Background>
                     <ImageBrush x:Name="itemImage"
                                 Stretch="UniformToFill"/>
                 </Border.Background>
             </Border>
-            <StackPanel>
-
-                <Label Height="40"
-                   Margin="5 5 5 5"
-                   Width="120"
-                   HorizontalContentAlignment="Center"
-                   Content="32"
-                   FontSize="21"
-                   x:Name="lbItemName"
-                   Foreground="Black">
-                
-            </Label>
-            <Label Margin="5 5 5 5"
-                   Content="3513"
-                   FontSize="21"
-                   Height="40"
-                   HorizontalContentAlignment="Center"
-                   Width="120"
-                   x:Name="lbitemPrise"
+            
+            
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="0"
+                   Content="$"
+                   FontSize="18"
+                   Height="30"
+                   HorizontalContentAlignment="Left"
+                   VerticalContentAlignment="Center"
+                   Width="93"
                    Foreground="Yellow">
-                
-            </Label>
+
+                </Label>
+                <Label Margin="0"
+                   Content="10"
+                   FontSize="18"
+                   Height="30"
+                   HorizontalContentAlignment="Right"
+                   VerticalContentAlignment="Center"
+                   Width="93"
+                   x:Name="lbitemPrise"
+                   Foreground="Green">
+
+                </Label>
+
+
             </StackPanel>
         </StackPanel>
     </Border>

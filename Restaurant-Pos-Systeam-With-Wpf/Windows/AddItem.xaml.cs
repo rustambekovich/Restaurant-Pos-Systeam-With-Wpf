@@ -11,6 +11,7 @@ using Restaurant_Pos_Systeam_With_Wpf.Servise.ImageServises;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -91,7 +92,7 @@ public partial class AddItem : Window
         Product products = new Product();
         products.Name = ltbItm.Text;
         products.Description = new TextRange(rchDesc.Document.ContentStart, rchDesc.Document.ContentEnd).Text;
-        products.Price = float.Parse(tbPrice.Text);
+        products.Price = float.Parse(tbPrice.Text, CultureInfo.InvariantCulture.NumberFormat);
         string ImagePath = ImageItm.ImageSource.ToString();
         if (!String.IsNullOrEmpty(ImagePath))
             products.ImagePath = await CopyImage.CopyImageAsync(ImagePath, ContentConst.IMAGE_PATH);

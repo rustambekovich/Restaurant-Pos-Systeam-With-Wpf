@@ -9,6 +9,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Interfaces.OrderIteames
 {
     public  interface IOrderIteam : IRepository<OrderIteam, OrderIteam>
     {
+        public Task<int> DeletedAtALlItemAsync();
 
     }
 }

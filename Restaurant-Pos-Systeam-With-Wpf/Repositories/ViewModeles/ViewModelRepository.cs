@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,7 +55,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.ViewModeles
 
 
 
-                string query = $"SELECT count, \"Product_id\", name, unitprice, price FROM public.orderitemviewmodel12;";
+                string query = $"SELECT  quantity,\"Product_id\", name, price FROM public.orderitemviewmodel13 ORDER BY \"Product_id\" ASC;";
                 await using (var command = new NpgsqlCommand(query, _connection))
                 {
                     await using (var reader = await command.ExecuteReaderAsync())
@@ -65,8 +66,10 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.ViewModeles
                             item.Quantity = reader.GetInt64(0);
                             item.Product_id = reader.GetInt64(1);
                             item.ProductName = reader.GetString(2);
-                            item.UnitPrice = reader.GetFloat(3);
-                            item.Price = float.Parse(reader.GetDouble(4).ToString());
+                            item.Price = float.Parse(reader.GetDouble(3).ToString(),CultureInfo.InvariantCulture.NumberFormat);
+                            item.UnitPrice = item.Price;
+                            item.Price = item.UnitPrice * item.Quantity;
+
                             list.Add(item);
                         }
                     }

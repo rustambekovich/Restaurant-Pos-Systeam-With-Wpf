@@ -35,11 +35,11 @@
         <!--Style="{DynamicResource Category}"
                 Click="ctgComponents_Click"-->
         <StackPanel >
-            <Border Height="60"
+            <Border Height="40"
                     Margin="5"
                 x:Name="ctgComponents"
                 Background="Yellow"
-                CornerRadius="25"
+                CornerRadius="20"
                     MouseDown="ctgComponents_MouseDown">
                 
                 <StackPanel Orientation="Horizontal">

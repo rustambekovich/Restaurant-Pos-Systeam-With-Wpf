@@ -10,6 +10,7 @@ using Restaurant_Pos_Systeam_With_Wpf.Servise.ImageServises;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,7 +78,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows.Updeted
             Product product = new Product();
             product.Name = ltbItm.Text;
             product.Description = new TextRange(rchDesc.Document.ContentStart, rchDesc.Document.ContentEnd).Text; ;
-            product.Price = float.Parse(tbPrice.Text);
+            product.Price = float.Parse(tbPrice.Text, CultureInfo.InvariantCulture.NumberFormat);
             string imgPath  = ItmUp.ImageSource.ToString();
             if(!String.IsNullOrEmpty(imgPath))
                 product.ImagePath = await CopyImage.CopyImageAsync(imgPath, ContentConst.IMAGE_PATH);

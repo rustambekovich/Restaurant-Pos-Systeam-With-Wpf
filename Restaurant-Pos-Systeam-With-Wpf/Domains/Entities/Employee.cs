@@ -29,8 +29,8 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Domains.Entities
         public Position position { get; set; }
 
         public string Address { get; set; } = string.Empty;
-
-        public float Salary { get; set; }
+        [Range(2, 3)]
+        public decimal Salary { get; set; }
 
     }
 }

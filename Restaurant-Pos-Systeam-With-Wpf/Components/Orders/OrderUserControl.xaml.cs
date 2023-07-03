@@ -1,4 +1,6 @@
-﻿using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
+﻿using Restaurant_Pos_Systeam_With_Wpf.Components.Tables;
+using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
+using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.OrderIteames;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.OrderIteames;
@@ -30,6 +32,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Orders
         private readonly IProductRepository _productRepository;
         private readonly IOrderIteam _orderIteam;
         public long id { get; set; }
+        public long orderId { get; set; }
         public Func<long, Task> RefreshOrderIteam { get; set; }
 
         private OrderItemViewModel Product  = new OrderItemViewModel();
@@ -41,13 +44,6 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Orders
             this._orderIteam = new OrderIteamRepository();
             Product = new OrderItemViewModel();
         }
-
-
-        PaginationParams paginationParams = new PaginationParams()
-        {
-            PageNumber = 1,
-            PageSize = 20
-        };
         public void SetData(OrderItemViewModel item)
         {
             this.Product = item;
@@ -57,13 +53,16 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Orders
             Price.Content = item.Price;
             id = item.Product_id;
             Product = item;
+            orderId = item.OrderId;
         }
-
+        
+       
         private async void itemDelete(object sender, RoutedEventArgs e)
         {
-            var res = _orderIteam.DeletedAtAsync(id);
-
-            await RefreshOrderIteam(Product.Product_id);
+            var ordrid = await _orderIteam.GetByIdAsync(id);
+            var res = await _orderIteam.DeletedAtAsync(id);
+             await ((MainWindow)System.Windows.Application.Current.MainWindow).RefreshOrderIteam(ordrid.OrderId);
+            //await RefreshOrderIteam(Product.Product_id);
         }
     }
 }

@@ -133,11 +133,12 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.Tables
             {
                 await _connection.OpenAsync();
                 string query = $"UPDATE public.\"Tables\"" +
-                    $"SET table_number=@table_number, seating_capacity=@seating_capacity WHERE \"table_id\" = {id};";
+                    $"SET table_number=@table_number, seating_capacity=@seating_capacity, status=@status WHERE \"table_id\" = {id};";
                 await using (var command = new NpgsqlCommand(query, _connection))
                 {
                     command.Parameters.AddWithValue("table_number", entity.TableNumber);
                     command.Parameters.AddWithValue("seating_capacity", entity.SeatingCapasity);
+                    command.Parameters.AddWithValue("status", entity.status.ToString());
                     var dbrresult = await command.ExecuteNonQueryAsync();
                     return dbrresult;
                 }

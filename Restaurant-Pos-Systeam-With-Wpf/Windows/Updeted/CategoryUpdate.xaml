@@ -9,7 +9,7 @@
         ResizeMode="NoResize"
         Background="Azure"
         Loaded="Window_Loaded"
-        Title="Update" Height="200" Width="600">
+        Title="Update" Height="150" Width="600">
 
     <Border>
         <Grid>
@@ -33,22 +33,22 @@
                                HorizontalAlignment="Left"
                        Margin="10 5 0 0"/>
                     </StackPanel>
-                    
-                    <Border Background="{DynamicResource SecondaryBackround}"
+                    <StackPanel Orientation="Horizontal">
+                        <Border Background="{DynamicResource SecondaryBackround}"
                             Height="50"
-                            Width="500"
+                            Width="300"
                             CornerRadius="10"
                             HorizontalAlignment="Left"
                             Margin="15 0 5 5"
                             >
 
-                        <StackPanel Orientation="Horizontal">
-                            <Grid Width="550">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="10*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBox Grid.Column="0" x:Name="tbname"
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Width="350">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0" x:Name="tbname"
                                          MaxLength="50"
                                          Height="30"
                                          Width="440" 
@@ -60,30 +60,32 @@
                                          Foreground="Black"
                                          Background="{DynamicResource  SecondaryBackround}">
 
-                                </TextBox>
-                                <Label Grid.Column="1" x:Name="lbcharectr"
+                                    </TextBox>
+                                    <Label Grid.Column="1" x:Name="lbcharectr"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        FontSize="18"
                                       
                                         Content="0"/>
-                            </Grid>
-                        </StackPanel>
+                                </Grid>
+                            </StackPanel>
 
-                    </Border>
-                    <Border
+                        </Border>
+                        <Border
                             Height="60"
                         
                             Margin="5 5 10 5">
-                        <StackPanel Orientation="Horizontal"
+                            <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
-                            <Button Style="{DynamicResource UpdateButton}"
+                                <Button Style="{DynamicResource UpdateButton}"
                                     x:Name="savebtnctg"
                                     HorizontalAlignment="Right"
                                     Click="Updated_Click"/>
 
-                        </StackPanel>   
-                    </Border>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                    
 
 
                 </StackPanel>

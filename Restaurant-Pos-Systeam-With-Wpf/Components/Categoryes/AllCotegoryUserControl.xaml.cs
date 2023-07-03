@@ -44,26 +44,6 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Categoryes
         /// <param name="e"></param>
        
 
-     /*   public async void Refresh(res)
-        {
-            wrpCatigory.Children.Clear();
-            PaginationParams paginationParams = new PaginationParams()
-            {
-                PageNumber = 1,
-                PageSize = 20
-            };
-            var categorys = await _categoryReposytory.GetAllAsync(paginationParams);
-
-            foreach (var category in categorys)
-            {
-                CategoryViewUserControl categoryViewUserControl = new CategoryViewUserControl();
-                categoryViewUserControl.Refresh = Refreshasync;
-                categoryViewUserControl.SetData(category);
-                categoryViewUserControl.Refresh = Refreshasync;
-                wrpCatigory.Children.Add(categoryViewUserControl);
-            }
-            await Refreshasync(0);
-        }*/
 
         private void AddCotegoryUserControl_MouseDown(object sender, MouseButtonEventArgs e)
         {

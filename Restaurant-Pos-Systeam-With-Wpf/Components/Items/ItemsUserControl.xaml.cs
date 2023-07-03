@@ -1,4 +1,6 @@
-﻿ using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
+﻿using Restaurant_Pos_Systeam_With_Wpf.Components.Tables;
+using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
+using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.OrderIteames;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.OrderIteames;
@@ -7,6 +9,7 @@ using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -50,8 +53,19 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
             orderIteam.ProductID = Product.Id;
             orderIteam.Quantity = 1;
             orderIteam.Price = Product.Price;
-            var  res  = await _orderIteam.CreatedAtAsync(orderIteam);
-            await RefreshOrderIteam(Product.Id);
+            var idOrder =  TableSelectUserControl.Box.Text;
+            if(idOrder != "")
+            {
+                orderIteam.OrderId = long.Parse(idOrder);
+                orderIteam.OrderId = long.Parse(idOrder);
+                var  res  = await _orderIteam.CreatedAtAsync(orderIteam);
+                var result = long.Parse(idOrder);
+                await ((MainWindow)System.Windows.Application.Current.MainWindow).RefreshOrderIteam(long.Parse(idOrder));
+            }
+            else
+            {
+                MessageBox.Show("Tabl tanlanmagan, Table tanlang!! ", "Information");
+            }
 
         }
     }

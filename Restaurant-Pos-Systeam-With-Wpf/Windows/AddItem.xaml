@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="White"
+        
         Title="AddCategory" 
         Loaded="Window_Loaded"
+        Background="{DynamicResource SecondaryBackground}"
         Height="500" 
         Width="750">
 

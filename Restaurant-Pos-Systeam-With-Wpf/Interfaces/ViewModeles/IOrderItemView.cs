@@ -10,5 +10,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Interfaces.ViewModeles
     public interface IOrderItemView : IRepository<OrderItemViewModel, OrderItemViewModel>
     {
         public Task<int> CountById(long id);
+
+        public Task<List<OrderItemViewModel>> GetByIdAllAsync(long id);
     }
 }

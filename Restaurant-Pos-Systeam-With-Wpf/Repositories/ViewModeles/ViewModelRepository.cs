@@ -66,7 +66,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.ViewModeles
                             item.Quantity = reader.GetInt64(0);
                             item.Product_id = reader.GetInt64(1);
                             item.ProductName = reader.GetString(2);
-                            item.Price = float.Parse(reader.GetDouble(3).ToString(),CultureInfo.InvariantCulture.NumberFormat);
+                            item.Price = decimal.Parse(reader.GetDouble(3).ToString(), CultureInfo.InvariantCulture.NumberFormat); //reader.GetDecimal(3); //float.Parse(reader.GetDouble(3).ToString(),CultureInfo.InvariantCulture.NumberFormat);
                             item.UnitPrice = item.Price;
                             item.Price = item.UnitPrice * item.Quantity;
 
@@ -74,6 +74,50 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.ViewModeles
                         }
                     }
 
+                }
+                return list;
+            }
+            catch
+            {
+                return new List<OrderItemViewModel>();
+            }
+            finally
+            {
+                await _connection.CloseAsync();
+            }
+        }
+
+        public async Task<List<OrderItemViewModel>> GetByIdAllAsync(long id)
+        {
+            try
+            {
+                var list = new List<OrderItemViewModel>();
+
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    await _connection.CloseAsync();
+                await _connection.OpenAsync();
+
+
+
+                string query = $"SELECT \"Product_id\", name, price, quantity, count FROM public.orderitemviewmodel14 where order_id = {id};"; 
+                await using (var command = new NpgsqlCommand(query, _connection))
+                {
+
+                    await using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            var item = new OrderItemViewModel();
+                            item.Product_id = reader.GetInt64(0);
+                            item.ProductName = reader.GetString(1);
+                            item.Price = decimal.Parse(reader.GetDouble(2).ToString(), CultureInfo.InvariantCulture.NumberFormat); //reader.GetDecimal(3); //float.Parse(reader.GetDouble(3).ToString(),CultureInfo.InvariantCulture.NumberFormat);
+                            item.Quantity = reader.GetInt64(3);
+                            item.UnitPrice = item.Price;
+                            item.Price = item.UnitPrice * item.Quantity;
+
+                            list.Add(item);
+                        }
+                    }
                 }
                 return list;
             }

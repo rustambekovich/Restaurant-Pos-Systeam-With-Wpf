@@ -33,20 +33,17 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
         private Product Product { get; set; }
         public long id { get; set; }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public SetItemUserControl()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             InitializeComponent();
             this._ItemproductRepository= new ProductRepository();
             Product = new Product();
         }
-        private readonly IProductRepository _productRepository;
        
 
-        PaginationParams paginationParams = new PaginationParams()
-        {
-            PageNumber = 1,
-            PageSize = 20
-        };
+        
         public void SetData(Product item)
         {
             itemImage.ImageSource = new BitmapImage(new Uri(item.ImagePath, UriKind.Relative));
@@ -82,7 +79,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
         }
         public void Update()
         {
-            ProductItemUpdate productItemUpdate = new ProductItemUpdate();
+            ProductItemUpdate productItemUpdate = new();
             productItemUpdate.SetData(Product);
             productItemUpdate.Show();
         }

@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using Restaurant_Pos_Systeam_With_Wpf.Constans;
 using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
+using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.OrderIteames;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using System;
@@ -28,10 +29,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.OrderIteames
 
                 await _connection.OpenAsync();
                 //string q = $"INSERT INTO public.order_items(\r\n\t \"Product_id\", quantity, price)\r\n\tVALUES ({entity.ProductID}, {entity.Quantity}, {entity.Price});";
-                string sql = $"WITH updated_rows AS (UPDATE public.order_items SET quantity = quantity + 1 WHERE \"Product_id\" = {entity.ProductID} RETURNING *) " +
-                             $"INSERT INTO public.order_items (\"Product_id\", quantity, price) " +
-                            $"SELECT {entity.ProductID}, {entity.Quantity}, {entity.Price} WHERE NOT EXISTS (SELECT 1 FROM updated_rows);";
-                string query = $"WITH updated_rows AS (UPDATE public.order_items  SET quantity = quantity + 1 WHERE \"Product_id\" = {entity.ProductID}  RETURNING *) INSERT INTO public.order_items (\"Product_id\", quantity, price) SELECT {entity.ProductID}, {entity.Quantity}, {entity.Price} WHERE NOT EXISTS (SELECT 1 FROM updated_rows );";
+                string query = $"WITH updated_rows AS (UPDATE public.order_items  SET quantity = quantity + 1 WHERE \"Product_id\" = {entity.ProductID}  RETURNING *) INSERT INTO public.order_items (\"Product_id\", quantity, price, order_id) SELECT {entity.ProductID}, {entity.Quantity}, {entity.Price}, {entity.OrderId} WHERE NOT EXISTS (SELECT 1 FROM updated_rows );";
                 await using (var command = new NpgsqlCommand(query, _connection))
                 {
                     var dbrresult = await command.ExecuteNonQueryAsync();
@@ -105,14 +103,40 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.OrderIteames
             throw new NotImplementedException();
         }
 
-        public Task<IList<Domans.Entities.OrderIteam>> GetAllAsync(PaginationParams @params)
+        public Task<IList<OrderIteam>> GetAllAsync(PaginationParams @params)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Domans.Entities.OrderIteam> GetByIdAsync(long id)
+        public async Task<OrderIteam> GetByIdAsync(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _connection.OpenAsync();
+                OrderIteam orderIteam = new OrderIteam();
+                string query = $"select order_id FROM public.order_items  WHERE \"Product_id\" = {id};";
+                await using (var command = new NpgsqlCommand(query, _connection))
+                {
+                    await using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            orderIteam.OrderId = reader.GetInt64(0);
+                        }
+                    }
+                }
+                return orderIteam;
+            }
+            catch
+            {
+                OrderIteam order = new OrderIteam();
+
+                return order;
+            }
+            finally
+            {
+                await _connection.CloseAsync();
+            }
         }
 
         public Task<int> UpdatedAtAsync(long id, Domans.Entities.OrderIteam entity)

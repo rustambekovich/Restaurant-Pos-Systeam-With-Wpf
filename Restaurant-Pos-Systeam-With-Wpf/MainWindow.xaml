@@ -123,7 +123,8 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <Border Margin="0 0 0 0 ">
-                                <Button Grid.Column="0" Style="{DynamicResource  btnTable}" Click="Button_Click" />
+                                <Button Grid.Column="0" Style="{DynamicResource  btnTable}" 
+                                        Click="Button_Click" />
                             </Border>
                         </Grid>
                     </StackPanel>
@@ -224,7 +225,14 @@
                             Margin="5 5 0 5"
                             CornerRadius="5"
                             BorderThickness="1"
-                            BorderBrush="#787C80">
+                            BorderBrush="#787C80"
+                            >
+                        <Button Click="Progress"
+                                Background="{DynamicResource PraymiryBackround}"
+                                Content="Progress"
+                                FontSize="18">
+                            
+                        </Button>
 
                     </Border>
                 </Grid>
@@ -317,21 +325,27 @@
 
                         </Label>
                     </Border>
-                    <Border Grid.Column="3"
-                        Background="{DynamicResource PraymiryBackround}"
-                        Height="57"
-                        Margin="5,5,0,0"
-                        BorderThickness="1"
-                            CornerRadius="5"
-                        BorderBrush="{DynamicResource BorderThiknes}">
-                        <Label  Margin="0,-5,0,0"
-                           Content="Order"
-                           FontSize="20"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Top">
+                    <StackPanel Grid.Column="3">
+                        <Border 
+                            Background="{DynamicResource PraymiryBackround}"
+                            Height="57"
+                            Margin="5,5,0,0"
+                            BorderThickness="1"
+                                CornerRadius="5"
+                            BorderBrush="{DynamicResource BorderThiknes}">
+                            <Label  Margin="0,-5,0,0"
+                               Content="User"
+                               FontSize="20"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Top">
 
-                        </Label>
-                    </Border>
+                            </Label>
+                            
+
+                        </Border>
+                        
+                    </StackPanel>
+                    
 
                     <Button Grid.Column="4"
                             Margin="0,3,10,0"

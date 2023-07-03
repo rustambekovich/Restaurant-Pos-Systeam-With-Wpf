@@ -23,6 +23,13 @@ using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 using static System.Net.Mime.MediaTypeNames;
 using PdfSharp.Drawing.Layout;
+using Restaurant_Pos_Systeam_With_Wpf.Components.Tables;
+using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Tables;
+using Restaurant_Pos_Systeam_With_Wpf.Repositories.Tables;
+using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
+using Restaurant_Pos_Systeam_With_Wpf.Domains.Enums;
+using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Orderes;
+using Restaurant_Pos_Systeam_With_Wpf.Repositories.Orderes;
 
 namespace Restaurant_Pos_Systeam_With_Wpf
 {
@@ -36,23 +43,25 @@ namespace Restaurant_Pos_Systeam_With_Wpf
         private readonly IProductRepository _productRepository;
         private readonly IOrderItemView _orderItemView;
         private readonly IOrderIteam _orderIteam;
-        //OrderItemViewModel Orderview;
-        //private IEnumerable<OrderItemViewModel> orderviews;
+        private readonly ITebleRepository _tebleRepository;
+        private readonly IOrder _order1;
+        public long orderId { get;  set; }
 
         public MainWindow()
         {
             InitializeComponent();
-
-            // Timer
+            
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             timer.Start();
 
             // Repositories
+            this._tebleRepository = new TableRepository();
             this._orderItemView = new ViewModelRepository();
             this._categoryReposytory = new CategoryRepository();
             this._productRepository = new ProductRepository();
+            this._order1 = new OrderRepository();
             this._orderIteam = new OrderIteamRepository();
         }
 
@@ -77,7 +86,8 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             Setting setting = new Setting();
             setting.ShowDialog();
         }
-
+        //string a = TableSelectUserControl.Box.Text;
+        
         // Load main window
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -100,10 +110,35 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             }
 
             await RefreshAsync(0);
-            await RefreshOrderIteam(0);
+           // await RefreshOrderIteam(0);
         }
 
-        public async Task RefreshOrderIteam(long id)
+        public async Task RefreshTablechangeAsync(long id)
+        {
+            orderItem.Children.Clear();
+            PaginationParams paginationParams = new PaginationParams()
+            {
+                PageNumber = 1,
+                PageSize = 20
+            };
+
+            if (id !=0)
+            {
+                var getitem = await _orderItemView.GetByIdAllAsync(id);
+                foreach (var item in getitem)
+                {
+                    OrderUserControl orderUserControl = new OrderUserControl();
+                    orderUserControl.SetData(item);
+                    orderUserControl.RefreshOrderIteam = RefreshOrderIteam;
+
+                    orderItem.Children.Add(orderUserControl);
+                }
+            }
+           
+        }
+
+        //long dt = long.Parse(TableSelectUserControl.Box.Text);
+        public  async Task RefreshOrderIteam(long id)
         {
             //Task<List<OrderIteam>> orderviews = new List<OrderIteam>();
             orderItem.Children.Clear();
@@ -115,24 +150,43 @@ namespace Restaurant_Pos_Systeam_With_Wpf
 
             if (id == 0)
             {
-                
+                //MessageBox.Show("va vav va");
             }
             else if (id > 0)
             {
-                var orderviews = await _orderItemView.GetAllAsync(paginationParams);
-
-                foreach (var item in orderviews)
+                // var tableres = await _tebleRepository.GetAllAsync(paginationParams);
+                var getitem = await _orderItemView.GetByIdAllAsync(id);
+                foreach (var item in getitem)
                 {
                     OrderUserControl orderUserControl = new OrderUserControl();
-                    orderUserControl.RefreshOrderIteam = RefreshOrderIteam;
                     orderUserControl.SetData(item);
                     orderUserControl.RefreshOrderIteam = RefreshOrderIteam;
 
                     orderItem.Children.Add(orderUserControl);
                 }
             }
-        }
 
+            /*orderItem.Children.Clear();
+            PaginationParams paginationParams = new PaginationParams()
+            {
+                PageNumber = 1,
+                PageSize = 20
+            };
+
+            if (id != 0)
+            {
+                var getitem = await _orderItemView.GetByIdAllAsync(id);
+                foreach (var item in getitem)
+                {
+                    OrderUserControl orderUserControl = new OrderUserControl();
+                    orderUserControl.SetData(item);
+                    orderUserControl.RefreshOrderIteam = RefreshOrderIteam;
+
+                    orderItem.Children.Add(orderUserControl);
+                }
+            }*/
+        }
+        
         // Refresh products based on category
         public async Task RefreshAsync(long categoryId)
         {
@@ -152,7 +206,6 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             {
                 products = await _productRepository.GetAllByCategoryIdAsync(categoryId);
             }
-
             foreach (var product in products)
             {
                 ItemsUserControl itemsUserControl = new ItemsUserControl();
@@ -199,12 +252,27 @@ namespace Restaurant_Pos_Systeam_With_Wpf
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Add your logic here
+            TablewindowView tablewindowView = new TablewindowView();
+            tablewindowView.Show();
+
+
+
         }
 
         private async void deleteAllItem(object sender, RoutedEventArgs e)
         {
             var res = await _orderIteam.DeletedAtALlItemAsync();
             await RefreshOrderIteam(0);
+        }
+
+        private async void Progress(object sender, RoutedEventArgs e)
+        {
+            var idOrder = long.Parse(TableSelectUserControl.Box.Text);
+            orderItem.Children.Clear();
+            Order order = new Order();
+            order.Ordertatus = OrderStatus.InProgress;
+            await _order1.UpdatedAtAsync(idOrder, order);
+
         }
 
         private async void PayentOrder(object sender, RoutedEventArgs e)
@@ -275,7 +343,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             gfx.DrawString($"=============================================================", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
             y += 25;
 
-            float total = 0;
+            decimal total = 0;
 
             foreach (var foodItem in orderviews)
             {
@@ -335,5 +403,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             
 
         }
+
+        
     }
 }

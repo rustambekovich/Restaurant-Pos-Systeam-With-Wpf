@@ -7,6 +7,7 @@ using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,9 +29,20 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.OrderIteames
             {
 
                 await _connection.OpenAsync();
+
                 //string q = $"INSERT INTO public.order_items(\r\n\t \"Product_id\", quantity, price)\r\n\tVALUES ({entity.ProductID}, {entity.Quantity}, {entity.Price});";
-                string query = $"WITH updated_rows AS (UPDATE public.order_items  SET quantity = quantity + 1 WHERE \"Product_id\" = {entity.ProductID}  RETURNING *) INSERT INTO public.order_items (\"Product_id\", quantity, price, order_id) SELECT {entity.ProductID}, {entity.Quantity}, {entity.Price}, {entity.OrderId} WHERE NOT EXISTS (SELECT 1 FROM updated_rows );";
-                await using (var command = new NpgsqlCommand(query, _connection))
+                string queryT = $"WITH updated_rows AS (UPDATE public.order_items " +
+                               $"SET quantity = quantity + 1 WHERE \"Product_id\" = {entity.ProductID} and order_id = {entity.OrderId} RETURNING *) " +
+                               $"INSERT INTO public.order_items (\"Product_id\", quantity, price, order_id) " +
+                               $"SELECT {entity.ProductID}, {entity.Quantity}, {entity.Price.ToString(CultureInfo.InvariantCulture)}, {entity.OrderId} WHERE NOT EXISTS (SELECT 1 FROM updated_rows );";
+
+
+
+                string query = $"WITH updated_rows AS (UPDATE public.order_items  " +
+                            $"SET quantity = quantity + 1 WHERE \"Product_id\" = {entity.ProductID} and order_id = {entity.OrderId}  RETURNING *) " +
+                            $"INSERT INTO public.order_items (\"Product_id\", quantity, price, order_id) " +
+                            $"SELECT {entity.ProductID}, {entity.Quantity}, {entity.Price}, {entity.OrderId} WHERE NOT EXISTS (SELECT 1 FROM updated_rows );";
+                await using (var command = new NpgsqlCommand(queryT, _connection))
                 {
                     var dbrresult = await command.ExecuteNonQueryAsync();
                     return dbrresult;
@@ -46,7 +58,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.OrderIteames
             }
         }
 
-        public async Task<int> DeletedAtALlItemAsync()
+        public async Task<int> DeletedAtALlItemByIdAsync(long id)
         {
             try
             {
@@ -55,7 +67,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.OrderIteames
                 if (_connection.State == System.Data.ConnectionState.Open)
                     await _connection.CloseAsync();
                 await _connection.OpenAsync();
-                string query = $"DELETE FROM public.order_items WHERE \"Product_id\" > 0;";
+                string query = $"DELETE FROM public.order_items WHERE \"order_id\" = {id};";
                 await using (var command = new NpgsqlCommand(query, _connection))
                 {
                     var dbrresult = await command.ExecuteNonQueryAsync();
@@ -132,6 +144,36 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.OrderIteames
                 OrderIteam order = new OrderIteam();
 
                 return order;
+            }
+            finally
+            {
+                await _connection.CloseAsync();
+            }
+        }
+
+        public async Task<decimal> TootalPriceAllAsync(long id)
+        {
+            try
+            {
+                await _connection.OpenAsync();
+                decimal res = 0;
+                string query = $"SELECT SUM(quantity * price)  FROM order_items WHERE order_id = {id};";
+                await using (var command = new NpgsqlCommand(query, _connection))
+                {
+                    await using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            res = Convert.ToDecimal(reader.GetDouble(0));
+                        }
+                    }
+                }
+                return res;
+            }
+            catch
+            {
+
+                return 0;
             }
             finally
             {

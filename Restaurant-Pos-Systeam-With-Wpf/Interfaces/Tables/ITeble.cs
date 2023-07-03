@@ -10,6 +10,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Interfaces.Tables
 {
     public interface ITebleRepository : IRepository<TableRes, TableRes>
     {
+        public  Task<int> UpdatedAtStatusAsync(long id, TableRes entity);
 
     }
 }

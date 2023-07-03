@@ -58,8 +58,8 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Tables
 
         private void tableSet(object sender, RoutedEventArgs e)
         {
-            var result = CustomMessageBox.ShowYesNoCancel("Are you sure you want to eject the nuclear fuel rods?", "Confirm Fuel Ejection", "Deleted", "Update", "Canel");
-            switch (result)
+           // var result = CustomMessageBox.ShowYesNoCancel("Are you sure you want to eject the nuclear fuel rods?", "Confirm Fuel Ejection", "Deleted", "Update", "Canel");
+            /*switch (0)
             {
                 case MessageBoxResult.Yes:
                     delet();
@@ -75,7 +75,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Tables
                 default:
                     MessageBox.Show("ishlamadi");
                     break;
-            }
+            }*/
         }
 
         public void Update()
@@ -102,6 +102,16 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Tables
                 }
                 else MessageBox.Show("Don't deleted");
             }
+        }
+
+        private void editTable(object sender, RoutedEventArgs e)
+        {
+            Update();
+        }
+
+        private void DeleteTable(object sender, RoutedEventArgs e)
+        {
+            delet();
         }
     }
 }

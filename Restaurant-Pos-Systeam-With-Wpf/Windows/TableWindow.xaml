@@ -7,9 +7,11 @@
         mc:Ignorable="d"
          WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="Azure"
+        Background="#9DB2BF"
         Loaded="Window_Loaded"
-        Title="AddCategory" Height="600" Width="900">
+        Title="AddCategory" 
+        Height="610" 
+        Width="900">
 
     <Border>
         <Grid>
@@ -18,9 +20,9 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0"
                     BorderThickness="1"
+                    CornerRadius="10"
                     BorderBrush="{DynamicResource BorderThiknes}"
                     Margin="5 5 5 5"
-                    Background="{DynamicResource PraymiryBackround}"
                     >
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
@@ -43,6 +45,8 @@
                         <Border Background="{DynamicResource SecondaryBackround}"
                             Height="50"
                             Width="310"
+                            BorderBrush="#787C80"
+                            BorderThickness="1"
                             CornerRadius="10"
                             HorizontalAlignment="Left"
                             Margin="15 0 5 5"
@@ -84,6 +88,8 @@
                         <Border Background="{DynamicResource SecondaryBackround}"
                             Height="50"
                             Width="310"
+                                BorderBrush="#787C80"
+                                BorderThickness="1"
                             CornerRadius="10"
                             HorizontalAlignment="Left"
                             Margin="15 0 5 5"
@@ -127,15 +133,21 @@
                     </StackPanel>
 
                     <Border Height="400"
-                            Margin="5 5 5 5">
+                            Margin="5 5 5 0"
+                            CornerRadius="10 10 0 0"
+                            BorderThickness="1"
+                            BorderBrush="#787C80">
 
                         <ScrollViewer Grid.Column="1"
-                                      Margin="1 5 5 5">
+                                      Margin="0 0 0 0">
                             <WrapPanel x:Name="wrpTableSet"/>
                         </ScrollViewer>
                     </Border>
                     <Border Height="50"
-                            Margin="5 0 5 15">
+                            Margin="5 0 5 15"
+                            CornerRadius="0 0 10  15"
+                            BorderThickness="1"
+                            BorderBrush="#787C80">
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
                             <Label Content="Total"

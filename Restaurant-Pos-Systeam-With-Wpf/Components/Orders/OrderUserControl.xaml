@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Orders"
              mc:Ignorable="d" 
-             Height="100" 
+             Height="90" 
              Width="480">
     <Border 
-            Margin="5 10 5 10"
+            Margin="5 5 5 0"
             Background="White"
             BorderBrush="Black"
             BorderThickness="1"

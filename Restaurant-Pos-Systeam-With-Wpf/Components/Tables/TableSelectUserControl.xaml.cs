@@ -3,9 +3,11 @@ using Restaurant_Pos_Systeam_With_Wpf.Domains.Enums;
 using Restaurant_Pos_Systeam_With_Wpf.Domans.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Costumeres;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Orderes;
+using Restaurant_Pos_Systeam_With_Wpf.Interfaces.OrderIteames;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Tables;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.COstumeres;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Orderes;
+using Restaurant_Pos_Systeam_With_Wpf.Repositories.OrderIteames;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Tables;
 using Restaurant_Pos_Systeam_With_Wpf.ViewModels;
 using Restaurant_Pos_Systeam_With_Wpf.Windows;
@@ -42,6 +44,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Tables
         private readonly ITebleRepository _tableRepository;
         private readonly ICostumer _costumer;
         private readonly IOrder _order;
+        private readonly IOrderIteam _orderIteam;
 
         public static TextBox Box = new TextBox();
 
@@ -56,6 +59,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Tables
             this._costumer = new CostumerRepository();
             this._tableRepository = new TableRepository();
             this._order = new OrderRepository();
+            this._orderIteam = new OrderIteamRepository();
             TableRes= new TableRes();
 
         }
@@ -93,6 +97,10 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Tables
                 var result = await _order.GetByIdAsync(order.TableID);
                 Box.Text = result.Id.ToString();
                 orderId = result.Id;
+                ((MainWindow)Application.Current.MainWindow).orderIdPay = orderId;
+                //await ((TablewindowView)System.Windows.Application.Current.MainWindow).CloseedWin();
+
+
                 //_ = ((MainWindow)System.Windows.Application.Current.MainWindow).RefreshOrderIteam(orderId);
 
             }
@@ -102,8 +110,17 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Tables
                 MainWindow mainWindow = GetMainWindow();
                 mainWindow.orderId = odid;
                 Box.Text = odid.ToString();
-                MessageBox.Show($"tableid >{TableRes.Id}  --- orderid >{odid}");
-                _ = ((MainWindow)System.Windows.Application.Current.MainWindow).RefreshTablechangeAsync(odid);
+                var total = await _orderIteam.TootalPriceAllAsync(odid);
+                ((MainWindow)Application.Current.MainWindow).orderIdPay = odid;
+                ((MainWindow)Application.Current.MainWindow).status = TableRes.status.ToString();
+                ((MainWindow)Application.Current.MainWindow).tableid = TableRes.Id;
+                ((MainWindow)Application.Current.MainWindow).totalPrice = total;
+                await ((MainWindow)System.Windows.Application.Current.MainWindow).RefreshTablechangeAsync(odid);
+
+                //await ((TablewindowView)System.Windows.Application.Current.MainWindow).CloseedWin();
+                TablewindowView tablewindowView = new TablewindowView();
+                await tablewindowView.CloseedWin();
+
 
                 //await RefreshTablechange(odid);
             }
@@ -132,15 +149,22 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Tables
 
         }
 
-        private async void tableSet(object sender, RoutedEventArgs e)
+        public async void empty(string status, long id)
         {
-            if(TableRes.status.ToString() == "busy")
+            if (status == "busy")
             {
                 TableRes.status = TableStatus.empty;
+                //TableRes.TableNumber = 
                 this.tableBoreder.Background = new SolidColorBrush(Colors.Green);
 
-                var red = await _tableRepository.UpdatedAtAsync(Id, TableRes);
+                var red = await _tableRepository.UpdatedAtStatusAsync(id, TableRes);
             }
         }
+        public async void tableSet(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        
     }
 }

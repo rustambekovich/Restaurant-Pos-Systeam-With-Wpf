@@ -55,7 +55,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.ViewModeles
 
 
 
-                string query = $"SELECT  quantity,\"Product_id\", name, price FROM public.orderitemviewmodel13 ORDER BY \"Product_id\" ASC;";
+                string query = $"SELECT  quantity,\"Product_id\", name, price FROM public.orderitemviewmodel15 ORDER BY \"Product_id\" ASC;";
                 await using (var command = new NpgsqlCommand(query, _connection))
                 {
                     await using (var reader = await command.ExecuteReaderAsync())
@@ -99,7 +99,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.ViewModeles
 
 
 
-                string query = $"SELECT \"Product_id\", name, price, quantity, count FROM public.orderitemviewmodel14 where order_id = {id};"; 
+                string query = $"SELECT \"Product_id\", name, price, quantity, count FROM public.orderitemviewmodel15 where order_id = {id};"; 
                 await using (var command = new NpgsqlCommand(query, _connection))
                 {
 
@@ -110,7 +110,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.ViewModeles
                             var item = new OrderItemViewModel();
                             item.Product_id = reader.GetInt64(0);
                             item.ProductName = reader.GetString(1);
-                            item.Price = decimal.Parse(reader.GetDouble(2).ToString(), CultureInfo.InvariantCulture.NumberFormat); //reader.GetDecimal(3); //float.Parse(reader.GetDouble(3).ToString(),CultureInfo.InvariantCulture.NumberFormat);
+                            item.Price = Convert.ToDecimal(reader.GetFloat(2));   //reader.GetDecimal(3); //float.Parse(reader.GetDouble(3).ToString(),CultureInfo.InvariantCulture.NumberFormat);
                             item.Quantity = reader.GetInt64(3);
                             item.UnitPrice = item.Price;
                             item.Price = item.UnitPrice * item.Quantity;

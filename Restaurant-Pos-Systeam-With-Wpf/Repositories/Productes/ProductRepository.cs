@@ -107,7 +107,7 @@ public class ProductRepository : IProductRepository
                             item.Id = reader.GetInt64(0);
                             item.Name = reader.GetString(1);
                             item.Description = reader.GetString(2);
-                            item.Price = reader.GetFloat(3);
+                            item.Price = reader.GetDouble(3);
                             item.cotigory_id = reader.GetInt64(4);
                             item.ImagePath = reader.GetString(5);
                             list.Add(item);
@@ -148,7 +148,7 @@ public class ProductRepository : IProductRepository
                         item.Id = reader.GetInt64(0);
                         item.Name = reader.GetString(1);
                         item.Description = reader.GetString(2);
-                        item.Price = reader.GetFloat(3);
+                        item.Price = reader.GetDouble(3);
                         item.cotigory_id = reader.GetInt64(4);
                         item.ImagePath = reader.GetString(5);
                         list.Add(item);

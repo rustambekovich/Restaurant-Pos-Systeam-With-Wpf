@@ -20,7 +20,7 @@
             <Label Height="35"
                    Margin="5 0 5 0"
                    Width="180"
-                   HorizontalContentAlignment="Right"
+                   HorizontalContentAlignment="Left"
                    VerticalContentAlignment="Center"
                    Content="32"
                    FontSize="18"
@@ -40,29 +40,30 @@
             </Border>
             
             
-            <StackPanel Orientation="Horizontal">
-                <Label Margin="0"
-                   Content="$"
-                   FontSize="18"
-                   Height="30"
-                   HorizontalContentAlignment="Left"
-                   VerticalContentAlignment="Center"
-                   Width="93"
-                   Foreground="Yellow">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
 
-                </Label>
-                <Label Margin="0"
+                <Label Margin="0 0 0 0"
                    Content="10"
                    FontSize="18"
                    Height="30"
                    HorizontalContentAlignment="Right"
-                   VerticalContentAlignment="Center"
-                   Width="93"
+                   VerticalContentAlignment="Top"
+                   Width="100"
                    x:Name="lbitemPrise"
+                   Foreground="Black">
+
+                </Label>
+                <Label Margin="0 0 0 0"
+                   Content="$"
+                   FontSize="18"
+                   Height="30"
+                   HorizontalContentAlignment="Right"
+                   VerticalContentAlignment="Top"
+                   Width="20"
                    Foreground="Green">
 
                 </Label>
-
 
             </StackPanel>
         </StackPanel>

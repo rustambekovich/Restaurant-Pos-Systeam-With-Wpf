@@ -21,6 +21,9 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
     /// <summary>
     /// Interaction logic for TablewindowView.xaml
     /// </summary>
+    /// 
+
+    
     public partial class TablewindowView : Window
     {
         ITebleRepository _tableRepository;
@@ -84,7 +87,15 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
                 wrpTable.Children.Add(tableUserControl);
                 count++; 
                 CatrgoryItemCount.Content = (count).ToString();
+               
             }
+
+            
+        }
+
+        public async Task CloseedWin()
+        {
+            this.Close();
         }
     }
 }

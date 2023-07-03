@@ -152,5 +152,29 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Repositories.Tables
                 await _connection.CloseAsync();
             }
         }
+
+        public async Task<int> UpdatedAtStatusAsync(long id, TableRes entity)
+        {
+            try
+            {
+                await _connection.OpenAsync();
+                string query = $"UPDATE public.\"Tables\"" +
+                    $"SET status=@status WHERE \"table_id\" = {id};";
+                await using (var command = new NpgsqlCommand(query, _connection))
+                {
+                    command.Parameters.AddWithValue("status", entity.status.ToString());
+                    var dbrresult = await command.ExecuteNonQueryAsync();
+                    return dbrresult;
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+            finally
+            {
+                await _connection.CloseAsync();
+            }
+        }
     }
 }

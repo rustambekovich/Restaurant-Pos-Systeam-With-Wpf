@@ -5,66 +5,95 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Tables"
              mc:Ignorable="d" 
-             Height="210" 
-             Width="260"
+             Height="250" 
+             Width="210"
              MouseDown="TableUserControl_MouseDown"
              Background="Transparent">
-    <Border BorderBrush="Black"
+    <Border BorderBrush="#787C80"
             BorderThickness="1"
-            Margin=" 5 5 5 5"
-            Background="{DynamicResource PraymiryBackround}"
+            Margin=" 5 5 5 5" 
+            Background="White"
             CornerRadius="10">
         <StackPanel>
             <Border x:Name="tableBoreder"
                 Margin="5 5 5 5"
-                    Background="Wheat"
-                Height="150"
-                Width="200">
+                    
+                Height="125"
+                Width="125"
+                    BorderBrush="#787C80"
+                    BorderThickness="1"
+                    CornerRadius="100">
                 <Button Style="{DynamicResource TableButton}"
                         Click="tableSet">
                     
                 </Button>
             </Border>
-            <StackPanel Orientation="Horizontal"
-                       Width="250"
+            <Border BorderBrush="#787C80"
+                    BorderThickness="1"
+                    CornerRadius="10">
+                <StackPanel Orientation="Horizontal"
+                       Width="180"
                         Height="40">
-                <Border >
-                    <Label Content="Table:"
+                    <Border >
+                        <Label Content="Table:"
                        HorizontalAlignment="Left"
-                       Margin="5 5 5 5"
-                       FontSize="18">
+                       Margin="5 5 0 0"
+                       FontSize="16">
 
-                    </Label>
-                </Border>
-                <Border Margin="5 5 5 5">
-                    <Label Content=""
+                        </Label>
+                    </Border>
+                    <Border Margin="0 5 5 5">
+                        <Label Content=""
                            x:Name="tablenum"
                        HorizontalAlignment="Right"
                        
-                       FontSize="18">
+                       FontSize="16">
 
-                    </Label>
-                </Border>
-                <Border >
-                    <Label Content="Capasty:"
+                        </Label>
+                    </Border>
+                    <Border >
+                        <Label Content="Capasty:"
                        HorizontalAlignment="Left"
-                       Margin="5 5 5 5"
-                       FontSize="18">
+                       Margin="0 5 0 0"
+                       FontSize="16">
 
-                    </Label>
-                </Border>
-                <Border Margin="5 5 5 5">
-                    <Label Content=""
+                        </Label>
+                    </Border>
+                    <Border Margin="0 5 5 5">
+                        <Label Content=""
                            x:Name="tablCapasty"
                        HorizontalAlignment="Right"
                        
-                       FontSize="18">
+                       FontSize="16">
 
-                    </Label>
+                        </Label>
+                    </Border>
+
+
+                </StackPanel>
+            </Border>
+           
+            <Grid Height="40"
+                  Margin=" 0 23 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0">
+                    <Button Style="{DynamicResource EditTable}"
+                            HorizontalAlignment="Left"
+                            Click="editTable">
+                        
+                    </Button>
                 </Border>
-                
+                <Border Grid.Column="1">
+                    <Button Style="{DynamicResource DeleteTableButton}"
+                            HorizontalAlignment="Right"
+                            Click="DeleteTable">
 
-            </StackPanel>
+                    </Button>
+                </Border>
+            </Grid>
             
         </StackPanel>
         

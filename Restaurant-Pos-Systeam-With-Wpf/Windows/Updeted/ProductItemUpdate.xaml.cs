@@ -70,7 +70,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows.Updeted
             Product product = new Product();
             product.Name = ltbItm.Text;
             product.Description = new TextRange(rchDesc.Document.ContentStart, rchDesc.Document.ContentEnd).Text; ;
-            product.Price = float.Parse(tbPrice.Text, CultureInfo.InvariantCulture.NumberFormat);
+            product.Price = double.Parse(tbPrice.Text);
             string imgPath = ItmUp.ImageSource.ToString();
             if (!String.IsNullOrEmpty(imgPath))
                 product.ImagePath = await CopyImage.CopyImageAsync(imgPath, ContentConst.IMAGE_PATH);

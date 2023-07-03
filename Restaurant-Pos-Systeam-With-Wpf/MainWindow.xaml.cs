@@ -30,6 +30,8 @@ using Restaurant_Pos_Systeam_With_Wpf.Domains.Entities;
 using Restaurant_Pos_Systeam_With_Wpf.Domains.Enums;
 using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Orderes;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Orderes;
+using System.Diagnostics;
+using WPFCustomMessageBox;
 
 namespace Restaurant_Pos_Systeam_With_Wpf
 {
@@ -45,7 +47,11 @@ namespace Restaurant_Pos_Systeam_With_Wpf
         private readonly IOrderIteam _orderIteam;
         private readonly ITebleRepository _tebleRepository;
         private readonly IOrder _order1;
+        public string status { get; set; }
         public long orderId { get;  set; }
+        public long tableid { get; set; }
+        public decimal totalPrice { get; set; }
+        public long orderIdPay { get; set; }
 
         public MainWindow()
         {
@@ -76,8 +82,8 @@ namespace Restaurant_Pos_Systeam_With_Wpf
         // Close the application
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            //Application.Current.Shutdown();
-            this.Close();
+            System.Windows.Application.Current.Shutdown();
+            //this.Close();
         }
 
         // Open settings window
@@ -112,7 +118,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             await RefreshAsync(0);
            // await RefreshOrderIteam(0);
         }
-
+        
         public async Task RefreshTablechangeAsync(long id)
         {
             orderItem.Children.Clear();
@@ -125,18 +131,20 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             if (id !=0)
             {
                 var getitem = await _orderItemView.GetByIdAllAsync(id);
+                
                 foreach (var item in getitem)
                 {
                     OrderUserControl orderUserControl = new OrderUserControl();
                     orderUserControl.SetData(item);
                     orderUserControl.RefreshOrderIteam = RefreshOrderIteam;
-
+                   
                     orderItem.Children.Add(orderUserControl);
                 }
+                AllPrice.Content = totalPrice.ToString();
             }
            
         }
-
+        
         //long dt = long.Parse(TableSelectUserControl.Box.Text);
         public  async Task RefreshOrderIteam(long id)
         {
@@ -156,6 +164,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             {
                 // var tableres = await _tebleRepository.GetAllAsync(paginationParams);
                 var getitem = await _orderItemView.GetByIdAllAsync(id);
+                
                 foreach (var item in getitem)
                 {
                     OrderUserControl orderUserControl = new OrderUserControl();
@@ -164,6 +173,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
 
                     orderItem.Children.Add(orderUserControl);
                 }
+                AllPrice.Content = totalPrice.ToString();
             }
 
             /*orderItem.Children.Clear();
@@ -261,7 +271,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf
 
         private async void deleteAllItem(object sender, RoutedEventArgs e)
         {
-            var res = await _orderIteam.DeletedAtALlItemAsync();
+            var res = await _orderIteam.DeletedAtALlItemByIdAsync(orderIdPay);
             await RefreshOrderIteam(0);
         }
 
@@ -277,133 +287,132 @@ namespace Restaurant_Pos_Systeam_With_Wpf
 
         private async void PayentOrder(object sender, RoutedEventArgs e)
         {
-            PaginationParams paginationParams = new PaginationParams()
+            
+            var result = CustomMessageBox.ShowYesNoCancel("Qanday usulda to'lov qilmoqchisiz?", "Payment type", "Cash", "Cards", "other");
+            string paytyp = "";
+            switch (result)
             {
-                PageNumber = 1,
-                PageSize = 20
-            };
-            var orderviews = await _orderItemView.GetAllAsync(paginationParams);
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+                case MessageBoxResult.Yes:
+                    paytyp += "Cash";
+                    break;
+                case MessageBoxResult.No:
+                    paytyp += "Card";
+                    break;
 
-            PdfDocument document = new PdfDocument();
+                case MessageBoxResult.Cancel:
+                    paytyp += "Other";
 
-            PdfPage page = document.AddPage();
+                    break;
+                default:
+                    paytyp += "";
 
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-
-            XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
-
-            XFont font = new("Arial", 20);
-
-            /*XTextFormatter tf = new XTextFormatter(gfx);
-            XRect rect = new XRect(40, 100, 400, 220);
-
-            gfx.DrawRectangle(XBrushes.SeaShell, rect);
-            tf.DrawString($"{dateTextBlock.Text} {timeTextBlock.Text}\n", font, XBrushes.Black, rect);
-*/
-            //------------------------------
-
-            string[] data =
+                    break;
+            }
+            if(paytyp !="")
             {
+                totalPrice = 0;
+                AllPrice.Content = totalPrice.ToString();
+                var orderviews = await _orderItemView.GetByIdAllAsync(orderIdPay);
+                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
-            };
+                PdfDocument document = new PdfDocument();
 
-            string[] foodItems = {
-            "Burger",
-            "Pizza",
-            "Salad",
-            "Pasta",
-            "Steak"
-             };
+                PdfPage page = document.AddPage();
 
-            // Set the starting position
-            double x = 50;
-            double y = 50;
+                XGraphics gfx = XGraphics.FromPdfPage(page);
 
-            // Draw the food items on the page
-            gfx.DrawString($"-------------------------------------------------------------", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            y += 25;
-            gfx.DrawString($"Able Dev", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            y += 15;
-            x += 90;
-            gfx.DrawString($"post sisteam", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            y += 25;
-            x -= 90;
-            gfx.DrawString($"-------------------------------------------------------------", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            y += 25;
-            gfx.DrawString($"{dateTextBlock.Text} {timeTextBlock.Text}", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            y += 25;
-            gfx.DrawString($"Items", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            x += 200;
-            gfx.DrawString($"Qty", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            x += 100;
-            gfx.DrawString($"Price", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            y += 25;
-            x -= 300;
-            gfx.DrawString($"=============================================================", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            y += 25;
+                XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
 
-            decimal total = 0;
+                XFont font = new("Arial", 20);
 
-            foreach (var foodItem in orderviews)
-            {
-                gfx.DrawString($"{foodItem.ProductName}", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                /*XTextFormatter tf = new XTextFormatter(gfx);
+                XRect rect = new XRect(40, 100, 400, 220);
 
-                // y += 25;  // Increase the y-coordinate for the next line            gfx.DrawString($"{dateTextBlock.Text} {timeTextBlock.Text}\n", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                gfx.DrawRectangle(XBrushes.SeaShell, rect);
+                tf.DrawString($"{dateTextBlock.Text} {timeTextBlock.Text}\n", font, XBrushes.Black, rect);
+    */
+                //------------------------------
+
+
+
+                // Set the starting position
+                double x = 50;
+                double y = 50;
+
+                // Draw the food items on the page
+                gfx.DrawString($"-------------------------------------------------------------", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                y += 25;
+                gfx.DrawString($"Able Dev", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                y += 15;
+                x += 90;
+                gfx.DrawString($"post sisteam", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                y += 25;
+                x -= 90;
+                gfx.DrawString($"-------------------------------------------------------------", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                y += 25;
+                gfx.DrawString($"{dateTextBlock.Text} {timeTextBlock.Text}", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                y += 25;
+                gfx.DrawString($"Items", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
                 x += 200;
-                gfx.DrawString($"{foodItem.Quantity}", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                gfx.DrawString($"Qty", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
                 x += 100;
-                gfx.DrawString($"{foodItem.Price}", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                gfx.DrawString($"Price", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                y += 25;
+                x -= 300;
+                gfx.DrawString($"=============================================================", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                y += 25;
+
+                decimal total = 0;
+
+                foreach (var foodItem in orderviews)
+                {
+                    gfx.DrawString($"{foodItem.ProductName}", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+
+                    // y += 25;  // Increase the y-coordinate for the next line            gfx.DrawString($"{dateTextBlock.Text} {timeTextBlock.Text}\n", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                    x += 200;
+                    gfx.DrawString($"{foodItem.Quantity}", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                    x += 100;
+                    gfx.DrawString($"{foodItem.Price}", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                    x -= 300;
+                    y += 25;
+                    total += foodItem.Price;
+                }
+                y += 25;
+                gfx.DrawString($"Payment Type:", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                x += 300;
+                gfx.DrawString(paytyp, font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+
                 x -= 300;
                 y += 25;
-                total += foodItem.Price;
+                gfx.DrawString($"Total:", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                x += 300;
+                gfx.DrawString($"${total}", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                x -= 300;
+                y += 25;
+                gfx.DrawString($"-------------------------------------------------------------", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                y += 25;
+                gfx.DrawString($"Thank you", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopCenter);
+                y += 25;
+                gfx.DrawString($"-------------------------------------------------------------", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
+                y += 25;
+
+                string path = $"D:\\test\\test_{Guid.NewGuid().ToString()}.pdf";
+                document.Save(path);
+                ProcessStartInfo startInfo = new ProcessStartInfo();
+                startInfo.FileName = "explorer.exe"; // "Explorer" ilovasini ishga tushirish
+                startInfo.Arguments = path; // Faylni tanlash
+                startInfo.UseShellExecute = true; // Kamandani standart operatsion tizim bilan ishlatish
+
+                // Processni boshlash
+                Process.Start(startInfo);
+                orderItem.Children.Clear();
+                TableSelectUserControl tableSelectUserControl = new TableSelectUserControl();
+                tableSelectUserControl.empty(status, tableid);
+                await _orderIteam.DeletedAtAsync(orderIdPay);
             }
-            y += 25;
-            gfx.DrawString($"Total:", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            x+= 300;
-            gfx.DrawString($"${total}", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            x -= 300;
-            y += 25;
-            gfx.DrawString($"-------------------------------------------------------------", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            y += 25;
-            gfx.DrawString($"Thank you", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopCenter);
-            y += 25;
-            gfx.DrawString($"-------------------------------------------------------------", font, XBrushes.Black, new XRect(x, y, page.Width, page.Height), XStringFormats.TopLeft);
-            y += 25;
-            /*//tf.DrawString("Firstlusdvcd \nline\nSecond \nline", font, XBrushes.Black, rect);
-
-            */
-            /*float allprice = 0;
-
-
-
-            foreach (var item in orderviews)
-            {
-                allprice += item.Price;
-                tf.DrawString($"{item.ProductName}/t/t{item.Quantity}/t/t{item.UnitPrice}", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormat.TopLeft);
-            }
-            tf.DrawString($"All price:{allprice}", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormat.TopLeft);
-
-            tf.DrawString($"{dateTextBlock.Text}/t{timeTextBlock.Text}/n------------------------------------------", font, XBrushes.Black, new XRect(0, 0, page.Width, page.Height), XStringFormat.TopLeft);
-
-            string filename = "FirstPdf.pdf";
-
-            PdfDocument document = new PdfDocument();
-
-            PdfPage page = document.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-            XFont font = new XFont("Times New Roman", 10, XFontStyle.Bold);
-            XTextFormatter tf = new XTextFormatter(gfx);
-            string text = "Asssalomu alaykum/r/nVa alaykum assalom";
-            XRect rect = new XRect(40, 100, 250, 220);
-            gfx.DrawRectangle(XBrushes.SeaShell, rect);
-            tf.DrawString(text, font, XBrushes.Black, rect, XStringFormats.Default);*/
-            document.Save($"D:\\test\\test_{Guid.NewGuid().ToString()}.pdf");
-
             
-
         }
 
-        
+
     }
 }

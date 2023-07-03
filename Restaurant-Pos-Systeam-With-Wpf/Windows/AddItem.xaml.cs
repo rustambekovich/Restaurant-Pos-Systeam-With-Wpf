@@ -92,7 +92,7 @@ public partial class AddItem : Window
         Product products = new Product();
         products.Name = ltbItm.Text;
         products.Description = new TextRange(rchDesc.Document.ContentStart, rchDesc.Document.ContentEnd).Text;
-        products.Price = float.Parse(tbPrice.Text, CultureInfo.InvariantCulture.NumberFormat);
+        products.Price = double.Parse(tbPrice.Text);
         string ImagePath = ImageItm.ImageSource.ToString();
         if (!String.IsNullOrEmpty(ImagePath))
             products.ImagePath = await CopyImage.CopyImageAsync(ImagePath, ContentConst.IMAGE_PATH);

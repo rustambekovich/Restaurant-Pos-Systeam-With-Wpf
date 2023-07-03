@@ -8,6 +8,7 @@ using Restaurant_Pos_Systeam_With_Wpf.Repositories.Productes;
 using Restaurant_Pos_Systeam_With_Wpf.Utils;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -60,7 +61,9 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Items
                 orderIteam.OrderId = long.Parse(idOrder);
                 var  res  = await _orderIteam.CreatedAtAsync(orderIteam);
                 var result = long.Parse(idOrder);
-                await ((MainWindow)System.Windows.Application.Current.MainWindow).RefreshOrderIteam(long.Parse(idOrder));
+                var total = await _orderIteam.TootalPriceAllAsync(result);
+                ((MainWindow)Application.Current.MainWindow).totalPrice = total;
+                await ((MainWindow)System.Windows.Application.Current.MainWindow).RefreshOrderIteam(result);
             }
             else
             {

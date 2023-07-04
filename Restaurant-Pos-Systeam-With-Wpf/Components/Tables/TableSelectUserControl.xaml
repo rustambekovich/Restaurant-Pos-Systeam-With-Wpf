@@ -5,66 +5,74 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Components.Tables"
              mc:Ignorable="d" 
-             Height="210" 
-             Width="260"
+             Height="188" 
+             Width="208"
              MouseDown="TableUserControl_MouseDown"
              Background="Transparent">
-    <Border BorderBrush="Black"
+    <Border BorderBrush="#787C80"
             BorderThickness="1"
             Margin=" 5 5 5 5"
             Background="{DynamicResource PraymiryBackround}"
             CornerRadius="10">
         <StackPanel>
             <Border x:Name="tableBoreder"
-                Margin="5 5 5 5"
-                    Background="LawnGreen"
-                Height="150"
-                Width="200">
+                    Margin="5 5 5 5"
+                    
+                    Height="130"
+                    Width="130"
+                    BorderBrush="#787C80"
+                    BorderThickness="1"
+                    CornerRadius="100">
                 <Button Style="{DynamicResource TableButton}"
                         Click="tableSet">
 
                 </Button>
             </Border>
-            <StackPanel Orientation="Horizontal"
-                       Width="250"
-                        Height="45">
-                <Border >
-                    <Label Content="Table:"
+             <Border BorderBrush="#787C80"
+                    BorderThickness="1"
+                     Height="37"
+                    CornerRadius="0  0 10 10">
+                <StackPanel Orientation="Horizontal"
+                       Width="180"
+                        Height="40">
+                    <Border >
+                        <Label Content="Table:"
                        HorizontalAlignment="Left"
-                       Margin="5 5 5 5"
-                       FontSize="18">
+                       Margin="5 5 0 0"
+                       FontSize="16">
 
-                    </Label>
-                </Border>
-                <Border Margin="5 5 5 5">
-                    <Label Content=""
+                        </Label>
+                    </Border>
+                    <Border Margin="0 5 5 5">
+                        <Label Content=""
                            x:Name="tablenum"
                        HorizontalAlignment="Right"
                        
-                       FontSize="18">
+                       FontSize="16">
 
-                    </Label>
-                </Border>
-                <Border >
-                    <Label Content="Capasty:"
+                        </Label>
+                    </Border>
+                    <Border >
+                        <Label Content="Capasty:"
                        HorizontalAlignment="Left"
-                       Margin="5 5 5 5"
-                       FontSize="18">
+                       Margin="0 5 0 0"
+                       FontSize="16">
 
-                    </Label>
-                </Border>
-                <Border Margin="5 5 5 5">
-                    <Label Content=""
+                        </Label>
+                    </Border>
+                    <Border Margin="0 5 5 5">
+                        <Label Content=""
                            x:Name="tablCapasty"
                        HorizontalAlignment="Right"
                        
-                       FontSize="18">
+                       FontSize="16">
 
-                    </Label>
-                </Border>
+                        </Label>
+                    </Border>
 
 
-            </StackPanel>
+                </StackPanel>
+            </Border>
 
         </StackPanel>
 

@@ -66,7 +66,7 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Windows
         }
         public async Task Refresh()
         {
-            tbCopstyname.Text = string.Empty;
+            //tbCopstyname.Text = string.Empty;
             //tbname.Text = string.Empty;
             wrpTable.Children.Clear();
             PaginationParams paginationParams = new PaginationParams()

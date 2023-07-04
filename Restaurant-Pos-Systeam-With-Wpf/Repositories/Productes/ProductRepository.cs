@@ -168,6 +168,47 @@ public class ProductRepository : IProductRepository
         }
     }
 
+    public async Task<IList<Product>> GetAllByCategoryStringAsync(string search)
+    {
+        try
+        {
+
+            var list = new List<Product>();
+
+            await _connection.OpenAsync();
+
+
+            string query = $"SELECT * FROM public.\"Products\" WHERE name ILIKE '{search}%';";
+            await using (var command = new NpgsqlCommand(query, _connection))
+            {
+                await using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var item = new Product();
+                        item.Id = reader.GetInt64(0);
+                        item.Name = reader.GetString(1);
+                        item.Description = reader.GetString(2);
+                        item.Price = reader.GetDouble(3);
+                        item.cotigory_id = reader.GetInt64(4);
+                        item.ImagePath = reader.GetString(5);
+                        list.Add(item);
+                    }
+                }
+
+            }
+            return list;
+        }
+        catch
+        {
+            return new List<Product>();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
+    }
+
     public Task<Product> GetByIdAsync(long id)
     {
         throw new NotImplementedException();

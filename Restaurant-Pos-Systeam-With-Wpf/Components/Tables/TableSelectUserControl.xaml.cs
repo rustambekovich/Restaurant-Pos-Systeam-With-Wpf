@@ -162,7 +162,58 @@ namespace Restaurant_Pos_Systeam_With_Wpf.Components.Tables
         }
         public async void tableSet(object sender, RoutedEventArgs e)
         {
-            
+            if (TableRes.status.ToString() != "busy")
+            {
+                Costumer costumer = new Costumer();
+                costumer.TableId = TableRes.Id;
+                this.tableBoreder.Background = new SolidColorBrush(Colors.Red);
+
+                //this.Style.Setters.va
+                Tableres.TableNumber = TableRes.TableNumber;
+                Tableres.SeatingCapasity = TableRes.SeatingCapasity;
+
+                Tableres.status = TableStatus.busy;
+                await _costumer.CreatedAtAsync(costumer);
+                await _tableRepository.UpdatedAtAsync(Id, Tableres);
+                var res = await _costumer.GetByIdAsync(TableRes.Id);
+                Order order = new Order();
+                order.TableID = TableRes.Id;
+                order.CostumerID = res.Id;
+                order.CreatedAt = DateTime.Now;
+                order.EmployeID = 1;
+                order.TotalAmount = 0;
+                order.Ordertatus = OrderStatus.New;
+                var jav = await _order.CreatedAtAsync(order);
+                var result = await _order.GetByIdAsync(order.TableID);
+                Box.Text = result.Id.ToString();
+                orderId = result.Id;
+                ((MainWindow)Application.Current.MainWindow).orderIdPay = orderId;
+                //await ((TablewindowView)System.Windows.Application.Current.MainWindow).CloseedWin();
+
+
+                //_ = ((MainWindow)System.Windows.Application.Current.MainWindow).RefreshOrderIteam(orderId);
+
+            }
+            else if (TableRes.status.ToString() == "busy")
+            {
+                var odid = await _order.GetById(TableRes.Id);
+                MainWindow mainWindow = GetMainWindow();
+                mainWindow.orderId = odid;
+                Box.Text = odid.ToString();
+                var total = await _orderIteam.TootalPriceAllAsync(odid);
+                ((MainWindow)Application.Current.MainWindow).orderIdPay = odid;
+                ((MainWindow)Application.Current.MainWindow).status = TableRes.status.ToString();
+                ((MainWindow)Application.Current.MainWindow).tableid = TableRes.Id;
+                ((MainWindow)Application.Current.MainWindow).totalPrice = total;
+                await ((MainWindow)System.Windows.Application.Current.MainWindow).RefreshTablechangeAsync(odid);
+
+                //await ((TablewindowView)System.Windows.Application.Current.MainWindow).CloseedWin();
+                TablewindowView tablewindowView = new TablewindowView();
+                await tablewindowView.CloseedWin();
+
+
+                //await RefreshTablechange(odid);
+            }
         }
 
         

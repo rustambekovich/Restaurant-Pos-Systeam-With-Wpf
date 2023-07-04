@@ -13,7 +13,8 @@
         Height="600" 
         Width="900">
         
-    <Border Background="{DynamicResource  SecondaryBackground}">
+    <Border Background="{DynamicResource  SecondaryBackground}"
+            >
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

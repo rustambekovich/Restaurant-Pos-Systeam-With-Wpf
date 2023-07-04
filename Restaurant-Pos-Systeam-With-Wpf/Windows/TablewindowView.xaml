@@ -5,73 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restaurant_Pos_Systeam_With_Wpf.Windows"
         mc:Ignorable="d"
-         WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="Azure"
+        Background="Transparent"
         Loaded="Window_Loaded"
-        Title="AddCategory" Height="600" Width="900">
+        Title="Select Table" Height="600" Width="900">
 
-    <Border>
+    <Border BorderBrush="White"
+            BorderThickness="2"
+            CornerRadius="0 0 5 5"
+            Background="#9DB2BF">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0"
                     BorderThickness="1"
+                    CornerRadius="10"
                     BorderBrush="{DynamicResource BorderThiknes}"
                     Margin="5 5 5 5"
-                    Background="{DynamicResource PraymiryBackround}"
+                    Background="Transparent"
                     >
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                       
-                       
-                    </StackPanel>
 
 
-                    <StackPanel Orientation="Horizontal">
-                        <!--<Border Background="{DynamicResource SecondaryBackround}"
-                            Height="50"
-                            Width="310"
-                            CornerRadius="10"
-                            HorizontalAlignment="Left"
-                            Margin="15 0 5 5"
-                            >
-
-                            <StackPanel Orientation="Horizontal">
-                                <Grid Width="550">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBox Grid.Column="0" x:Name="tbname"
-                                         MaxLength="50"
-                                         PreviewTextInput="TextBox_PreviewTextInput"
-                                         
-                                         HorizontalAlignment="Left"
-                                         Width="280" 
-                                         VerticalAlignment="Center"
-                                         FontSize="16"
-                                         Margin="10 0 10 0"
-                                         FontFamily="Jetbrains Mono"
-                                         BorderThickness="0"
-                                         TextChanged="TextBox_TextChanged"
-                                         Foreground="Black"
-                                         Background="{DynamicResource  SecondaryBackround}">
-
-                                    </TextBox>
-                                    --><!--<Label Grid.Column="1" x:Name="lbcharectr"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       FontSize="18"
-                                      
-                                       Content="0"/>--><!--
-                                </Grid>
-
-                            </StackPanel>
-
-                        </Border>-->
-                        <Label x:Name="lbctg"
+                    <!--<Border Height="60">
+                        <StackPanel Orientation="Horizontal">
+                            
+                            <Label x:Name="lbctg"
                                Margin="10 10 0 0"
                                HorizontalAlignment="Left"
                                Width="70"
@@ -79,22 +40,22 @@
                                Content="Count:">
 
 
-                        </Label>
-                        <Border Background="{DynamicResource SecondaryBackround}"
-                            Height="50"
-                            Width="310"
-                            CornerRadius="10"
-                            HorizontalAlignment="Left"
-                            Margin="15 0 5 5"
-                            >
+                            </Label>
+                            <Border Background="{DynamicResource SecondaryBackround}"
+                                    Height="50"
+                                    Width="310"
+                                    CornerRadius="10"
+                                    HorizontalAlignment="Left"
+                                    Margin="15 0 5 5"
+                                    >
 
-                            <StackPanel Orientation="Horizontal">
-                                <Grid Width="550">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="10*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBox Grid.Column="0" x:Name="tbCopstyname"
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid Width="550">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="10*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Grid.Column="0" x:Name="tbCopstyname"
                                          MaxLength="50"
                                          HorizontalAlignment="Left"
                                          PreviewTextInput="CAPASTYTEXTINPUT"
@@ -108,40 +69,49 @@
                                          Foreground="Black"
                                          Background="{DynamicResource  SecondaryBackround}">
 
-                                    </TextBox>
-                                    <!--<Label Grid.Column="1" x:Name="lbcharectr"
+                                        </TextBox>
+                                        --><!--<Label Grid.Column="1" x:Name="lbcharectr"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        FontSize="18"
-                                       Content="0"/>-->
-                                </Grid>
+                                       Content="0"/>--><!--
+                                    </Grid>
 
-                            </StackPanel>
+                                </StackPanel>
 
-                        </Border>
-                        <Border Width="270">
-                            
-                        </Border>
-                        
-                        <Button Style="{DynamicResource FindButton}"
+                            </Border>
+                            <Border Width="270">
+
+                            </Border>
+
+                            <Button Style="{DynamicResource FindButton}"
                                     x:Name="savebtntable"
                                     Margin="5 0 5 5"
                                     Click="Find_Click"/>
-                    </StackPanel>
+                        </StackPanel>
+                    </Border>-->
+                    
 
-                    <Border Height="400"
-                            Margin="5 5 5 5">
+                    <Border Height="507"
+                            Margin="5 5 5 0"
+                            BorderThickness="1"
+                            BorderBrush="#787C80"
+                            CornerRadius="10 10 0 0">
 
                         <ScrollViewer Grid.Column="1"
                                       Margin="1 5 5 5">
                             <WrapPanel x:Name="wrpTable"/>
                         </ScrollViewer>
                     </Border>
-                    <Border Height="50"
+                    <Border Height="30"
+                            CornerRadius=" 0 0 10 10"
+                            BorderThickness="1"
+                            BorderBrush="#787C80"
                             Margin="5 0 5 15">
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
                             <Label Content="Total"
+                                   
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    FontSize="16">

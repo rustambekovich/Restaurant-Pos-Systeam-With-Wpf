@@ -8,5 +8,7 @@ public interface IProductRepository : IRepository<Product, Product>
 {
     public Task<int> Count();
     public Task<IList<Product>> GetAllByCategoryIdAsync(long id);
+    public Task<IList<Product>> GetAllByCategoryStringAsync(string search);
+
 }
 

@@ -32,6 +32,7 @@ using Restaurant_Pos_Systeam_With_Wpf.Interfaces.Orderes;
 using Restaurant_Pos_Systeam_With_Wpf.Repositories.Orderes;
 using System.Diagnostics;
 using WPFCustomMessageBox;
+using System.Windows.Controls;
 
 namespace Restaurant_Pos_Systeam_With_Wpf
 {
@@ -413,6 +414,26 @@ namespace Restaurant_Pos_Systeam_With_Wpf
             
         }
 
+        private async void tbSearch_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            string keyword = tbSearch.Text;
+            var result = await _productRepository.GetAllByCategoryStringAsync(keyword);
+            Search(result);
+        }
 
+        public void Search(IList<Product> list)
+        {
+            wrpProduct.Children.Clear();
+
+
+            foreach (var product in list)
+            {
+                ItemsUserControl itemsUserControl = new ItemsUserControl();
+                itemsUserControl.RefreshOrderIteam = RefreshOrderIteam;
+                itemsUserControl.SetData(product);
+                itemsUserControl.RefreshOrderIteam = RefreshOrderIteam;
+                wrpProduct.Children.Add(itemsUserControl);
+            }
+        }
     }
 }
